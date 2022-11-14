@@ -8,7 +8,8 @@
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "host": "firebase deploy --only hosting"
   },
   "license": "MIT",
   "devDependencies": {
@@ -21,6 +22,7 @@
   },
   "dependencies": {
     "sass": "^1.56.1",
+    "solid-icons": "^1.0.4",
     "solid-js": "^1.5.1"
   }
 }

@@ -1,10 +1,12 @@
 import type { Component } from 'solid-js';
-
+import Navigation from "./components/Navigation/Navigation"
+import HomePage from "./pages/HomePage/HomePage";
 
 const App: Component = () => {
   return (
     <div >
-      <h1 class="text-green-500">Helllo</h1>
+     <Navigation />
+        <HomePage />
     </div>
   );
 };

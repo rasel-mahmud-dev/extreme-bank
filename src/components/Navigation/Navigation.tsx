@@ -1,9 +1,9 @@
-import React from 'react';
+import {Component} from "solid-js";
 
-const Navigation = () => {
+const Navigation: Component = () => {
 	return (
 		<div>
-			<h1>HI</h1>
+			<h1></h1>
   </div>
 	);
 };
