@@ -1,0 +1,14 @@
+.input-group{
+  label{ color: white; font-weight: 500}
+  input{
+    width: 100%;
+    background: rgba(255, 255, 255, 0.31);
+    color: #eeeeee;
+    padding: 10px 15px;
+    border-radius: 8px;
+    outline: none;
+    &::placeholder{
+      color: currentColor;
+    }
+  }
+}

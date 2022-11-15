@@ -11,6 +11,7 @@ import {FaBrandsAmazon, FaSolidG, FaSolidMoneyBill} from "solid-icons/fa";
 import {BsFileBarGraph} from "solid-icons/bs";
 import {FiHome} from "solid-icons/fi";
 import {RiFinanceSecurePaymentFill, RiSystemMenu4Line} from "solid-icons/ri";
+import {Link} from "@solidjs/router";
 
 const HomePage: Component = () => {
   return (
@@ -30,7 +31,7 @@ const HomePage: Component = () => {
               <BiSolidBell />
             </li>
             <li class="list-none w-max p-5 text-white flex items-center justify-center text-xl w-12 h-12  rounded-3xl bg-white/30 icon-shadow">
-              <BiSolidUser />
+              <Link href="/login"><BiSolidUser /></Link>
             </li>
           </div>
         </div>
