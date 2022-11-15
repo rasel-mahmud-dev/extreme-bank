@@ -1,3 +1,4 @@
+import * as React from "react";
 import {SyntheticEvent, useState} from "react";
 import "./login.scss";
 import InputGroup from "../InputGroup/InputGroup";
