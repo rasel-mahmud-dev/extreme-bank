@@ -1,6 +1,5 @@
-import {Component} from "solid-js";
 
-const Navigation: Component = () => {
+const Navigation = () => {
 	return (
 		<div>
 			<h1></h1>

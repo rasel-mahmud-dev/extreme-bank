@@ -1,20 +1,14 @@
-import type {Component} from "solid-js";
+import * as React from "react";
 import Navigation from "./components/Navigation/Navigation";
-import HomePage from "./pages/HomePage/HomePage";
-import {Route, Routes} from "@solidjs/router";
-import Login from "./components/Login/Login";
-import "./App.scss"
+import "./App.scss";
+import {Outlet} from "react-router-dom";
 
-const App: Component = () => {
+const App = () => {
     return (
         <div>
-          <Navigation/>
-    
-          <Routes>
-            <Route path="/" component={HomePage}/>
-            <Route path="/login" component={Login}/>
-          </Routes>
-        </div>
+      <Navigation/>
+      <Outlet/>
+    </div>
     );
 };
 
