@@ -1,3 +1,10 @@
-node_modules
-dist
+client/node_modules
+client/dist
+
+server/.idea
+server/dist
+server/.env
+server/.vercel
+server/tmp
+server/src/env.go
 

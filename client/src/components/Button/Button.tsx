@@ -1,17 +1,15 @@
-
+import {FC, ReactNode} from "react";
 import "./button.scss";
-import {FC} from "react";
-
 
 interface Props{
     className?: string
-    children?: JSX.Element
+    children?: ReactNode
 }
 
 const Button: FC<Props> = (props) => {
-    const {children, className: a, ...attr} = props
+    const {children, className, ...attr} = props
     return (
-        <button {...attr} className={`btn ${a}`}>
+        <button {...attr} className={`btn ${className}`}>
         {children}
       </button>
     );
