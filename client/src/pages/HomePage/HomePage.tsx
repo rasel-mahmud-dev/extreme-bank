@@ -14,6 +14,8 @@ import useStore from "../../context/useStore";
 import Avatar from "../../components/Avatar/Avatar";
 import HeroSection from "./HeroSection";
 import Testimonials from "./Testimonials";
+import Features from "./Features";
+import CountryCover from "./CountrieCover";
 
 const HomePage = () => {
 	
@@ -23,6 +25,8 @@ const HomePage = () => {
 		<div>
           
           <HeroSection />
+          <Features />
+          <CountryCover />
           <Testimonials />
           
       <div className="home-hero p-3">

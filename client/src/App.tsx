@@ -10,6 +10,14 @@ import {authFetchingAction} from "./context/actions/authAction";
 
 const App = () => {
     
+    function toggleFullScreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+    }
+    
     const [state, dispatch]= useStore()
     
     useEffect(()=>{
@@ -19,6 +27,7 @@ const App = () => {
     
     return (
         <div>
+            {/*<button onClick={toggleFullScreen}>asd</button>*/}
       <Navigation/>
       <Outlet/>
     </div>
