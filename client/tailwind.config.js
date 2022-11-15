@@ -10,6 +10,13 @@ module.exports = {
           400: "#e84e4e",
           500: "#f34141"
         },
+        secondary: {
+          100: "#ffb37b",
+          200: "#f8a35e",
+          300: "#fda155",
+          400: "#fb923c",
+          500: "#ff9337"
+        },
         dark: {
           0: "#ffffff",
           10: "#eaeaea",

@@ -2,22 +2,29 @@ import "./style.scss";
 import * as React from "react"
 
 
-import {
-  AiOutlineArrowDown,
-  AiOutlineArrowUp,
-  AiOutlineReload,
-} from "react-icons/ai";
+import {AiOutlineArrowDown, AiOutlineArrowUp, AiOutlineReload,} from "react-icons/ai";
 
 import {BsFileBarGraph, BsGoogle} from "react-icons/bs";
-import { FiHome } from "react-icons/fi";
+import {FiHome} from "react-icons/fi";
 
 
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import {BiBell, BiCard, BiMeteor, BiMoney, BiUser, GrAmazon, HiOutlineLibrary, MdPayment} from "react-icons/all";
+import useStore from "../../context/useStore";
+import Avatar from "../../components/Avatar/Avatar";
+import HeroSection from "./HeroSection";
+import Testimonials from "./Testimonials";
 
 const HomePage = () => {
-  return (
-    <div>
+	
+	const [{auth}, dispatch] = useStore()
+	
+	return (
+		<div>
+          
+          <HeroSection />
+          <Testimonials />
+          
       <div className="home-hero p-3">
         <div className="flex justify-between items-center">
           <div className="text-gray-300 font-medium">
@@ -25,16 +32,18 @@ const HomePage = () => {
             <h3 className="text-gray-50 text-2xl font-bold">Welcome</h3>
           </div>
           <div className="flex items-center gap-x-3">
-            <li className="list-none w-max p-5 text-white flex items-center justify-center text-xl w-12 h-12  rounded-3xl bg-white/30 icon-shadow">
-              <BiMeteor />
+            <li className="list-none w-max p-2 text-white flex items-center justify-center text-xl w-12 h-12  rounded-3xl bg-white/30 icon-shadow">
+              <BiMeteor className="text-xl"/>
+            </li>
+            <li className="list-none w-max p-2 text-white flex items-center justify-center text-xl w-12 h-12  rounded-3xl bg-white/30 icon-shadow">
+              <BiBell className="text-xl" />
             </li>
             <li className="list-none w-max p-5 text-white flex items-center justify-center text-xl w-12 h-12  rounded-3xl bg-white/30 icon-shadow">
-              <BiBell />
-            </li>
-            <li className="list-none w-max p-5 text-white flex items-center justify-center text-xl w-12 h-12  rounded-3xl bg-white/30 icon-shadow">
-              <Link to="/login">
-                <BiUser />
-              </Link>
+              {auth ? (
+				  <Avatar src={auth.avatar} username={auth.username} className="text-sm font-medium"/>
+			  ) : <Link to="/login">
+                <BiUser/>
+              </Link>}
             </li>
           </div>
         </div>
@@ -46,8 +55,9 @@ const HomePage = () => {
         <div className="flex items-center justify-between mt-6">
           <div className="flex flex-col justify-center items-center">
             <li className="list-none w-max p-5 text-neutral-900 flex items-center justify-center text-xl w-20 h-20  rounded-3xl bg-white icon-shadow">
-              <div className="w-10 h-10 border-2 text-amber-400 border-amber-400 rounded-full flex items-center justify-center ">
-                <AiOutlineArrowUp className="" />
+              <div
+				  className="w-10 h-10 border-2 text-amber-400 border-amber-400 rounded-full flex items-center justify-center ">
+                <AiOutlineArrowUp className=""/>
               </div>
             </li>
             <span className="text-center font-medium inline-block text-sm mt-2">
@@ -56,8 +66,9 @@ const HomePage = () => {
           </div>
           <div className="flex flex-col justify-center items-center">
             <li className="list-none w-max p-5 text-neutral-900 flex items-center justify-center text-xl w-20 h-20  rounded-3xl bg-white icon-shadow">
-              <div className="w-10 h-10 border-2 text-green-400 border-green-400 rounded-full flex items-center justify-center ">
-                <AiOutlineArrowDown className="" />
+              <div
+				  className="w-10 h-10 border-2 text-green-400 border-green-400 rounded-full flex items-center justify-center ">
+                <AiOutlineArrowDown className=""/>
               </div>
             </li>
             <span className="text-center font-medium inline-block text-sm mt-2">
@@ -66,8 +77,9 @@ const HomePage = () => {
           </div>
           <div className="flex flex-col justify-center items-center">
             <li className="list-none w-max p-5 text-neutral-900 flex items-center justify-center text-xl w-20 h-20  rounded-3xl bg-white icon-shadow">
-              <div className="w-10 h-10 border-2 text-blue-400 border-blue-400 rounded-full flex items-center justify-center ">
-                <AiOutlineReload className="" />
+              <div
+				  className="w-10 h-10 border-2 text-blue-400 border-blue-400 rounded-full flex items-center justify-center ">
+                <AiOutlineReload className=""/>
               </div>
             </li>
             <span className="text-center font-medium inline-block text-sm mt-2">
@@ -76,8 +88,9 @@ const HomePage = () => {
           </div>
           <div className="flex flex-col justify-center items-center">
             <li className="list-none w-max p-5 text-neutral-900 flex items-center justify-center text-xl w-20 h-20  rounded-3xl bg-white icon-shadow">
-              <div className="w-10 h-10 border-2 text-neutral-500 border-neutral-500 rounded-full flex items-center justify-center ">
-                <BiMoney className="" />
+              <div
+				  className="w-10 h-10 border-2 text-neutral-500 border-neutral-500 rounded-full flex items-center justify-center ">
+                <BiMoney className=""/>
               </div>
             </li>
             <span className="text-center font-medium inline-block text-sm mt-2">
@@ -97,7 +110,7 @@ const HomePage = () => {
               <div className="flex gap-x-2">
                 <div className="rounded-4xl">
                   <li className="list-none bg-red-400 w-max p-5 text-2xl rounded-2xl text-white shadow-lg shadow shadow-red-500/30  ">
-                    <BsGoogle />
+                    <BsGoogle/>
                   </li>
                 </div>
                 <div className="flex justify-between flex-1 items-center">
@@ -116,7 +129,7 @@ const HomePage = () => {
               <div className="flex gap-x-2">
                 <div className="rounded-4xl">
                   <li className="list-none bg-orange-300 w-max p-5 text-2xl rounded-2xl text-white shadow-lg shadow shadow-orange-400/30  ">
-                    <GrAmazon />
+                    <GrAmazon/>
                   </li>
                 </div>
                 <div className="flex justify-between flex-1 items-center">
@@ -172,28 +185,28 @@ const HomePage = () => {
 
       <div className="footer">
         <li className="list-none flex justify-center flex-col items-center text-neutral-500 text-sm">
-          <BiCard className="text-2xl " />
+          <BiCard className="text-2xl "/>
           <span className="text-center text-neutral-600">Cards</span>
         </li>
         <li className="list-none flex justify-center flex-col items-center text-neutral-500 text-sm">
-          <BsFileBarGraph className="text-2xl " />
+          <BsFileBarGraph className="text-2xl "/>
           <span className="text-center text-neutral-600">Cards</span>
         </li>
         <li className="list-none flex justify-center flex-col items-center text-neutral-500 text-sm">
-          <FiHome className="text-2xl " />
+          <FiHome className="text-2xl "/>
           <span className="text-center">Cards</span>
         </li>
         <li className="list-none flex justify-center flex-col items-center text-neutral-500 text-sm">
-          <MdPayment className="text-2xl " />
+          <MdPayment className="text-2xl "/>
           <span className="text-center text-neutral-600">Cards</span>
         </li>
         <li className="list-none flex justify-center flex-col items-center text-neutral-500 text-sm">
-          <HiOutlineLibrary className="text-2xl " />
+          <HiOutlineLibrary className="text-2xl "/>
           <span className="text-center text-neutral-600">Cards</span>
         </li>
       </div>
     </div>
-  );
+	);
 };
 
 export default HomePage;

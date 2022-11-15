@@ -7,4 +7,4 @@ server/.env
 server/.vercel
 server/tmp
 server/src/env.go
-
+node_modules

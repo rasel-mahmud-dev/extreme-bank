@@ -8,3 +8,6 @@
 .btn-primary{
   @apply bg-primary-400 shadow shadow-md shadow-red-600/40 text-white;
 }
+.btn-secondary{
+  @apply bg-secondary-400 shadow shadow-md shadow-secondary-500/50 text-white;
+}

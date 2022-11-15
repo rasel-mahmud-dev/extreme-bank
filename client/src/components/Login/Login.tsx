@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 import validator from "../../utils/validator";
 import {FiLock, FiMail} from "react-icons/all";
 import { Link } from "react-router-dom";
-import useStore from "../../hooks/useStore";
+import useStore from "../../context/useStore";
 import {handleLoginAction} from "../../context/actions/authAction";
 
 
