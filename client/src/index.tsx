@@ -3,5 +3,11 @@ import { createRoot } from "react-dom/client";
 
 import "./index.css";
 import Router from "./routes/Router";
+import AppProvider from "./context/AppContext";
 
-createRoot(document.getElementById("root") as HTMLElement).render(<Router /> )
+createRoot(document.getElementById("root") as HTMLElement).render(
+	
+	<AppProvider>
+	<Router />
+	</AppProvider>
+)

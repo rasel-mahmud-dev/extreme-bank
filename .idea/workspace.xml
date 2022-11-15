@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/context/actions/authAction.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/hooks/useStore.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/types/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/axios/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/axios/api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/api/index.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/index.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/authController.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/authController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/authRoute.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/authRoute.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +47,7 @@
     "WebServerToolWindowFactoryState": "false",
     "nodejs_package_manager_path": "pnpm",
     "settings.editor.selected.configurable": "Settings.JavaScript.Linters",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.2.1\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\Users\\RaseL\\Desktop\\bapperBank\\client\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -49,7 +60,7 @@
       <option name="presentableId" value="Default" />
       <updated>1668502349595</updated>
       <workItem from="1668502352003" duration="1472000" />
-      <workItem from="1668503833460" duration="62000" />
+      <workItem from="1668503833460" duration="4521000" />
     </task>
     <servers />
   </component>

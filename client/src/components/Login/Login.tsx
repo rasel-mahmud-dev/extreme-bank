@@ -6,9 +6,15 @@ import Button from "../Button/Button";
 import validator from "../../utils/validator";
 import {FiLock, FiMail} from "react-icons/all";
 import { Link } from "react-router-dom";
-import {api} from "../../axios/api";
+import useStore from "../../hooks/useStore";
+import {handleLoginAction} from "../../context/actions/authAction";
+
 
 const Login = () => {
+  
+  const [state, dispatch] = useStore()
+
+  
   const data = {
     email: {
       label: "Email",
@@ -60,12 +66,8 @@ const Login = () => {
     
     setErrors(tempErrors);
     if(!isCompleted) return;
+    handleLoginAction(userInput, dispatch)
     
-    api.post("/api/v1/login", userInput).then((r)=>{
-      console.log(r)
-    }).catch(ex=>{
-      console.log(ex)
-    })
     
     
   }
