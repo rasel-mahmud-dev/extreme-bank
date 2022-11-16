@@ -8,11 +8,13 @@ export let dispatch: Dispatch<any>;
 export interface AppContextInterface {
 	auth: any
 	name: string
+	isAuthLoaded: boolean
 }
 
 const initialState: AppContextInterface = {
 	auth: null,
-	name:  "rase"
+	isAuthLoaded: false,
+	name:  "rase",
 }
 
 function reducer(state: AppContextInterface, action: any) {
@@ -21,8 +23,18 @@ function reducer(state: AppContextInterface, action: any) {
 			// updateState.auth = action.payload
 			return {
 				...state,
+				isAuthLoaded: true,
 				auth: action.payload
 			}
+		
+		case ACTION_TYPES.LOGOUT:
+			// updateState.auth = action.payload
+			return {
+				...state,
+				isAuthLoaded: true,
+				auth: null
+			}
+			
 		default:
 			return state
 	}

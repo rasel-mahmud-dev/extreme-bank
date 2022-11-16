@@ -1,7 +1,7 @@
-import {FC, ReactNode} from "react";
+import {FC, HTMLAttributes, ReactNode} from "react";
 import "./button.scss";
 
-interface Props{
+interface Props extends HTMLAttributes<HTMLButtonElement>{
     className?: string
     children?: ReactNode
 }

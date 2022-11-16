@@ -1,11 +1,4 @@
-import Loader from "components/Loader/Loader";
-import Rating from "components/Rating/Rating";
 import React, {useState} from "react";
-import {Autoplay, Pagination} from "swiper";
-
-import "swiper/css";
-import "swiper/css/pagination";
-import {Swiper, SwiperSlide} from "swiper/react";
 import Avatar from "../../components/Avatar/Avatar";
 import {Link} from "react-router-dom";
 
@@ -20,7 +13,7 @@ const CountryCover = () => {
 	
 	
 	return (
-		<section className="section">
+		<section className="section container">
 			<h5 className="heading-subtitle">Countries We Cover</h5>
 			<h1 className="heading-title">Send Money To Over 130 Countries Worldwide</h1>
 			
@@ -32,7 +25,7 @@ const CountryCover = () => {
 				<h4 className="text-center text-lg font-semibold ">{item.label}</h4>
 				</div>
 		
-				<p className="whitespace-pre-line text-center text-dark-100 mt-3">{item.text}</p>
+				<p className="whitespace-pre-line text-center text-dark-200 mt-3">{item.text}</p>
 						<button className='text-center block mt-4 text-primary-400 font-bold mx-auto'>
 							<Link to="#" className=" text-sm font-bold">View Details</Link>
 						</button>

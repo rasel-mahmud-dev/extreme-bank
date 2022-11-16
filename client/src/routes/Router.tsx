@@ -1,23 +1,34 @@
 import * as React from 'react';
+import {lazy, Suspense} from "react";
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import HomePage from "../pages/HomePage/HomePage";
 import App from "../App";
-import Login from "../components/Login/Login";
-import Registration from "../components/Registration/Registration";
+import PrivateRoute from "./PrivateRoute";
+
+
+const MyAccount = lazy(()=>import("../pages/MyAccount/MyAccount"));
+const Login = lazy(()=>import("../components/Login/Login"));
+const Registration = lazy(()=>import("../components/Registration/Registration"))
+const Services = lazy(()=>import("../pages/Services/Services"))
 
 const routes = createBrowserRouter([
-	{ path: "/", element: <App />,
-	children: [
-		{ path: "/", element: <HomePage />},
-		{ path: "/login", element: <Login />},
-		{ path: "/registration", element: <Registration />}
-	]
+	{
+		path: "/", element: <App />,
+		children: [
+			{ path: "/", element: <HomePage />},
+			{ path: "/login", element: <Login />},
+			{ path: "/registration", element: <Registration />},
+			{ path: "/services", element: <Services />},
+			{ path: "/my-account", element: <PrivateRoute><MyAccount /></PrivateRoute>}
+		]
 	}
 ])
 
 const Router = () => {
 	return <div>
-		<RouterProvider router={routes} />
+		<Suspense fallback={<h1>Loading...</h1>}>
+			<RouterProvider router={routes} />
+		</Suspense>
 	</div>
 };
 

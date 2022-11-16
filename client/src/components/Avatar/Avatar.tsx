@@ -20,7 +20,7 @@ interface Props {
 	src: string
 }
 
-const Avatar: FC<Props> = ({className = "", imgClass = "", username, src}) => {
+const Avatar: FC<Props> = ({className = "", imgClass = "", username, src, ...attr}) => {
 	let letter = chooseFirstLetter(username)
 	
 	function handleErrorImage(e: SyntheticEvent) {
@@ -31,7 +31,7 @@ const Avatar: FC<Props> = ({className = "", imgClass = "", username, src}) => {
 	}
 	
 	return (
-		<div className={className}>
+		<div className={className} {...attr}>
 			 {src
 				 ? <div className="avatar-root">
 					 <img onError={handleErrorImage} src={src} alt="avatar"

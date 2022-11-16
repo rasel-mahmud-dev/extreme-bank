@@ -1,3 +1,4 @@
-export enum ACTION_TYPES  {
-	LOGIN = "LOGIN"
+export enum ACTION_TYPES {
+	LOGIN = "LOGIN",
+	LOGOUT = "LOGOUT"
 }

@@ -19,7 +19,7 @@ const Testimonials = () => {
 	
 	
 	return (
-		<section className="section">
+		<section className="section container">
 			<h5 className="heading-subtitle">Our Testimonials</h5>
 			<h1 className="heading-title">What Our Client Says</h1>
 			
@@ -34,6 +34,9 @@ const Testimonials = () => {
 							},
 							768: {
 								slidesPerView: 2,
+							},
+							1068: {
+								slidesPerView: 3,
 							},
 						}}
 						autoplay={{
@@ -53,7 +56,7 @@ const Testimonials = () => {
 									</div>
 									<h4 className="text-center text-sm font-semibold mt-2 mb-1 ">{item.name}</h4>
 									<Rating className="justify-center" rate={item.rate} label={false}/>
-									<p className="whitespace-pre-line text-center text-dark-100 mt-3">
+									<p className="whitespace-pre-line text-center text-dark-300 mt-3">
 										Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 											 quod recusandae	llo inventore necessitatibus quod recusandae?
 									</p>

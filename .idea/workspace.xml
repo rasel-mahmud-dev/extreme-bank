@@ -5,15 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/public/investment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/loan.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/money-transfer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/HomePage/CountrieCover.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/HomePage/Features.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/core-avatar-250.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/fast-time.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/low-prices.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/shield.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/trust.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Dropdown/Dropdown.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/HttpResponse/HttpResponse.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/MobileBottomNav/MobileBottomNav.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/HomePage/WhyChooseUs.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/HomePage/WorkingProcess.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/MyAccount.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/Services/Services.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/utils/catchErrorMessage.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.firebase/hosting.ZGlzdA.cache" beforeDir="false" afterPath="$PROJECT_DIR$/client/.firebase/hosting.ZGlzdA.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/axios/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/axios/api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Avatar/Avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Avatar/Avatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Button/Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Registration/Registration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Registration/Registration.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/context/AppProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/context/AppProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/context/actions/authAction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/context/actions/authAction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/CountrieCover.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/CountrieCover.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/Features.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/Features.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/Testimonials.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/Testimonials.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes/Router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/Router.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/index.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/index.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/authController.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/authController.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +63,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/RaseL/Desktop/bapperBank/client/public",
+    "last_opened_file_path": "C:/Users/RaseL/Desktop/bapperBank/client/src/routes",
     "nodejs_package_manager_path": "pnpm",
     "settings.editor.selected.configurable": "Settings.JavaScript.Linters",
     "ts.external.directory.path": "C:\\Users\\RaseL\\Desktop\\bapperBank\\client\\node_modules\\typescript\\lib",
@@ -49,8 +72,10 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\RaseL\Desktop\bapperBank\client\public" />
+      <recent name="C:\Users\RaseL\Desktop\bapperBank\client\src\routes" />
+      <recent name="C:\Users\RaseL\Desktop\bapperBank\client\src\utils" />
       <recent name="C:\Users\RaseL\Desktop\bapperBank\client\src\components" />
+      <recent name="C:\Users\RaseL\Desktop\bapperBank\client\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\RaseL\Desktop\bapperBank\client\src\components" />
@@ -66,7 +91,8 @@
       <option name="presentableId" value="Default" />
       <updated>1668502349595</updated>
       <workItem from="1668502352003" duration="1472000" />
-      <workItem from="1668503833460" duration="14473000" />
+      <workItem from="1668503833460" duration="15925000" />
+      <workItem from="1668577271421" duration="5873000" />
     </task>
     <servers />
   </component>

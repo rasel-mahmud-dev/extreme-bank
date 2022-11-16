@@ -1,21 +1,15 @@
-import "./style.scss";
 import * as React from "react"
-
-
-import {AiOutlineArrowDown, AiOutlineArrowUp, AiOutlineReload,} from "react-icons/ai";
-
-import {BsFileBarGraph, BsGoogle} from "react-icons/bs";
-import {FiHome} from "react-icons/fi";
-
-
-import {Link} from "react-router-dom";
-import {BiBell, BiCard, BiMeteor, BiMoney, BiUser, GrAmazon, HiOutlineLibrary, MdPayment} from "react-icons/all";
+import {lazy, Suspense} from "react"
 import useStore from "../../context/useStore";
-import Avatar from "../../components/Avatar/Avatar";
 import HeroSection from "./HeroSection";
-import Testimonials from "./Testimonials";
-import Features from "./Features";
-import CountryCover from "./CountrieCover";
+import "./style.scss";
+import WhyChooseUs from "./WhyChooseUs";
+
+
+const Testimonials = lazy(() => import("./Testimonials"))
+const Features = lazy(() => import("./Features"))
+const CountryCover = lazy(() => import("./CountrieCover"));
+const WorkingProcess = lazy(() => import("./WorkingProcess"));
 
 const HomePage = () => {
 	
@@ -24,12 +18,17 @@ const HomePage = () => {
 	return (
 		<div>
           
-          <HeroSection />
-          <Features />
-          <CountryCover />
-          <Testimonials />
-          
-      <div className="home-hero p-3">
+          	<Suspense fallback={<h1>loading</h1>}>
+            	<HeroSection/>
+				  <Features/>
+				  <WhyChooseUs />
+				  <CountryCover/>
+				  <WorkingProcess/>
+				  <Testimonials/>
+		  	</Suspense>
+			
+			
+			{/*      <div className="home-hero p-3">
         <div className="flex justify-between items-center">
           <div className="text-gray-300 font-medium">
             <p className="text-xs font-bold">Sunday 13 November</p>
@@ -185,30 +184,9 @@ const HomePage = () => {
         </div>
 
         <div className="footer-height"></div>
-      </div>
-
-      <div className="footer">
-        <li className="list-none flex justify-center flex-col items-center text-neutral-500 text-sm">
-          <BiCard className="text-2xl "/>
-          <span className="text-center text-neutral-600">Cards</span>
-        </li>
-        <li className="list-none flex justify-center flex-col items-center text-neutral-500 text-sm">
-          <BsFileBarGraph className="text-2xl "/>
-          <span className="text-center text-neutral-600">Cards</span>
-        </li>
-        <li className="list-none flex justify-center flex-col items-center text-neutral-500 text-sm">
-          <FiHome className="text-2xl "/>
-          <span className="text-center">Cards</span>
-        </li>
-        <li className="list-none flex justify-center flex-col items-center text-neutral-500 text-sm">
-          <MdPayment className="text-2xl "/>
-          <span className="text-center text-neutral-600">Cards</span>
-        </li>
-        <li className="list-none flex justify-center flex-col items-center text-neutral-500 text-sm">
-          <HiOutlineLibrary className="text-2xl "/>
-          <span className="text-center text-neutral-600">Cards</span>
-        </li>
-      </div>
+      </div>*/}
+      
+      
     </div>
 	);
 };
