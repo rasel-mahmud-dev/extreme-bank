@@ -7,7 +7,7 @@ import useStore from "../../context/useStore";
 import Avatar from "../Avatar/Avatar";
 import Dropdown from "../Dropdown/Dropdown";
 import {useState} from "react";
-import { handleLogoutAction} from "../../context/actions/authAction";
+import {handleLogoutAction} from "../../context/actions/authAction";
 
 const Navigation = () => {
 	
@@ -23,24 +23,30 @@ const Navigation = () => {
 		{name: "About US", to: "/about-us"},
 	]
 	const [dropdownMenu, setDropdownMenu] = useState("")
+	const [openMobileNav, setOpenMovileNav] = useState(false)
 	
-	function handleLogout(){
+	function handleLogout() {
 		handleLogoutAction(dispatch).then(r => {
-			if(r) {
+			if (r) {
 				setDropdownMenu("")
 			}
 		});
 	}
 	
+	function handleToggleMobileNav() {
+		setOpenMovileNav(!openMobileNav)
+	}
 	
 	return (
-		<div className="bg-white shadow-xl">
+		<div className="bg-white shadow-xl fixed-nav">
 			<div className="container flex justify-between items-center">
 				<div className="py-5">
-					<img src="https://templates.envytheme.com/bitr/default/assets/images/logo.png" className="w-24"
-						 alt=""/>
+					<Link to="/">
+						<img src="https://templates.envytheme.com/bitr/default/assets/images/logo.png" className="w-24"
+							 alt=""/>
+					</Link>
 				</div>
-				<div className="flex items-center gap-x-6 hidden md:flex">
+				<div className={`flex items-center gap-x-6 hidden md:flex ${openMobileNav ? "mobile-expand" : ""}`}>
 					{items.map((item => (
 						<li className="list-none py-5">
 							{item.href ? (
@@ -51,17 +57,21 @@ const Navigation = () => {
 							)}
 						</li>
 					)))}
-		
-						
-						<li className="list-none py-5">
-							<BiBell  className="text-xl"/>
-						</li>
-									<div>
+					
+				</div>
+				
+				<div className="flex items-center gap-x-4">
+						{auth && (<li className="list-none py-5">
+							<BiBell className="text-xl"/>
+						</li>)}
+					<li className="list-none py-5">
 						
 						{auth ? (
 							<div className="relative">
-								<Avatar className="w-9" src={auth.avatar} username={auth.username} onClick={()=>setDropdownMenu(dropdownMenu === "auth" ? "": "auth")}/>
-								<Dropdown isOpen={dropdownMenu === "auth"} className="bg-white p-4 right-0 w-36 shadow-md rounded-md" >
+								<Avatar className="w-9" src={auth.avatar} username={auth.username}
+										onClick={() => setDropdownMenu(dropdownMenu === "auth" ? "" : "auth")}/>
+								<Dropdown isOpen={dropdownMenu === "auth"}
+										  className="bg-white p-4 right-0 w-36 shadow-md rounded-md">
 									<div>
 										<h1>Hello</h1>
 										<h1>Hello</h1>
@@ -75,10 +85,13 @@ const Navigation = () => {
 						) : (
 							<Link to="/login"><Button className="btn-primary">Login</Button></Link>
 						)}
-					</div>
-				</div>
+					</li>
 				
-				<HiBars4 className="text-2xl block md:hidden"/>
+								<li className="list-none py-5">
+						
+				<HiBars4 className="text-2xl block md:hidden" onClick={handleToggleMobileNav}/>
+					</li>
+				</div>
 				
 			</div>
   </div>

@@ -1,6 +1,6 @@
 import React from 'react';
-import {BsGoogle, GrAmazon} from "react-icons/all";
 import RecentActivity from "./RecentActivity/RecentActivity";
+import RecentMoneyTransfer from "./RecentMoneyTransfer/RecentMoneyTransfer";
 
 const MyAccount = () => {
 	return (
@@ -35,8 +35,10 @@ const MyAccount = () => {
 			
 	
 			
-			<RecentActivity />
-				
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10">
+				<RecentActivity/>
+				<RecentMoneyTransfer/>
+			</div>
 
 			
   		</div>

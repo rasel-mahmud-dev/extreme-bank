@@ -1,4 +1,28 @@
+.fixed-nav{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 
+}
 .active{
   @apply text-primary-400 font-semibold;
+}
+
+.mobile-expand{
+  display: block!important;
+  position: fixed;
+  left: 0;
+  width: 100%;
+  top: 60px;
+  background: rgba(255, 255, 255, 0.83);
+  backdrop-filter: blur(4px);
+  padding: 10px 20px;
+  @apply shadow-xl;
+  li{
+    padding: 10px 0;
+    text-align: center;
+    margin: auto!important;;
+    display: flex;
+    justify-content: center;
+  }
 }
