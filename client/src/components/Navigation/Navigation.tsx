@@ -2,7 +2,7 @@ import {Link, NavLink} from "react-router-dom";
 
 import "./navigation.scss"
 import Button from "../Button/Button";
-import {HiBars4} from "react-icons/all";
+import {BiBell, HiBars4} from "react-icons/all";
 import useStore from "../../context/useStore";
 import Avatar from "../Avatar/Avatar";
 import Dropdown from "../Dropdown/Dropdown";
@@ -51,7 +51,13 @@ const Navigation = () => {
 							)}
 						</li>
 					)))}
-					<div>
+		
+						
+						<li className="list-none py-5">
+							<BiBell  className="text-xl"/>
+						</li>
+									<div>
+						
 						{auth ? (
 							<div className="relative">
 								<Avatar className="w-9" src={auth.avatar} username={auth.username} onClick={()=>setDropdownMenu(dropdownMenu === "auth" ? "": "auth")}/>
