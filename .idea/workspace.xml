@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/context/actions/accountAction.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Footer/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Footer/Footer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/context/AppProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/context/AppProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/MyAccount.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/MyAccount.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/types/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/index.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/index.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/accountController.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/accountController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/authController.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/authController.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/routes/authRoute.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/authRoute.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +65,7 @@
       <updated>1668502349595</updated>
       <workItem from="1668502352003" duration="1472000" />
       <workItem from="1668503833460" duration="15925000" />
-      <workItem from="1668577271421" duration="14034000" />
+      <workItem from="1668577271421" duration="15663000" />
     </task>
     <servers />
   </component>

@@ -46,6 +46,7 @@ const Navigation = () => {
 							 alt=""/>
 					</Link>
 				</div>
+				<div className="flex items-center justify-between gap-x-5">
 				<div className={`flex items-center gap-x-6 hidden md:flex ${openMobileNav ? "mobile-expand" : ""}`}>
 					{items.map((item => (
 						<li className="list-none py-5">
@@ -87,11 +88,12 @@ const Navigation = () => {
 						)}
 					</li>
 				
-								<li className="list-none py-5">
+					<li className="list-none py-5">
 						
 				<HiBars4 className="text-2xl block md:hidden" onClick={handleToggleMobileNav}/>
 					</li>
 				</div>
+					</div>
 				
 			</div>
   </div>
