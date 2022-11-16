@@ -7,6 +7,7 @@ import { useEffect} from "react";
 
 import useStore from "./context/useStore";
 import {authFetchingAction} from "./context/actions/authAction";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
     
@@ -30,6 +31,9 @@ const App = () => {
             {/*<button onClick={toggleFullScreen}>asd</button>*/}
       <Navigation/>
       <Outlet/>
+            
+            <Footer />
+            
     </div>
     );
 };

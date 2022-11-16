@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/RecentMoneyTransfer/RecentMoneyTransfer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Footer/Footer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Navigation/navigation.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Navigation/navigation.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/MyAccount.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/MyAccount.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/RecentActivity/RecentActivity.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/RecentActivity/RecentActivity.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +35,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/RaseL/Desktop/bapperBank/client/public",
+    "last_opened_file_path": "C:/Users/RaseL/Desktop/bapperBank/client/src/components",
     "nodejs_package_manager_path": "pnpm",
     "settings.editor.selected.configurable": "Settings.JavaScript.Linters",
     "ts.external.directory.path": "C:\\Users\\RaseL\\Desktop\\bapperBank\\client\\node_modules\\typescript\\lib",
@@ -46,10 +44,10 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\RaseL\Desktop\bapperBank\client\src\components" />
       <recent name="C:\Users\RaseL\Desktop\bapperBank\client\public" />
       <recent name="C:\Users\RaseL\Desktop\bapperBank\client\src\routes" />
       <recent name="C:\Users\RaseL\Desktop\bapperBank\client\src\utils" />
-      <recent name="C:\Users\RaseL\Desktop\bapperBank\client\src\components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\RaseL\Desktop\bapperBank\client\src\components" />
@@ -66,7 +64,7 @@
       <updated>1668502349595</updated>
       <workItem from="1668502352003" duration="1472000" />
       <workItem from="1668503833460" duration="15925000" />
-      <workItem from="1668577271421" duration="10024000" />
+      <workItem from="1668577271421" duration="10875000" />
     </task>
     <servers />
   </component>
