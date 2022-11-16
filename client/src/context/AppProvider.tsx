@@ -8,17 +8,24 @@ export let dispatch: Dispatch<any>;
 export interface AppContextInterface {
 	auth: any
 	name: string
+	account: object,
 	isAuthLoaded: boolean
 }
 
 const initialState: AppContextInterface = {
 	auth: null,
+	account: {},
 	isAuthLoaded: false,
 	name:  "rase",
 }
 
 function reducer(state: AppContextInterface, action: any) {
 	switch (action.type) {
+		case ACTION_TYPES.SET_ACCOUNT:
+			return {
+				...state,
+				account: action.payload
+			}
 		case ACTION_TYPES.LOGIN:
 			// updateState.auth = action.payload
 			return {

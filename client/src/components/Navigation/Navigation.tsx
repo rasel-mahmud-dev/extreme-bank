@@ -62,7 +62,7 @@ const Navigation = () => {
 				
 				<div className="flex items-center gap-x-4">
 						{auth && (<li className="list-none py-5">
-							<BiBell className="text-xl"/>
+							<BiBell className="text-2xl"/>
 						</li>)}
 					<li className="list-none py-5">
 						
@@ -76,8 +76,8 @@ const Navigation = () => {
 										<h1>Hello</h1>
 										<h1>Hello</h1>
 										<h1>Hello</h1>
-										<li className="list-none py-5">
-											<Button onClick={handleLogout}>Logout</Button>
+										<li className="list-none">
+											<a onClick={handleLogout}>Logout</a>
 										</li>
 									</div>
 								</Dropdown>
