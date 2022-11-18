@@ -18,9 +18,9 @@ const Navigation = () => {
 		{name: "Home", to: "/"},
 		{name: "Services", to: "/services"},
 		{name: "Features", href: "/#features"},
-		{name: "Money Transfer", to: "/money-transfer"},
+		{name: "Money Transfer", to: "/my-account/send-money"},
 		{name: "My Account", to: "/my-account"},
-		{name: "About US", to: "/about-us"},
+		// {name: "About US", to: "/about-us"},
 	]
 	const [dropdownMenu, setDropdownMenu] = useState("")
 	const [openMobileNav, setOpenMovileNav] = useState(false)
@@ -53,7 +53,7 @@ const Navigation = () => {
 							{item.href ? (
 								<a className="text-dark-600 font-semibold" href={item.href}>{item.name}</a>
 							) : (
-								<NavLink className="text-dark-600 font-semibold" to={item.to}>{item.name}</NavLink>
+								<NavLink  end={true} className="text-dark-600 font-semibold" to={item.to}>{item.name}</NavLink>
 							
 							)}
 						</li>

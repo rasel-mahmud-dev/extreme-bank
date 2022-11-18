@@ -5,11 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/AccountDashboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/LoanRequest.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/Sidebar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/sidebar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/moneyTransfer/moneyTransfer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/axios/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/axios/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/InputGroup/InputGroup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/InputGroup/InputGroup.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/InputGroup/input-group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/InputGroup/input-group.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/accountController.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/accountController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/MyAccount.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/MyAccount.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes/Router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/Router.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/index.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/index.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/controllers/authController.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/authController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/authRoute.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/authRoute.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/jwt/index.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/jwt/index.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/middleware/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/middleware/auth.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/User.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +52,8 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/RaseL/Desktop/bapperBank/client/src/components",
     "nodejs_package_manager_path": "pnpm",
-    "settings.editor.selected.configurable": "Settings.JavaScript.Linters",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\RaseL\\AppData\\Roaming\\npm\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
     "ts.external.directory.path": "C:\\Users\\RaseL\\Desktop\\bapperBank\\client\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -65,7 +80,8 @@
       <updated>1668502349595</updated>
       <workItem from="1668502352003" duration="1472000" />
       <workItem from="1668503833460" duration="15925000" />
-      <workItem from="1668577271421" duration="15663000" />
+      <workItem from="1668577271421" duration="16374000" />
+      <workItem from="1668749321244" duration="4691000" />
     </task>
     <servers />
   </component>

@@ -4,6 +4,9 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import HomePage from "../pages/HomePage/HomePage";
 import App from "../App";
 import PrivateRoute from "./PrivateRoute";
+import MoneyTransfer from "../pages/MyAccount/moneyTransfer/moneyTransfer";
+import AccountDashboard from "../pages/MyAccount/AccountDashboard";
+import LoanRequest from "../pages/MyAccount/LoanRequest";
 
 
 const MyAccount = lazy(()=>import("../pages/MyAccount/MyAccount"));
@@ -19,7 +22,13 @@ const routes = createBrowserRouter([
 			{ path: "/login", element: <Login />},
 			{ path: "/registration", element: <Registration />},
 			{ path: "/services", element: <Services />},
-			{ path: "/my-account", element: <PrivateRoute><MyAccount /></PrivateRoute>}
+			{ path: "/my-account", element: <PrivateRoute><MyAccount /></PrivateRoute>,
+			children: [
+				{path: "", element: <AccountDashboard></AccountDashboard>},
+				{path: "send-money", element: <MoneyTransfer />},
+				{path: "load-request", element: <LoanRequest />},
+			]
+			}
 		]
 	}
 ])

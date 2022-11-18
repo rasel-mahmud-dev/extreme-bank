@@ -1,6 +1,14 @@
 :root {
   --gradient-primary: linear-gradient(to bottom, #e84e4e, #ff9e9e);
 }
+.App{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.app-content{
+  flex-grow: 1;
+}
 
 .container{
   max-width: 1400px;
