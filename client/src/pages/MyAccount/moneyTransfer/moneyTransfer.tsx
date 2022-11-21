@@ -51,9 +51,22 @@ const MoneyTransfer = () => {
             },
             labelIcon: <BiLock className="text-dark-400 text-lg"/>,
         },
+        description: {
+            name: "description",
+            type: "textarea",
+            placeholder: "Description",
+            onChange: handleChange,
+            validate: {
+                required: "Description required",
+                minLength: {value: 10, message: "Description must be 10 or greater"},
+            },
+            labelIcon: <BiLock className="text-dark-400 text-lg"/>,
+        },
     };
-    
-    const [userInput, setUserInput] = useState({account_no:"", amount: "", password: ""});
+
+    type DataKey = keyof typeof data
+
+    const [userInput, setUserInput] = useState<{[key in DataKey]?: string}>({});
     const [errors, setErrors] = useState({});
     
     function handleChange(e: InputEvent, error?: string) {
@@ -85,11 +98,12 @@ const MoneyTransfer = () => {
             return;
         }
         setHttpResponse((p) => ({...p, loading: true}));
-        api.post("/api/v1/account/send-money", {
+        api.post("/api/v1/account/transactions", {
             // ...userInput
             account_no: Number(userInput.account_no),
             amount: Number(userInput.amount),
-            password: userInput.password
+            password: userInput.password,
+            description: userInput.description
         })
         .then(({status, data}) => {
             if(status === 201) {

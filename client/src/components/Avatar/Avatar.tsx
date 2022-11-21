@@ -38,7 +38,7 @@ const Avatar: FC<Props> = ({className = "", imgClass = "", username, src, ...att
 						  className={`rounded-full w-full ${imgClass}`}/>
 				 </div>
 				 : <div
-					 className="rounded-full bg-dark-5/50 w-10 h-10 flex items-center justify-center uppercase">{letter}</div>
+					 className={`rounded-full bg-dark-100 flex text-base items-center justify-center uppercase ${imgClass}`}>{letter}</div>
 			 }
 		</div>
 	);

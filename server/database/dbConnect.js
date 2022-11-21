@@ -14,6 +14,7 @@ function dbConnect(){
       })
   
       await connection.connect()
+
       resolve(connection)
       
     } catch (ex){

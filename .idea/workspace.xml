@@ -5,20 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/utilities/getCookie.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/bapperBank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bapperBank.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/bcrypt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/bcrypt/bcrypt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/controllers/accountController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/models/Account.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/accountRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/axios/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/axios/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Button/button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Button/button.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/InputGroup/InputGroup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/InputGroup/InputGroup.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Registration/Registration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Registration/Registration.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/context/actions/authAction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/context/actions/authAction.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utils/validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/validator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Avatar/Avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Avatar/Avatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/context/AppProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/context/AppProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/Transactions/Transactions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Transactions/Transactions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/moneyTransfer/moneyTransfer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/moneyTransfer/moneyTransfer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/database/dbConnect.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/database/dbConnect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/jwt/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/jwt/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/middlewares/getAuthID.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/middlewares/isAuth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/Base.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/Base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/response/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/response/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +55,7 @@
     "last_opened_file_path": "C:/Users/RaseL/Desktop/extreme-bank/client/src/components",
     "nodejs_package_manager_path": "pnpm",
     "prettierjs.PrettierConfiguration.Package": "C:\\Users\\RaseL\\AppData\\Roaming\\npm\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.spelling",
     "ts.external.directory.path": "C:\\Users\\RaseL\\Desktop\\extreme-bank\\client\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -84,7 +89,7 @@
       <workItem from="1669005980755" duration="14947000" />
       <workItem from="1669030325796" duration="87000" />
       <workItem from="1669030570779" duration="559000" />
-      <workItem from="1669031140964" duration="10564000" />
+      <workItem from="1669031140964" duration="21410000" />
     </task>
     <servers />
   </component>

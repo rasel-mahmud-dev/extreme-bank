@@ -27,7 +27,7 @@ function reducer(state: AppContextInterface, action: any) {
 				account: action.payload
 			}
 		case ACTION_TYPES.LOGIN:
-			// updateState.auth = action.payload
+			// updateState.index.js = action.payload
 			return {
 				...state,
 				isAuthLoaded: true,
@@ -35,7 +35,7 @@ function reducer(state: AppContextInterface, action: any) {
 			}
 		
 		case ACTION_TYPES.LOGOUT:
-			// updateState.auth = action.payload
+			// updateState.index.js = action.payload
 			return {
 				...state,
 				isAuthLoaded: true,
