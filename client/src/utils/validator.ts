@@ -4,6 +4,7 @@
 
 type Value = {
   required: string;
+  number: string;
   maxSize: { value: string | number; message: string };
   length: { value: string | number; message: string };
   minLength: { value: string | number; message: string };
@@ -13,9 +14,12 @@ type Value = {
 };
 
 function validator(validate: Value, value: string | number | object) {
-  let errorMessage = "";
   if ("required" in validate) {
-    if (!value || value === "") errorMessage = validate["required"];
+    if (!value || value === "") return validate["required"];
+  }
+
+  if ("number" in validate) {
+    if (isNaN(Number(value))) return validate["number"];
   }
 
   if ("minLength" in validate) {
@@ -24,7 +28,7 @@ function validator(validate: Value, value: string | number | object) {
       typeof value === "string" &&
       value.length < validate.minLength.value
     )
-      errorMessage = validate["minLength"].message;
+      return validate["minLength"].message;
   }
 
   if ("maxLength" in validate) {
@@ -33,39 +37,37 @@ function validator(validate: Value, value: string | number | object) {
       typeof value === "string" &&
       value.length > validate.maxLength.value
     )
-      errorMessage = validate["maxLength"].message;
+      return validate["maxLength"].message;
   }
 
   if ("length" in validate) {
     if (
       value &&
       typeof value === "string" &&
-      String(value.length) > validate.length.value
+      value.length !== validate.length.value
     )
-      errorMessage = validate["max"].message;
+      return validate["max"].message;
   }
 
   if ("maxSize" in validate) {
     // validate for blob file
     if ("size" in value) {
-      if (value && value > validate.maxSize.value)
-        errorMessage =
+      if (value && value > validate.maxSize.value) {
+        return (
           validate["maxSize"].message +
           " " +
-          `. This file is ${Math.ceil(Number(value.size) / 1024)}Kb`;
+          `. This file is ${Math.ceil(Number(value.size) / 1024)}Kb`
+        );
+      }
     }
   }
 
   if ("min" in validate) {
-    if (value && value < validate.min.value)
-      errorMessage = validate["min"].message;
+    if (value && value < validate.min.value) return validate["min"].message;
   }
   if ("max" in validate) {
-    if (value && value > validate.max.value)
-      errorMessage = validate["max"].message;
+    if (value && value > validate.max.value) return validate["max"].message;
   }
-
-  return errorMessage;
 }
 
 export default validator;

@@ -5,6 +5,7 @@ import Button from "../../../components/Button/Button";
 import {BiLock, MdMoney, MdNoAccounts} from "react-icons/all";
 import validator from "../../../utils/validator";
 import {api} from "../../../axios/api";
+import catchErrorMessage from "../../../utils/catchErrorMessage";
 
 const MoneyTransfer = () => {
     const [httpResponse, setHttpResponse] = useState({
@@ -20,8 +21,9 @@ const MoneyTransfer = () => {
             onChange: handleChange,
             validate: {
                 required: "accountNo Required",
+                number: "Account number must be a number",
                 minLength: { value: 5, message: "account no  should be 5 digit" },
-                maxLength: { value: 5, message: "account no  should be 5 digit" }
+                maxLength: { value: 5, message: "account no  should be 5 digit" },
             },
             labelIcon: <MdNoAccounts className="text-dark-400 text-lg"/>,
         },
@@ -40,10 +42,12 @@ const MoneyTransfer = () => {
         },
         password: {
             name: "password",
+            type: "password",
             placeholder: "Enter Your Password",
             onChange: handleChange,
             validate: {
                 required: "password required",
+                minLength: {value: 5, message: "Password must be 5 or greater"},
             },
             labelIcon: <BiLock className="text-dark-400 text-lg"/>,
         },
@@ -87,14 +91,18 @@ const MoneyTransfer = () => {
             amount: Number(userInput.amount),
             password: userInput.password
         })
-        .then((r) => {
-            console.log(r)
-            // setHttpResponse((p) => ({...p, loading: false}));
+        .then(({status, data}) => {
+            if(status === 201) {
+                setHttpResponse(({isSuccess: true, loading: false, message: data.message}));
+                setTimeout(()=>{
+                    setHttpResponse((p) => ({...p, loading: false}));
+                }, 1000)
+            }
         })
         .catch((msg) => {
-            // setHttpResponse({loading: false, isSuccess: false, message: msg});
+            setHttpResponse({loading: false, isSuccess: false, message: catchErrorMessage(msg)});
         }).finally(()=>{
-            setHttpResponse({loading: false, isSuccess: false, message: ""});
+            // setHttpResponse({loading: false, isSuccess: false, message: ""});
         })
         
         // handleLoginAction(userInput, dispatch)
