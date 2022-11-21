@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/moneyTransfer/moneyTransfer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/moneyTransfer/moneyTransfer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utils/validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/validator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/controllers/accountController.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/accountController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/response/index.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/response/index.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +66,7 @@
       <workItem from="1668503833460" duration="15925000" />
       <workItem from="1668577271421" duration="16374000" />
       <workItem from="1668749321244" duration="7876000" />
-      <workItem from="1669005980755" duration="4623000" />
+      <workItem from="1669005980755" duration="6167000" />
     </task>
     <servers />
   </component>
