@@ -9,7 +9,7 @@ interface Props extends HTMLAttributes<HTMLButtonElement>{
 const Button: FC<Props> = (props) => {
     const {children, className, ...attr} = props
     return (
-        <button {...attr} className={`btn ${className}`}>
+        <button {...attr} className={`btn shadow-bg-md ${className}`}>
         {children}
       </button>
     );

@@ -1,13 +1,15 @@
 .input-group{
   label{ color: #2f2f2f; font-weight: 500}
   border-bottom: 1.5px solid rgba(147, 147, 147, 0.2);
-  select,input{
-    width: 100%;
+  .input{
+    flex: 1;
+    width: 100% !important;
     background: transparent;
+    border: none;
     color: #9f9f9f;
     padding: 10px 0px;
     border-radius: 8px;
-    outline: none;
+    outline: none !important;
     &::placeholder{
       color: currentColor;
     }

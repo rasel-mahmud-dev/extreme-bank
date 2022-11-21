@@ -4,6 +4,7 @@ import validator from "../../utils/validator";
 import InputGroup from "../../components/InputGroup/InputGroup";
 import HttpResponse from "../../components/HttpResponse/HttpResponse";
 import Button from "../../components/Button/Button";
+import {api} from "../../axios/api";
 
 
 const LoanRequest = () => {
@@ -89,13 +90,18 @@ const LoanRequest = () => {
             return;
         }
         setHttpResponse((p) => ({...p, loading: true}));
-        // handleLoginAction(userInput, dispatch)
-        // .then((r) => {
-        //     setHttpResponse((p) => ({...p, loading: false}));
-        // })
-        // .catch((msg) => {
-        //     setHttpResponse({loading: false, isSuccess: false, message: msg});
-        // });
+        api.post("/api/v1/account/send-money", {
+            ...userInput
+        })
+        .then((r) => {
+            console.log(r)
+            // setHttpResponse((p) => ({...p, loading: false}));
+        })
+        .catch((msg) => {
+            // setHttpResponse({loading: false, isSuccess: false, message: msg});
+        }).finally(()=>{
+            setHttpResponse({loading: false, isSuccess: false, message: ""});
+        })
     }
     
     return (

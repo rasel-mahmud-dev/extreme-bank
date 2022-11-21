@@ -49,11 +49,11 @@ const Navigation = () => {
 				<div className="flex items-center justify-between gap-x-5">
 				<div className={`flex items-center gap-x-6 hidden md:flex ${openMobileNav ? "mobile-expand" : ""}`}>
 					{items.map((item => (
-						<li className="list-none py-5">
+						<li className="list-none py-5 text-sm font-medium">
 							{item.href ? (
-								<a className="text-dark-600 font-semibold" href={item.href}>{item.name}</a>
+								<a className="text-dark-600 " href={item.href}>{item.name}</a>
 							) : (
-								<NavLink  end={true} className="text-dark-600 font-semibold" to={item.to}>{item.name}</NavLink>
+								<NavLink  end={true} className="text-dark-600" to={item.to}>{item.name}</NavLink>
 							
 							)}
 						</li>

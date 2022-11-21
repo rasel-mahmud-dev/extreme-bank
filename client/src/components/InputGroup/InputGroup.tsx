@@ -1,8 +1,8 @@
 import "./input-group.scss";
 import validator from "../../utils/validator";
-import {FC, ReactNode, useMemo} from "react";
+import {FC, HTMLAttributes, HTMLInputTypeAttribute, ReactNode, useMemo} from "react";
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLInputElement>{
     label?: string;
     placeholder?: string;
     name?: string;
@@ -10,6 +10,7 @@ interface Props {
     className?: string;
     inputClass?: string;
     onChange: Function;
+    type?: "text" | "number"
     error?: any;
     validate: any;
     labelIcon?: ReactNode;
@@ -24,6 +25,7 @@ const InputGroup: FC<Props> = (props) => {
         name,
         inputClass,
         validate,
+        type= "text",
         className,
         defaultValue,
         error,
@@ -47,7 +49,7 @@ const InputGroup: FC<Props> = (props) => {
         <div className={`input-group ${className}`}>
           {/*<label htmlFor={name}>{label}</label>*/}
     
-            <div className="flex items-center gap-x-2">
+            <div className="flex w-full items-center gap-x-2">
             {labelIcon}
                 {options ? (
                     <select
@@ -66,7 +68,7 @@ const InputGroup: FC<Props> = (props) => {
             
                     <input
                         onChange={handleChange}
-                        type="text"
+                        type={type}
                         name={name}
                         id={name}
                         className={`input ${inputClass} `}

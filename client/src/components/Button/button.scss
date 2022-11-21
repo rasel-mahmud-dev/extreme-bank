@@ -4,12 +4,14 @@
   border-radius: 6px;
   background: #ffffff;
   font-weight: 500;
+  outline: none;
+  border: none;
 }
 .btn-primary{
-  @apply bg-primary-400 shadow shadow-md shadow-red-600/40 text-white;
+  @apply bg-primary-400 text-white;
 }
 .btn-secondary{
-  @apply bg-secondary-400 shadow shadow-md shadow-secondary-500/50 text-white;
+  @apply bg-secondary-400 text-white;
 }
 
 .btn-green{
