@@ -1,11 +1,15 @@
 
 .btn{
-  padding: 8px 20px;
+  padding: 12px 20px !important;
   border-radius: 6px;
   background: #ffffff;
   font-weight: 500;
   outline: none;
   border: none;
+  height: auto;
+  min-height: auto;
+
+  //max-height: a?;
 }
 .btn-primary{
   @apply bg-primary-400 text-white;

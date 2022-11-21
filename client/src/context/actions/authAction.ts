@@ -5,8 +5,8 @@ import catchErrorMessage from "../../utils/catchErrorMessage";
 
 export async function handleLoginAction(payload: object, dispatch:Dispatch<any>){
 	return new Promise(async (resolve, reject)=>{
-		api.post("/api/v1/login", payload).then(({status, data})=>{
-			if(status === 200){
+		api.post("/api/v1/auth/login", payload).then(({status, data})=>{
+			if(status === 201){
 				dispatch({
 					type: ACTION_TYPES.LOGIN,
 					payload: data
@@ -21,7 +21,7 @@ export async function handleLoginAction(payload: object, dispatch:Dispatch<any>)
 
 export async function handleLogoutAction(dispatch: Dispatch<any>){
 	return new Promise(async (resolve, reject)=>{
-		api.get("/api/v1/logout").then(({status, data})=>{
+		api.get("/api/v1/auth/logout").then(({status, data})=>{
 			if(status === 200){
 				dispatch({
 					type: ACTION_TYPES.LOGIN,
@@ -37,7 +37,7 @@ export async function handleLogoutAction(dispatch: Dispatch<any>){
 
 export async function authFetchingAction(dispatch: Dispatch<any>){
 	return new Promise(async (resolve, reject)=>{
-		api.get("/api/v1/current-auth").then(({status, data})=>{
+		api.get("/api/v1/auth/current-auth").then(({status, data})=>{
 			if(status === 200){
 				dispatch({
 					type: ACTION_TYPES.LOGIN,

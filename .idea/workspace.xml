@@ -5,30 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Transactions/Transactions.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/utilities/getCookie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/bapperBank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bapperBank.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/Sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/routes/Router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/Router.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.air.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.vercelignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/index.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/go.sum" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/accountController.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/authController.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/databas/connection.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/jwt/index.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/middleware/auth.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/Account.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/Transation.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/User.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/index.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/response/index.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/accountRoute.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/authRoute.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/vercel.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/axios/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/axios/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Button/button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Button/button.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/InputGroup/InputGroup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/InputGroup/InputGroup.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Registration/Registration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Registration/Registration.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/context/actions/authAction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/context/actions/authAction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utils/validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/validator.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,27 +40,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/RaseL/Desktop/bapperBank/client/src/components&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\RaseL\\AppData\\Roaming\\npm\\node_modules\\prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\RaseL\\Desktop\\bapperBank\\client\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "16.13.0",
+    "javascript.nodejs.core.library.typings.version": "16.18.3",
+    "last_opened_file_path": "C:/Users/RaseL/Desktop/extreme-bank/client/src/components",
+    "nodejs_package_manager_path": "pnpm",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\RaseL\\AppData\\Roaming\\npm\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "ts.external.directory.path": "C:\\Users\\RaseL\\Desktop\\extreme-bank\\client\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\RaseL\Desktop\extreme-bank\client\src\components" />
       <recent name="C:\Users\RaseL\Desktop\bapperBank\client\src\components" />
       <recent name="C:\Users\RaseL\Desktop\bapperBank\client\public" />
       <recent name="C:\Users\RaseL\Desktop\bapperBank\client\src\routes" />
       <recent name="C:\Users\RaseL\Desktop\bapperBank\client\src\utils" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\RaseL\Desktop\bapperBank\server\public" />
       <recent name="C:\Users\RaseL\Desktop\bapperBank\client\src\components" />
       <recent name="C:\Users\RaseL\Desktop\bapperBank\client\src\context" />
     </key>
@@ -87,7 +81,10 @@
       <workItem from="1668503833460" duration="15925000" />
       <workItem from="1668577271421" duration="16374000" />
       <workItem from="1668749321244" duration="7876000" />
-      <workItem from="1669005980755" duration="10597000" />
+      <workItem from="1669005980755" duration="14947000" />
+      <workItem from="1669030325796" duration="87000" />
+      <workItem from="1669030570779" duration="559000" />
+      <workItem from="1669031140964" duration="10564000" />
     </task>
     <servers />
   </component>

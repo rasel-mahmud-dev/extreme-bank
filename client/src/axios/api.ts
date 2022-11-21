@@ -1,5 +1,5 @@
 import axios from "axios";
-const backend = "http://localhost:3001"
+const backend = "http://localhost:1000"
 // const backend = "http://192.168.136.224:3001"
 
 export const api = axios.create({
