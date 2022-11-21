@@ -30,9 +30,9 @@ const Sidebar = () => {
         </li>
 
         <li className="bg-dark-10/40 hover:bg-primary-500/30 cursor-pointer transition transition-colors w-full list-none py-2 px-4 rounded-md">
-          <Link className="flex gap-x-1 items-center" to="/send-money">
+          <Link className="flex gap-x-1 items-center" to="/my-account/transactions">
             <img className="w-4" src="/loan.png" alt=""/>
-            <h5 className="text-sm font-medium text-dark-400">Request Loan </h5>
+            <h5 className="text-sm font-medium text-dark-400">Transactions </h5>
           </Link>
         </li>
 

@@ -7,6 +7,7 @@ import PrivateRoute from "./PrivateRoute";
 import MoneyTransfer from "../pages/MyAccount/moneyTransfer/moneyTransfer";
 import AccountDashboard from "../pages/MyAccount/AccountDashboard";
 import LoanRequest from "../pages/MyAccount/LoanRequest";
+import Transactions from "../pages/MyAccount/Transactions/Transactions";
 
 
 const MyAccount = lazy(()=>import("../pages/MyAccount/MyAccount"));
@@ -27,6 +28,7 @@ const routes = createBrowserRouter([
 				{path: "", element: <AccountDashboard></AccountDashboard>},
 				{path: "send-money", element: <MoneyTransfer />},
 				{path: "load-request", element: <LoanRequest />},
+				{path: "transactions", element: <Transactions />},
 			]
 			}
 		]

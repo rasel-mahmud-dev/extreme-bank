@@ -5,9 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Transactions/Transactions.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/accountController.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/accountController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/authController.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/authController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/Sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes/Router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/Router.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.air.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.vercelignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/index.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/go.sum" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/accountController.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/authController.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/databas/connection.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/jwt/index.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/middleware/auth.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/Account.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/Transation.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/User.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/index.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/response/index.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/accountRoute.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/authRoute.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/vercel.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +87,7 @@
       <workItem from="1668503833460" duration="15925000" />
       <workItem from="1668577271421" duration="16374000" />
       <workItem from="1668749321244" duration="7876000" />
-      <workItem from="1669005980755" duration="8091000" />
+      <workItem from="1669005980755" duration="10597000" />
     </task>
     <servers />
   </component>
