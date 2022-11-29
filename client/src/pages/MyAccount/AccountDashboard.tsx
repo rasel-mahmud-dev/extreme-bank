@@ -1,13 +1,19 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import useStore from "../../context/useStore";
 import { getAccountInfoAction } from "../../context/actions/accountAction";
 import RecentActivity from "./RecentActivity/RecentActivity";
 import RecentMoneyTransfer from "./RecentMoneyTransfer/RecentMoneyTransfer";
+import {api} from "../../axios/api";
 
 const AccountDashboard = () => {
+
   const [{ account }, dispatch] = useStore();
+
+
+
   React.useEffect(() => {
     getAccountInfoAction(dispatch);
+
 
     return () => {};
   }, []);
@@ -52,7 +58,7 @@ const AccountDashboard = () => {
       
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10">
           <RecentActivity />
-          <RecentMoneyTransfer />
+          <RecentMoneyTransfer  />
         </div>
         
       </div>

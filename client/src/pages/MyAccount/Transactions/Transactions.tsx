@@ -1,22 +1,23 @@
-import React, { SyntheticEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { api } from "../../../axios/api";
 import Avatar from "../../../components/Avatar/Avatar";
+import date from "../../../utils/date";
+import useStore from "../../../context/useStore";
 
 const Transactions = () => {
-    const [transactions, setTransations] = useState([]);
+    const [transactions, setTransactions] = useState([]);
+
+    const [{auth} ] = useStore()
+
 
     useEffect(() => {
-        api.get("/api/v1/account/transactions?limit=2").then(({ data, status }) => {
+        api.get("/api/v1/account/transactions").then(({ data, status }) => {
             if (status === 200) {
-                setTransations(data);
+                setTransactions(data);
             }
         });
     }, []);
 
-    function date(time: string){
-        let now = new Date(time)
-        return now.toLocaleDateString() + " " + now.toLocaleTimeString()
-    }
 
     return (
         <div>
@@ -37,6 +38,10 @@ const Transactions = () => {
                                         <div>
                                             <h5 className="font-semibold text-md">{transaction?.receiver_name}</h5>
                                             <span className="text-sm text-dark-200 font-medium">{date(transaction.created_at)}</span>
+                                            <span className="text-primary-400 bg-primary-400/10 rounded-md text-xs ml-4 px-3 py-px">
+                                                {auth.user_id === transaction.sender ? "Send Money": "Received Money" }
+                                            </span>
+
                                         </div>
                                         <div className="justify-end">
                                             <h2 className={`font-bold text-lg text-end  text`}>${transaction.amount}</h2>

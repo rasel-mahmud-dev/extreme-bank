@@ -24,19 +24,19 @@ export const getAllTransaction = async (req, res, next) => {
     try {
         const {limit} = req.query
 
-        let paginate = ""
+        let paginate = " ORDER BY created_at desc"
         if(limit){
-            paginate = "LIMIT " + limit
+            paginate = paginate + " LIMIT " + limit
         }
 
         let sql = `
         Select t.*, ru.username as receiver_name, ru.avatar as receiver_avatar 
             from transactions t left 
             join users ru on ru.user_id = t.receiver 
-            where sender = ? ${paginate}`;
+            where sender = ? OR receiver = ? ${paginate}`;
 
         let Db = await Base.Db;
-        let [rows, _] = await Db.query(sql, [req.user.user_id]);
+        let [rows, _] = await Db.query(sql, [req.user.user_id, req.user.user_id]);
         if (rows.length) {
             response(res, rows);
         }
@@ -45,9 +45,32 @@ export const getAllTransaction = async (req, res, next) => {
     }
 };
 
+
+export const getOtherPeoples = async (req, res, next) => {
+    try {
+        const {limit} = req.query
+
+        let paginate = ""
+        if(limit){
+            paginate = "LIMIT " + limit
+        }
+
+        let sql = `Select username, user_id, avatar from users ${paginate}`;
+        let Db = await Base.Db;
+        let [rows, _] = await Db.query(sql);
+        if (rows.length) {
+            response(res, rows);
+        }
+    } catch (ex) {
+        next(ex);
+    }
+};
+
+
+
 export const transaction = async (req, res, next) => {
     try {
-        const { account_no, amount, password, description } = req.body;
+        const { account_no, amount, password, description, payment_type } = req.body;
         let Db = await Base.Db;
 
 
@@ -92,10 +115,11 @@ export const transaction = async (req, res, next) => {
         let [result] = await Db.execute(
             `
             UPDATE accounts
-                SET balance = balance + ?
+                SET balance = balance + ?,
+                   income = income + ?
              where account_no = ?
          `,
-            [amount, receiverUser.account_no]
+            [amount, amount, receiverUser.account_no]
         );
 
         if (!result.affectedRows) {
@@ -106,10 +130,12 @@ export const transaction = async (req, res, next) => {
         let [result2] = await Db.execute(
             `
             UPDATE accounts
-                SET balance = balance - ?
+                SET 
+                    balance = balance - ?,
+                    withdraw = withdraw + ?
              where account_no = ?
          `,
-            [amount, authUser.account_no]
+            [amount, amount, authUser.account_no]
         );
 
         if (!result2.affectedRows) {
@@ -122,9 +148,10 @@ export const transaction = async (req, res, next) => {
 
         // create a transaction
         // decrease sender balance
-        let [result3] = await Db.execute(
-            "INSERT INTO transactions (`receiver`, `sender`, `amount`) VALUES (?, ?, ?)",
-            [receiverUser.user_id, authUser.user_id, amount]
+        let [result3] = await Db.execute(`
+                INSERT INTO transactions (receiver, sender, amount, description, payment_type) VALUES (?, ?, ?, ?, ?)
+            `,
+            [receiverUser.user_id, authUser.user_id, amount, description, payment_type]
         );
 
         if (!result3.affectedRows) {

@@ -10,7 +10,7 @@ interface Props extends HTMLAttributes<HTMLInputElement>{
     className?: string;
     inputClass?: string;
     onChange: Function;
-    type?: "text" | "number"
+    type?: "text" | "number" | "textarea"
     error?: any;
     validate: any;
     labelIcon?: ReactNode;
@@ -56,7 +56,15 @@ const InputGroup: FC<Props> = (props) => {
                                     <option value={opt.value}>{opt.name}</option>
                                 ))}
                             </select>
-                        ) : (
+                        ) : type === "textarea" ? (
+                            <textarea
+                                onChange={handleChange}
+                                name={name}
+                                id={name}
+                                className={`input ${inputClass} `}
+                                placeholder={placeholder}
+                            />
+                            ) : (
                             <input
                                 onChange={handleChange}
                                 type={type}

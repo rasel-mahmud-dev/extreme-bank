@@ -1,25 +1,19 @@
 
 .btn{
-  padding: 12px 20px !important;
+  padding: 10px 20px !important;
   border-radius: 6px;
   background: #ffffff;
   font-weight: 500;
   outline: none;
   border: none;
-  height: auto;
-  min-height: auto;
-
   //max-height: a?;
+  color: white
 }
 .btn-primary{
-  @apply bg-primary-400 text-white;
+  @apply bg-primary-400
 }
 .btn-secondary{
-  @apply bg-secondary-400 text-white;
-}
-
-.btn-green{
-  background-image: linear-gradient(to bottom,#a0d468,#8cc152);
+  @apply bg-secondary-400
 }
 
 .shadow-bg-md{

@@ -1,4 +1,4 @@
-import React, {FC, SyntheticEvent} from "react";
+import React, {FC, HTMLAttributes, SyntheticEvent} from "react";
 
 function chooseFirstLetter(name) {
 	if (!name) {
@@ -13,7 +13,7 @@ function chooseFirstLetter(name) {
 	return letterOne + letterTwo;
 }
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLDivElement>{
 	className?: string,
 	username?: string
 	imgClass?: string

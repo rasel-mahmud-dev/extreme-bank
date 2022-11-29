@@ -2,12 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+html{
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+
 body {
   margin: 0;
   font-family: 'Source Sans Pro', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #EFEEF3;
+  /*background: #EFEEF3;*/
+    background: #f9f9f9;
 }
 
 
