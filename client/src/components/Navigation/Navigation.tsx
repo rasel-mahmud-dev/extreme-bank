@@ -75,16 +75,27 @@ const Navigation = () => {
                                         username={auth.username}
                                         onClick={() => setDropdownMenu(dropdownMenu === "auth" ? "" : "auth")}
                                     />
-                                    <Dropdown onClose={()=>setDropdownMenu("")}
-                                              isOpen={dropdownMenu === "auth"}
-                                              className="bg-whit p-4 right-0 w-36 shadow-md ">
-                                        <div>
-                                            <h1>Hello</h1>
-                                            <h1>Hello</h1>
-                                            <h1>Hello</h1>
-                                            <li className="list-none">
+                                    <Dropdown
+                                        onClose={() => setDropdownMenu("")}
+                                        isOpen={dropdownMenu === "auth"}
+                                        className="p-4 right-0 w-60 shadow-md "
+                                    >
+                                        <div className="flex flex-col gap-2">
+                                            <Button variant="list" className='bg-transparent'>
+                                                <Link to="/my-account">Dashboard</Link>
+                                            </Button>
+                                            <Button variant="list" className='bg-transparent'>
+                                                <Link to="/my-account">Dashboard</Link>
+                                            </Button>
+                                            <Button variant="list" className='bg-transparent'>
+                                                <Link to="/my-account">Dashboard</Link>
+                                            </Button>
+                                            <Button variant="list" className='bg-transparent'>
+                                                <Link to="/my-account">Dashboard</Link>
+                                            </Button>
+                                            <Button variant="list" className='bg-transparent'>
                                                 <a onClick={handleLogout}>Logout</a>
-                                            </li>
+                                            </Button>
                                         </div>
                                     </Dropdown>
                                 </div>

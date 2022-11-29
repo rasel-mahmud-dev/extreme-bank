@@ -4,6 +4,8 @@ import { parseToken } from "../jwt";
 import User from "../models/User";
 import Base from "../models/Base";
 import { compare } from "../bcrypt/bcrypt";
+import Loan from "../models/Loan";
+import SQL_Date from "../utilities/SQL_Date";
 
 export const getAccountInfo = async (req, res, next) => {
     try {
@@ -163,6 +165,65 @@ export const transaction = async (req, res, next) => {
         }
 
         return response(res, "Money transaction successes", 201);
+    } catch (ex) {
+        next(ex);
+    }
+};
+
+
+export const createLoan = async (req, res, next) => {
+    try {
+        const {
+            loanPurpose,
+            nid,
+            amount,
+            loadDuration,
+        } = req.body;
+
+        let Db = await Base.Db;
+
+        let [[auth]] = await Db.query(`select a.account_no, a.is_loan_eligible from users u join accounts a on a.user_id = u.user_id where u.user_id = ?`, [req.user.user_id])
+        if(!auth){
+            return next(Error("Internal error. Please try again"))
+        }
+        if(auth.is_loan_eligible !== 1){
+            return next(Error("You are not Loan Eligible"))
+        }
+
+
+        let newLoan = new Loan({
+            user_id: req.user.user_id,
+            account_no: auth.account_no,
+            loan_purpose: loanPurpose,
+            nid: nid,
+            amount: amount,
+            load_duration: loadDuration,
+            expired_at: SQL_Date(), // increase from now
+            description: "",
+        });
+
+        newLoan = await newLoan.save();
+
+        if(!newLoan){
+            return next(Error("Internal error. Please try again"))
+        }
+
+        // increase user account  balance
+        let [result] = await Db.execute(
+            `
+            UPDATE accounts
+                SET balance = balance + ?,
+                is_loan_eligible =  0
+             where account_no = ?
+         `,
+            [amount, auth.account_no]
+        );
+
+        if (!result.affectedRows) {
+            return response(res, "Loan request fail, Please try again", 500);
+        }
+
+        return response(res, "Loan request successfully", 201);
     } catch (ex) {
         next(ex);
     }

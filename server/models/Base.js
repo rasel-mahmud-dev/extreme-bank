@@ -29,64 +29,49 @@ class Base {
         });
     }
 
-    // save(){
-    //   return new Promise(async (resolve, reject)=>{
-    //     try{
-    //       let { tableName } = this
-    //
-    //       this.validationBeforeSave( async (err)=>{
-    //         if(err){
-    //           return reject({type: "VALIDATION_ERROR", errors: err})
-    //         }
-    //
-    //         let values = '';
-    //         let fields = ''
-    //
-    //         for (const otherValueKey in this.databaseSaveFields) {
-    //             // if value and key exists
-    //           if(otherValueKey && this.databaseSaveFields[otherValueKey]) {
-    //             fields += otherValueKey + ", "
-    //             values += `'${this.databaseSaveFields[otherValueKey]}'` + ","
-    //           }
-    //         }
-    //
-    //         let trimLastComma = (value, negationIndex)=> value.slice(0, value.length - negationIndex)
-    //         let db;
-    //         try {
-    //           db = await dbConnect()
-    //           let sql = `
-    //               INSERT INTO ${tableName} (${trimLastComma(fields, 2)})
-    //               VALUES (${trimLastComma(values, 1)})
-    //           `
-    //           let [r, _] = await db.execute(sql)
-    //           console.log(sql)
-    //           if(r.affectedRows > 0){
-    //             resolve({
-    //               ...this.databaseSaveFields,
-    //               id: r.insertId
-    //             })
-    //           }
-    //         } catch (ex) {
-    //           errorConsole(ex)
-    //           if(ex.code === "ER_DUP_ENTRY"){
-    //             reject({
-    //               type: "ER_DUP_ENTRY",
-    //               message: ex.sqlMessage
-    //             })
-    //             logger.error(ex.message)
-    //           } else {
-    //             reject(ex)
-    //           }
-    //         } finally {
-    //           db && db.end && db.end()
-    //         }
-    //       })
-    //
-    //     } catch (ex){
-    //       reject(ex)
-    //     }
-    //   })
-    // }
+    save(){
+
+          return new Promise(async (resolve, reject)=>{
+              let { tableName, ...other } = this
+
+              let values = '';
+              let fields = ''
+
+              for (const otherValueKey in other) {
+                  // if value and key exists
+                  if(otherValueKey && other[otherValueKey]) {
+                      fields += otherValueKey + ", "
+                      values += `'${other[otherValueKey]}'` + ","
+                  }
+              }
+
+              let trimLastComma = (value, negationIndex)=> value.slice(0, value.length - negationIndex)
+
+              try {
+                  let Db = await Base.Db;
+                  let sql = `
+                  INSERT INTO ${tableName} (${trimLastComma(fields, 2)})
+                  VALUES (${trimLastComma(values, 1)})
+              `
+                  let [r, _] = await Db.execute(sql)
+                  if(r.affectedRows > 0){
+                      resolve({
+                          ...other,
+                          id: r.insertId
+                      })
+                  }
+              } catch (ex) {
+                  if(ex.code === "ER_DUP_ENTRY"){
+                      reject({
+                          type: "ER_DUP_ENTRY",
+                          message: ex.sqlMessage
+                      })
+                  } else {
+                      reject(ex)
+                  }
+              }
+          })
+    }
 
 
     static findOne(valuesObj, selectFields) {

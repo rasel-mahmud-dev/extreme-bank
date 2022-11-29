@@ -106,7 +106,6 @@ const Login = () => {
                     <form onSubmit={handleLogin}>
                         <h1 className="text-center text-3xl text-dark-900 font-semibold">Login</h1>
 
-
                         {Object.keys(data).map((key, i) => (
                             <InputGroup error={errors[key]} {...data[key]} className="mt-4" />
                         ))}

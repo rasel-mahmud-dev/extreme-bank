@@ -1,6 +1,6 @@
 
 .btn{
-  padding: 10px 20px !important;
+  padding: 10px 20px;
   border-radius: 6px;
   background: #ffffff;
   font-weight: 500;
@@ -9,6 +9,11 @@
   //max-height: a?;
   color: white
 }
+.btn-list{
+  @apply flex gap-x-1 items-center bg-dark-10/40 hover:bg-primary-500/30 cursor-pointer transition transition-colors w-full list-none  px-2 rounded-md;
+  padding: 8px 20px;
+}
+
 .btn-primary{
   @apply bg-primary-400
 }

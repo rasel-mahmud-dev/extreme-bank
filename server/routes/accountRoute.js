@@ -17,4 +17,9 @@ router.get("/transactions", auth, accountController.getAllTransaction);
 router.post("/transactions", auth, accountController.transaction);
 
 
+
+// [POST] api/v1/account/loan-money  create a load
+router.post("/loan-money", auth, accountController.createLoan);
+
+
 export default router

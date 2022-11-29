@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/Backdrop/Backdrop.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Button/Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Button/button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Button/button.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Dropdown/Dropdown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Dropdown/Dropdown.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Modal/Modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Modal/Modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Modal/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Modal/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/LoanRequest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/LoanRequest.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/accountController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/accountController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/Base.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/Base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/accountRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/accountRoute.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +81,7 @@
       <workItem from="1669030325796" duration="87000" />
       <workItem from="1669030570779" duration="559000" />
       <workItem from="1669031140964" duration="25879000" />
-      <workItem from="1669741787800" duration="5408000" />
+      <workItem from="1669741787800" duration="12866000" />
     </task>
     <servers />
   </component>
