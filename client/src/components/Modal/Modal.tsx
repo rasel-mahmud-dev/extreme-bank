@@ -1,5 +1,6 @@
-import React, { FC, HTMLAttributes, useEffect } from "react";
+import React, { FC, HTMLAttributes } from "react";
 import "./style.scss";
+import Backdrop from "../Backdrop/Backdrop";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
     isOpen: boolean;
@@ -11,7 +12,8 @@ const Modal: FC<Props> = (props) => {
 
     return (
         <div className={`modal ${isOpen ? "modal-show" : ""}`}>
-            <div className="modal-backdrop cursor-pointer" onClick={onClose}></div>
+
+            <Backdrop isOpen={isOpen}  onClose={onClose} />
 
             <div className={`modal-box relative ${className}`}>
                 <h3 className="text-lg font-bold">{title}</h3>

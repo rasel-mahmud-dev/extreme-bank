@@ -5,30 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/public/exchange.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/ActionModal/ResponseModal.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/utils/date.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Backdrop/Backdrop.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.firebase/hosting.ZGlzdA.cache" beforeDir="false" afterPath="$PROJECT_DIR$/client/.firebase/hosting.ZGlzdA.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Avatar/Avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Avatar/Avatar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Button/button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Button/button.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/InputGroup/InputGroup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/InputGroup/InputGroup.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Dropdown/Dropdown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Dropdown/Dropdown.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Modal/Modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Modal/Modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Modal/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Modal/style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/HeroSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/HeroSection.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/AccountDashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/AccountDashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/RecentMoneyTransfer/RecentMoneyTransfer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/RecentMoneyTransfer/RecentMoneyTransfer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/Sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/sidebar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/sidebar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/Transactions/Transactions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Transactions/Transactions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/moneyTransfer/moneyTransfer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/moneyTransfer/MoneyTransfer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/routes/Router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/Router.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/tailwind.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/accountController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/accountController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/userController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/accountRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/accountRoute.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +77,7 @@
       <workItem from="1669030325796" duration="87000" />
       <workItem from="1669030570779" duration="559000" />
       <workItem from="1669031140964" duration="25879000" />
-      <workItem from="1669741787800" duration="3972000" />
+      <workItem from="1669741787800" duration="5408000" />
     </task>
     <servers />
   </component>

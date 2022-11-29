@@ -75,7 +75,9 @@ const Navigation = () => {
                                         username={auth.username}
                                         onClick={() => setDropdownMenu(dropdownMenu === "auth" ? "" : "auth")}
                                     />
-                                    <Dropdown isOpen={dropdownMenu === "auth"} className="bg-white p-4 right-0 w-36 shadow-md rounded-md">
+                                    <Dropdown onClose={()=>setDropdownMenu("")}
+                                              isOpen={dropdownMenu === "auth"}
+                                              className="bg-whit p-4 right-0 w-36 shadow-md ">
                                         <div>
                                             <h1>Hello</h1>
                                             <h1>Hello</h1>
