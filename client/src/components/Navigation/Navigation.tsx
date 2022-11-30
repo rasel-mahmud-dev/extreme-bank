@@ -56,16 +56,16 @@ const Navigation = () => {
                         <img src="/logo.png" className="w-24" alt="" />
                     </Link>
                 </div>
-                <div className="flex items-center justify-between gap-x-5">
+                <div className="flex items-center justify-between gap-x-5 text-dark-800 dark:text-white">
                     <div className={`flex items-center gap-x-6 hidden md:flex ${openMobileNav ? "mobile-expand" : ""}`}>
                         {items.map((item) => (
                             <li className="list-none py-5 text-sm font-medium">
                                 {item.href ? (
-                                    <a className="text-dark-600 " href={item.href}>
+                                    <a className="" href={item.href}>
                                         {item.name}
                                     </a>
                                 ) : (
-                                    <NavLink end={true} className="text-dark-600" to={item.to}>
+                                    <NavLink end={true} to={item.to}>
                                         {item.name}
                                     </NavLink>
                                 )}
@@ -75,7 +75,7 @@ const Navigation = () => {
 
                     <div className="flex items-center gap-x-4">
                         <li className="list-none py-5">
-                            <span className="text-dark-800 dark:text-white">
+                            <span className="">
                                 {isDark ? (
                                     <BsSun onClick={() => setDark(false)} className="text-xl" />
                                 ) : (
@@ -101,23 +101,23 @@ const Navigation = () => {
                                     <Dropdown
                                         onClose={() => setDropdownMenu("")}
                                         isOpen={dropdownMenu === "auth"}
-                                        className="p-4 right-0 w-60 shadow-md "
+                                        className="p-4 right-0 w-60 shadow-md"
                                     >
                                         <div className="flex flex-col gap-2">
                                             <Button variant="list" className="bg-transparent">
-                                                <Link to="/my-account">Dashboard</Link>
+                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">Dashboard</Link>
                                             </Button>
                                             <Button variant="list" className="bg-transparent">
-                                                <Link to="/my-account">Dashboard</Link>
+                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">Dashboard</Link>
                                             </Button>
                                             <Button variant="list" className="bg-transparent">
-                                                <Link to="/my-account">Dashboard</Link>
+                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">Dashboard</Link>
                                             </Button>
                                             <Button variant="list" className="bg-transparent">
-                                                <Link to="/my-account">Dashboard</Link>
+                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">Dashboard</Link>
                                             </Button>
                                             <Button variant="list" className="bg-transparent">
-                                                <a onClick={handleLogout}>Logout</a>
+                                                <a className="!text-dark-700 dark:!text-dark-20" onClick={handleLogout}>Logout</a>
                                             </Button>
                                         </div>
                                     </Dropdown>

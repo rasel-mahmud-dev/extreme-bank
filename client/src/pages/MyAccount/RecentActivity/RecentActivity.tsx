@@ -19,7 +19,7 @@ const RecentActivity = () => {
             <span className="text-blue-600 text-xs">View All</span>
           </div>
 			
-			<div className="bg-white rounded-2xl p-3 mt-4">
+			<div className="card rounded-2xl p-3 mt-4">
 				
 				
             {data.map((item) => (<div className="border-b border-neutral-500/10 py-4">

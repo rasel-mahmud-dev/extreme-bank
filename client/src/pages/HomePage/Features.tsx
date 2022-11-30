@@ -43,7 +43,7 @@ const Features = () => {
     ]);
 
     return (
-        <section className="section container" id="features">
+        <section className="section hide-viewport container" id="features">
             <h5 className="heading-subtitle">Key Features</h5>
             <h1 className="heading-title">How We Support You</h1>
 

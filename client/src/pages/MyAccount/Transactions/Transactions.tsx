@@ -23,7 +23,7 @@ const Transactions = () => {
         <div>
             <div>
                 <h1 className="heading-title !text-start mt-3 mb-4">Transactions</h1>
-                <div className="rounded p-4 bg-white mt-4 rounded-xl">
+                <div className="card mt-4 rounded-xl">
                     {transactions &&
                         transactions.map((transaction) => (
                             <div className="border-b border-neutral-500/10 py-4">

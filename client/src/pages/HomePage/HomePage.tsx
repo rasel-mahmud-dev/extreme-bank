@@ -1,20 +1,48 @@
 import * as React from "react"
-import {lazy, Suspense} from "react"
+import {lazy, Suspense, useEffect} from "react"
 import useStore from "../../context/useStore";
-import HeroSection from "./HeroSection";
 import "./style.scss";
+
+import HeroSection from "./HeroSection";
 import WhyChooseUs from "./WhyChooseUs";
-
-
-const Testimonials = lazy(() => import("./Testimonials"))
-const Features = lazy(() => import("./Features"))
-const CountryCover = lazy(() => import("./CountrieCover"));
-const WorkingProcess = lazy(() => import("./WorkingProcess"));
+import Testimonials  from "./Testimonials"
+import Features  from "./Features"
+import CountryCover  from "./CountrieCover"
+import WorkingProcess  from "./WorkingProcess"
 
 const HomePage = () => {
 	
 	const [{auth}, dispatch] = useStore()
-	
+
+    function handleLoad(){
+        let observer = new IntersectionObserver(callback);
+        let target = document.querySelectorAll('section');
+
+        if(target) {
+            target.forEach((item)=>{
+                observer.observe(item);
+            })
+        }
+    }
+
+    useEffect(()=>{
+        handleLoad()
+    }, [])
+
+    function callback(entries: any[]) {
+        entries.forEach((entry) => {
+            let elem = entry.target;
+            if (entry.isIntersecting) {
+                elem.classList.add("show-viewport");
+                elem.classList.remove("hide-viewport");
+            } else {
+                elem.classList.remove("show-viewport");
+                elem.classList.add("hide-viewport");
+                // elem.classList.add("show-viewport")
+            }
+        });
+    }
+
 	return (
 		<div>
           

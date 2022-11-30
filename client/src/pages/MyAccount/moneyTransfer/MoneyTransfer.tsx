@@ -149,7 +149,7 @@ const MoneyTransfer = () => {
 
 
 
-                <div className="rounded p-4 bg-white mt-4 rounded-xl">
+                <div className="rounded card mt-4 rounded-xl">
                     <form onSubmit={handleLogin}>
                         <HttpResponse state={httpResponse} />
                         {Object.keys(data).map((key, i) => (

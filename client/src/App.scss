@@ -54,3 +54,17 @@ html{
 li, ul{
   list-style: none;
 }
+
+.section{
+  transition: transform 1s ease, opacity .8s ease;
+}
+
+.hide-viewport{
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+.show-viewport{
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -123,7 +123,7 @@ const Registration = () => {
     }
 
     return (
-        <div className="max-w-lg mx-auto rounded p-4 bg-white m-3 mt-4 rounded-xl">
+        <div className="max-w-lg mx-auto card m-3 mt-4 rounded-xl">
             <form onSubmit={handleLogin}>
                 <h1 className="text-center text-3xl text-dark-900 font-semibold">Registration</h1>
                 {Object.keys(data).map((key, i: number) =>
@@ -136,7 +136,7 @@ const Registration = () => {
 
                 <h6 className="mt-5 text-dark-100 text-sm font-normal">Remember this account</h6>
 
-                <Button className="btn-primary mt-4 w-full">Login</Button>
+                <Button className="btn-primary mt-4 w-full">Registration</Button>
 
                 <div className="flex justify-between mt-5 text-dark-100 text-sm font-normal">
                     <h6>Forgot Password</h6>

@@ -14,7 +14,7 @@ const Sidebar = () => {
     ];
 
     return (
-        <div className="sidebar">
+        <div className="sidebar2">
             <div className="p-4 flex flex-col gap-y-3">
                 {data.map((item) => (
                     <Link className="" to={item.to}>

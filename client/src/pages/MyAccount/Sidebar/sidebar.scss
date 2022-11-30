@@ -1,5 +1,5 @@
 
-.sidebar {
+.sidebar2 {
   --sidebar-width: 260px;
   max-height: 100vh;
   display: flex;
@@ -12,8 +12,8 @@
   min-width: var(--sidebar-width);
   max-width: var(--sidebar-width);
   transition: left .3s ease;
-  background: white;
-  @apply dark:bg-dark-700;
+  //background: white;
+  @apply bg-white dark:bg-dark-700;
   left: -260px;
   z-index: 998;
   border-radius: 10px;
@@ -30,7 +30,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .sidebar{
+  .sidebar2{
     //display: none;
   }
   .content {

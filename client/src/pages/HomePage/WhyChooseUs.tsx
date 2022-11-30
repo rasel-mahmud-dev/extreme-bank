@@ -33,7 +33,7 @@ const WhyChooseUs = () => {
 	
 	
 	return (
-		<section className="section container">
+		<section className="section hide-viewport container">
 			<h5 className="heading-subtitle">Why Choose Use</h5>
 			<h1 className="heading-title">A New Era Of Online Banking Pay</h1>
 			<p className="text-center max-w-2xl mx-auto mt-4 text-dark-300">

@@ -8,9 +8,11 @@ const HeroSection = () => {
             <div className="container grid grid-cols-2  ">
                 <div className="mt-32">
                     <h5 className="text-primary-500 text-lg">Instant Money Transfer</h5>
-                    <h1 className="text-5xl font-bold">Transfer Money Across World In Real Time</h1>
-                    <p className="mt-10">
+                    <h1 className="text-5xl text-dark-800 dark:text-dark-30 font-bold">Transfer Money Across World In Real Time</h1>
+                    <p className="mt-10 text-dark-600 dark:text-dark-100">
                         Dea of denouncing pleasure and praising pain was born and lete system, and expound the ac teachings aitems to sed quia non
+                        numquam amet sit dolor. Dea of denouncing pleasure and praising pain was born and lete system, and expound the ac teachings aitems to sed quia non
+                        numquam amet sit dolor. Dea of denouncing pleasure and praising pain was born and lete system, and expound the ac teachings aitems to sed quia non
                         numquam amet sit dolor.
                     </p>
                     <div className="flex gap-x-6 mt-20">

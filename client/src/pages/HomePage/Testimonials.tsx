@@ -19,7 +19,7 @@ const Testimonials = () => {
 	
 	
 	return (
-		<section className="section container">
+		<section className="section hide-viewport container">
 			<h5 className="heading-subtitle">Our Testimonials</h5>
 			<h1 className="heading-title">What Our Client Says</h1>
 			

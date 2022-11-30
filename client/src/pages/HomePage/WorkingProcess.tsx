@@ -33,7 +33,7 @@ const WorkingProcess = () => {
 	
 	
 	return (
-		<section className="section container">
+		<section className="section hide-viewport container">
 			<h5 className="heading-subtitle">Working Process</h5>
 			<h1 className="heading-title">Open An Account In Easy 4 Steps</h1>
 			<p className="text-center max-w-2xl mx-auto mt-4 text-dark-300">Connect your money to your friends & family from anywhere, anytime regardless any delay. Lorem ipsum Nullana integer sagittis, eleifend. met, aliquere.</p>

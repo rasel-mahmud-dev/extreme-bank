@@ -34,7 +34,7 @@ const RecentMoneyTransfer = () => {
             <Link to={"/my-account/transactions"} className="text-blue-600 text-xs">View All</Link>
           </div>
 			
-			<div className="bg-white rounded-2xl p-3 mt-3">
+			<div className="card p-3 mt-3">
 				
 				
             {transactions.map((transaction, index) => (<div className="border-b border-neutral-500/10 py-4">
