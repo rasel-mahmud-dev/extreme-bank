@@ -1,7 +1,4 @@
-import getCookie from "../utilities/getCookie";
 import response from "../response";
-import { parseToken } from "../jwt";
-import User from "../models/User";
 import Base from "../models/Base";
 import { compare } from "../bcrypt/bcrypt";
 import Loan from "../models/Loan";
@@ -46,7 +43,6 @@ export const getAllTransaction = async (req, res, next) => {
         next(ex);
     }
 };
-
 
 export const getOtherPeoples = async (req, res, next) => {
     try {
@@ -165,6 +161,21 @@ export const transaction = async (req, res, next) => {
         }
 
         return response(res, "Money transaction successes", 201);
+    } catch (ex) {
+        next(ex);
+    }
+};
+
+
+export const getAllLoansInfo = async (req, res, next) => {
+    try {
+        let Db = await Base.Db;
+
+        let [loans] = await Db.query(`select * from loans where user_id = ?`, [req.user.user_id])
+        if(!loans){
+            return next(Error("Internal error. Please try again"))
+        }
+        return response(res, loans, 200);
     } catch (ex) {
         next(ex);
     }

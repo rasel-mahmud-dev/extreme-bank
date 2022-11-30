@@ -18,6 +18,9 @@ router.post("/transactions", auth, accountController.transaction);
 
 
 
+// [GET] api/v1/account/loans  get all loans
+router.get("/loans", auth, accountController.getAllLoansInfo);
+
 // [POST] api/v1/account/loan-money  create a load
 router.post("/loan-money", auth, accountController.createLoan);
 

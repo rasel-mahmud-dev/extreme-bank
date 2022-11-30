@@ -8,6 +8,7 @@ import MoneyTransfer from "../pages/MyAccount/moneyTransfer/MoneyTransfer";
 import AccountDashboard from "../pages/MyAccount/AccountDashboard";
 import LoanRequest from "../pages/MyAccount/LoanRequest";
 import Transactions from "../pages/MyAccount/Transactions/Transactions";
+import Loans from "../pages/MyAccount/Loans/Loans";
 
 
 const MyAccount = lazy(()=>import("../pages/MyAccount/MyAccount"));
@@ -29,6 +30,7 @@ const routes = createBrowserRouter([
 				{path: "send-money", element: <MoneyTransfer />},
 				{path: "load-request", element: <LoanRequest />},
 				{path: "transactions", element: <Transactions />},
+				{path: "loans", element: <Loans />},
 			]
 			}
 		]

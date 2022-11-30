@@ -8,6 +8,7 @@ const Sidebar = () => {
         { icon: "/send.png", label: "Send Money", to: "/my-account/send-money" },
         { icon: "/loan.png", label: "Request Loan", to: "/my-account/load-request" },
         { icon: "/exchange.png", label: "My Transactions", to: "/my-account/transactions" },
+        { icon: "/exchange.png", label: "My Loans", to: "/my-account/loans" },
         { icon: "/account.png", label: "My Account", to: "/my-account/load-request" },
     ];
 
