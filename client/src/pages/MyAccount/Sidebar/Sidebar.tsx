@@ -1,6 +1,7 @@
 import React from "react";
 import "./sidebar.scss";
 import { Link } from "react-router-dom";
+import Button from "../../../components/Button/Button";
 
 const Sidebar = () => {
     const data = [
@@ -17,10 +18,10 @@ const Sidebar = () => {
             <div className="p-4 flex flex-col gap-y-3">
                 {data.map((item) => (
                     <Link className="" to={item.to}>
-                        <li className="flex gap-x-1 items-center bg-dark-10/40 hover:bg-primary-500/30 cursor-pointer transition transition-colors w-full list-none py-3 px-2 rounded-md">
+                        <Button variant="list" className="!py-3">
                             <img className="w-5" src={item.icon} alt="" />
-                            <h5 className="text-sm font-semibold text-dark-400">{item.label}</h5>
-                        </li>
+                            <h5 className="text-sm font-semibold text-dark-400 dark:text-dark-100">{item.label}</h5>
+                        </Button>
                     </Link>
                 ))}
             </div>

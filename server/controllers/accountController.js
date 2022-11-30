@@ -188,7 +188,7 @@ export const createLoan = async (req, res, next) => {
             loanPurpose,
             nid,
             amount,
-            loadDuration,
+            loanDuration,
         } = req.body;
 
         let Db = await Base.Db;
@@ -206,9 +206,10 @@ export const createLoan = async (req, res, next) => {
             user_id: req.user.user_id,
             account_no: auth.account_no,
             loan_purpose: loanPurpose,
+            interest_rate: 5,
             nid: nid,
             amount: amount,
-            load_duration: loadDuration,
+            loan_duration: loanDuration,
             expired_at: SQL_Date(), // increase from now
             description: "",
         });

@@ -54,12 +54,12 @@ const LoanRequest = () => {
             },
             labelIcon: <BiHeart className="text-dark-400 text-lg" />,
         },
-        loadDuration: {
-            name: "loadDuration",
+        loanDuration: {
+            name: "loanDuration",
             placeholder: "Loan Duration",
             onChange: handleChange,
             validate: {
-                required: "loadDuration required",
+                required: "loanDuration required",
             },
             options: [
                 { name: "1 Year", value: 1 },
@@ -74,7 +74,7 @@ const LoanRequest = () => {
         loanPurpose: "",
         nid: "",
         amount: 0,
-        loadDuration: 0,
+        loanDuration: 0,
         monthlyPay: 0,
         totalPay: 0,
     });
@@ -87,10 +87,10 @@ const LoanRequest = () => {
     }
 
     useEffect(() => {
-        if (userInput.amount && userInput.loadDuration) {
+        if (userInput.amount && userInput.loanDuration) {
             let interest = (InterestRate / 100) * Number(userInput.amount);
 
-            let month = Number(userInput.loadDuration) * 12;
+            let month = Number(userInput.loanDuration) * 12;
             let totalPay = (Number(userInput.amount) + interest).toFixed(2);
 
             setUserInput((prevState) => ({
@@ -99,7 +99,7 @@ const LoanRequest = () => {
                 monthlyPay: (totalPay / month).toFixed(2),
             }));
         }
-    }, [userInput.amount, userInput.loadDuration]);
+    }, [userInput.amount, userInput.loanDuration]);
 
     function handleLogin(e: SyntheticEvent) {
         e.preventDefault();
@@ -128,7 +128,7 @@ const LoanRequest = () => {
             loanPurpose: userInput.loanPurpose,
             nid: userInput.nid,
             amount: userInput.amount,
-            loadDuration: userInput.loadDuration
+            loanDuration: userInput.loanDuration
         })
             .then((r) => {
                 console.log(r);

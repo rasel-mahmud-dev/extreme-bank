@@ -25,7 +25,6 @@ const App = () => {
 
   return (
     <div className="App">
-      {/*<button onClick={toggleFullScreen}>asd</button>*/}
      <div className="app-content">
         <Navigation />
       <Outlet />

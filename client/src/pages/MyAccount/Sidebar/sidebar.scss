@@ -1,17 +1,24 @@
 
 .sidebar {
-  width: 280px;
+  --sidebar-width: 260px;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 700px;
   position: sticky;
-  //left: 0;
-  top: 75px;
+  top: var(--header-height);
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  max-width: var(--sidebar-width);
+  transition: left .3s ease;
   background: white;
-  z-index: 990;
-  height: 110vh;
-  //min-height: 100vh;
-  overflow-y: auto;
-
+  @apply dark:bg-dark-700;
+  left: -260px;
+  z-index: 998;
+  border-radius: 10px;
   &--open {
-    display: block;
+    //display: block;
   }
 }
 
@@ -24,9 +31,9 @@
 
 @media screen and (max-width: 1000px) {
   .sidebar{
-    display: none;
+    //display: none;
   }
   .content {
-    margin-left: 0;
+    //margin-left: 0;
   }
 }

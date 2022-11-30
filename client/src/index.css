@@ -16,6 +16,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /*background: #EFEEF3;*/
     background: #f9f9f9;
+    @apply dark:bg-dark-800;
 }
 
 

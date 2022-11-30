@@ -2,11 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 
 import "./navigation.scss";
 import Button from "../Button/Button";
-import { BiBell, HiBars4 } from "react-icons/all";
+import { BiBell, BsMoon, BsSun, HiBars4 } from "react-icons/all";
 import useStore from "../../context/useStore";
 import Avatar from "../Avatar/Avatar";
 import Dropdown from "../Dropdown/Dropdown";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { handleLogoutAction } from "../../context/actions/authAction";
 
 const Navigation = () => {
@@ -35,8 +35,21 @@ const Navigation = () => {
         setOpenMovileNav(!openMobileNav);
     }
 
+    const [isDark, setDark] = useState(true);
+    useEffect(()=>{
+        let theme = localStorage.getItem("theme")
+        if(isDark){
+            document.documentElement.classList.add('dark')
+            localStorage.theme = 'dark'
+        } else {
+            document.documentElement.classList.remove('dark')
+            localStorage.theme = ''
+        }
+
+    }, [isDark])
+
     return (
-        <div className="bg-white shadow-xl fixed-nav">
+        <div className="bg-white dark:bg-dark-600 shadow-xl fixed-nav">
             <div className="container flex justify-between items-center">
                 <div className="py-5">
                     <Link to="/">
@@ -61,6 +74,16 @@ const Navigation = () => {
                     </div>
 
                     <div className="flex items-center gap-x-4">
+                        <li className="list-none py-5">
+                            <span className="text-dark-800 dark:text-white">
+                                {isDark ? (
+                                    <BsSun onClick={() => setDark(false)} className="text-xl" />
+                                ) : (
+                                    <BsMoon onClick={() => setDark(true)} className="text-xl" />
+                                )}
+                            </span>
+                        </li>
+
                         {auth && (
                             <li className="list-none py-5">
                                 <BiBell className="text-2xl" />
@@ -81,19 +104,19 @@ const Navigation = () => {
                                         className="p-4 right-0 w-60 shadow-md "
                                     >
                                         <div className="flex flex-col gap-2">
-                                            <Button variant="list" className='bg-transparent'>
+                                            <Button variant="list" className="bg-transparent">
                                                 <Link to="/my-account">Dashboard</Link>
                                             </Button>
-                                            <Button variant="list" className='bg-transparent'>
+                                            <Button variant="list" className="bg-transparent">
                                                 <Link to="/my-account">Dashboard</Link>
                                             </Button>
-                                            <Button variant="list" className='bg-transparent'>
+                                            <Button variant="list" className="bg-transparent">
                                                 <Link to="/my-account">Dashboard</Link>
                                             </Button>
-                                            <Button variant="list" className='bg-transparent'>
+                                            <Button variant="list" className="bg-transparent">
                                                 <Link to="/my-account">Dashboard</Link>
                                             </Button>
-                                            <Button variant="list" className='bg-transparent'>
+                                            <Button variant="list" className="bg-transparent">
                                                 <a onClick={handleLogout}>Logout</a>
                                             </Button>
                                         </div>

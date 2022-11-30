@@ -1,5 +1,5 @@
 .dropdown {
-  @apply absolute opacity-0 z-50 invisible mt-3 p-4 bg-white rounded-md;
+  @apply absolute opacity-0 z-50 invisible mt-3 p-4 bg-white dark:bg-dark-700 rounded-md;
   transition: all .2s ease;
   transform: translateY(10px);
 

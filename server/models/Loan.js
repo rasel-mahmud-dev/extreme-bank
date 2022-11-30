@@ -8,7 +8,8 @@ class Loan extends Base {
     loan_purpose = ""
     nid = ""
     amount = ""
-    load_duration = ""
+    interest_rate = 0
+    loan_duration = ""
     expired_at = ""
     description = ""
     created_at = ""
@@ -22,7 +23,8 @@ class Loan extends Base {
         this.loan_purpose = data.loan_purpose;
         this.nid = data.nid;
         this.amount = data.amount;
-        this.load_duration = data.load_duration
+        this.loan_duration = data.loan_duration
+        this.interest_rate = data.interest_rate
         this.description = data.description
         this.expired_at = data.expired_at
         this.created_at = data.created_at;

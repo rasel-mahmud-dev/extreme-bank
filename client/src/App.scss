@@ -1,5 +1,6 @@
 :root {
   --gradient-primary: linear-gradient(to bottom, #e84e4e, #ff9e9e);
+  --header-height:80px;
 }
 .App{
   display: flex;
@@ -21,12 +22,14 @@
   font-weight: 600;
   text-align: center;
   font-size: 16px;
-  @apply text-primary-400;
+  @apply text-dark-700 dark:text-dark-20
 }
+
 .heading-title{
   font-size: 32px;
   font-weight: bold;
   text-align: center;
+  @apply text-dark-700 dark:text-dark-10
 }
 .section{
   @apply my-32
@@ -43,6 +46,11 @@ html{
 
 .card{
   background: rgba(255, 255, 255,1);
+  @apply dark:bg-dark-600 dark:shadow-dark-sm2;
   border-radius: 10px;
   padding: 20px;
+}
+
+li, ul{
+  list-style: none;
 }

@@ -10,7 +10,7 @@
   color: white
 }
 .btn-list{
-  @apply flex gap-x-1 items-center bg-dark-10/40 hover:bg-primary-500/30 cursor-pointer transition transition-colors w-full list-none  px-2 rounded-md;
+  @apply flex gap-x-1 items-center bg-dark-10/40 dark:bg-dark-600 hover:bg-primary-500/30 cursor-pointer transition transition-colors w-full list-none px-2 rounded-md;
   padding: 8px 20px;
 }
 

@@ -5,17 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/Table/Table.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Table/Tbody.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Table/Thead.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Table/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Loans/Loans.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Button/button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Button/button.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Dropdown/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Dropdown/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/Features.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/Features.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/WhyChooseUs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/WhyChooseUs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/WorkingProcess.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/WorkingProcess.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/LoanRequest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/LoanRequest.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/Loans/Loans.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Loans/Loans.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/Sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/routes/Router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/Router.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/sidebar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/sidebar.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/tailwind.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/controllers/accountController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/accountController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/accountRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/accountRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/Loan.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/Loan.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +93,7 @@
       <workItem from="1669030570779" duration="559000" />
       <workItem from="1669031140964" duration="25879000" />
       <workItem from="1669741787800" duration="12970000" />
-      <workItem from="1669791251422" duration="1872000" />
+      <workItem from="1669791251422" duration="8395000" />
     </task>
     <servers />
   </component>

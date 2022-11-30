@@ -40,7 +40,7 @@ const WorkingProcess = () => {
 			
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-10 justify-self-center">
 				{data.map((item) => (
-					<div className="card  !shadow-light overflow-hidden px-4 pb-6 pt-4 m-4">
+					<div className="card overflow-hidden px-4 pb-6 pt-4 m-4">
 				<div className="r">
 					<Avatar username="" className="rounded w-12 mx-auto" imgClass="rounded" src={item.image}/>
 				</div>

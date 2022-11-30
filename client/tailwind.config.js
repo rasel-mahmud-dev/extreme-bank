@@ -3,7 +3,8 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  theme: {
+    darkMode: "class",
+    theme: {
     extend: {
       colors: {
         primary: {
@@ -20,12 +21,18 @@ module.exports = {
           200: "#f8a35e",
           300: "#fda155",
           400: "#fb923c",
-          500: "#ff9337"
+          500: "#ff9337",
+          600: "#ff9031",
+          700: "#ff8d2e",
+          800: "#ff8721",
+          900: "#ff831e"
         },
         dark: {
           0: "#ffffff",
           10: "#f3f3f3",
           20: "#efefef",
+          30: "#e7e7e7",
+          40: "#dadada",
           50: "#e1e1e1",
           100: "#bdbdbd",
           200: "#9a9a9a",
@@ -37,7 +44,16 @@ module.exports = {
           800: "#1e1e1e",
           900: "#151515"
         }
-      }
+      },
+        boxShadow: {
+            sm2: "1px 3px 20px 4px #cbcbcb59",
+            "dark-sm2": "0px 3px 14px -3px #00000040",
+            xxs: "0 2px 15px -4px #36363626",
+            xxxs: "0 2px 13px 2px #9f9f9f05"
+        },
+        zIndex: {
+            1000: "1000"
+        }
     },
   },
  plugins: [],
