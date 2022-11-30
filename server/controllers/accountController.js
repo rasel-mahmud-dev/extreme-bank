@@ -3,6 +3,7 @@ import Base from "../models/Base";
 import { compare } from "../bcrypt/bcrypt";
 import Loan from "../models/Loan";
 import SQL_Date from "../utilities/SQL_Date";
+import Emi from "../models/Emi";
 
 export const getAccountInfo = async (req, res, next) => {
     try {
@@ -21,11 +22,11 @@ export const getAccountInfo = async (req, res, next) => {
 
 export const getAllTransaction = async (req, res, next) => {
     try {
-        const {limit} = req.query
+        const { limit } = req.query;
 
-        let paginate = " ORDER BY created_at desc"
-        if(limit){
-            paginate = paginate + " LIMIT " + limit
+        let paginate = " ORDER BY created_at desc";
+        if (limit) {
+            paginate = paginate + " LIMIT " + limit;
         }
 
         let sql = `
@@ -46,11 +47,11 @@ export const getAllTransaction = async (req, res, next) => {
 
 export const getOtherPeoples = async (req, res, next) => {
     try {
-        const {limit} = req.query
+        const { limit } = req.query;
 
-        let paginate = ""
-        if(limit){
-            paginate = "LIMIT " + limit
+        let paginate = "";
+        if (limit) {
+            paginate = "LIMIT " + limit;
         }
 
         let sql = `Select username, user_id, avatar from users ${paginate}`;
@@ -64,13 +65,10 @@ export const getOtherPeoples = async (req, res, next) => {
     }
 };
 
-
-
 export const transaction = async (req, res, next) => {
     try {
         const { account_no, amount, password, description, payment_type } = req.body;
         let Db = await Base.Db;
-
 
         // find auth account info such as password, account no
         let [authUser] = await Db.query(
@@ -87,8 +85,7 @@ export const transaction = async (req, res, next) => {
         }
         authUser = authUser[0];
 
-
-        if(account_no === authUser.account_no){
+        if (account_no === authUser.account_no) {
             return response(res, "You can't send money to your own account", 422);
         }
 
@@ -146,7 +143,8 @@ export const transaction = async (req, res, next) => {
 
         // create a transaction
         // decrease sender balance
-        let [result3] = await Db.execute(`
+        let [result3] = await Db.execute(
+            `
                 INSERT INTO transactions (receiver, sender, amount, description, payment_type) VALUES (?, ?, ?, ?, ?)
             `,
             [receiverUser.user_id, authUser.user_id, amount, description, payment_type]
@@ -166,14 +164,13 @@ export const transaction = async (req, res, next) => {
     }
 };
 
-
 export const getAllLoansInfo = async (req, res, next) => {
     try {
         let Db = await Base.Db;
 
-        let [loans] = await Db.query(`select * from loans where user_id = ?`, [req.user.user_id])
-        if(!loans){
-            return next(Error("Internal error. Please try again"))
+        let [loans] = await Db.query(`select * from loans where user_id = ?`, [req.user.user_id]);
+        if (!loans) {
+            return next(Error("Internal error. Please try again"));
         }
         return response(res, loans, 200);
     } catch (ex) {
@@ -181,26 +178,22 @@ export const getAllLoansInfo = async (req, res, next) => {
     }
 };
 
-
 export const createLoan = async (req, res, next) => {
     try {
-        const {
-            loanPurpose,
-            nid,
-            amount,
-            loanDuration,
-        } = req.body;
+        const { loanPurpose, nid, amount, loanDuration } = req.body;
 
         let Db = await Base.Db;
 
-        let [[auth]] = await Db.query(`select a.account_no, a.is_loan_eligible from users u join accounts a on a.user_id = u.user_id where u.user_id = ?`, [req.user.user_id])
-        if(!auth){
-            return next(Error("Internal error. Please try again"))
+        let [[auth]] = await Db.query(
+            `select a.account_no, a.is_loan_eligible from users u join accounts a on a.user_id = u.user_id where u.user_id = ?`,
+            [req.user.user_id]
+        );
+        if (!auth) {
+            return next(Error("Internal error. Please try again"));
         }
-        if(auth.is_loan_eligible !== 1){
-            return next(Error("You are not Loan Eligible"))
+        if (auth.is_loan_eligible !== 1) {
+            return next(Error("You are not Loan Eligible"));
         }
-
 
         let newLoan = new Loan({
             user_id: req.user.user_id,
@@ -216,8 +209,8 @@ export const createLoan = async (req, res, next) => {
 
         newLoan = await newLoan.save();
 
-        if(!newLoan){
-            return next(Error("Internal error. Please try again"))
+        if (!newLoan) {
+            return next(Error("Internal error. Please try again"));
         }
 
         // increase user account  balance
@@ -234,6 +227,91 @@ export const createLoan = async (req, res, next) => {
         if (!result.affectedRows) {
             return response(res, "Loan request fail, Please try again", 500);
         }
+
+        return response(res, "Loan request successfully", 201);
+    } catch (ex) {
+        next(ex);
+    }
+};
+
+
+export const getAllEmi = async (req, res, next) => {
+    try {
+        let Db = await Base.Db;
+
+        let [[account]] = await Db.query(`select * from accounts where user_id= ?`, [req.user.user_id])
+        if(!account){
+            return  response(res, "Account not found", 404)
+        }
+
+        let [emis] = await Db.query(
+            `
+                select * from emi where loan_id = ? order by created_at desc
+            `,
+            [account.current_loan_id]
+        );
+
+        return response(res, emis, 200);
+    } catch (ex) {
+        next(ex);
+    }
+};
+
+export const createEmi = async (req, res, next) => {
+    try {
+        const { description } = req.body;
+
+        let Db = await Base.Db;
+
+        let [[auth]] = await Db.query(
+            `
+            select a.account_no, a.current_loan_id, a.is_loan_eligible, l.monthly_emi
+            from users u 
+                join accounts a on a.user_id = u.user_id
+                    join loans l on l.id = a.current_loan_id
+            where u.user_id = ?`,
+            [req.user.user_id]
+        );
+
+        if (!auth) {
+            return next(Error("Internal error. Please try again"));
+        }
+
+        let [emis] = await Db.query(
+            `
+                select * from emi where loan_id = ? order by created_at desc
+            `,
+            [auth.current_loan_id]
+        );
+
+        let emi_no = 1;
+        let lastEmi;
+
+        if (emis && emis.length > 0) {
+            emi_no = emis.length + 1;
+            lastEmi = emis[0];
+        }
+
+        let month = 1000 * 3600 * 24 * 30;
+
+        let nextMonth;
+        if (lastEmi) {
+            let date = Date.parse(lastEmi.created_at);
+            let d = new Date(date).getTime() + month;
+            nextMonth = SQL_Date(d);
+        }
+
+        let newEmi = new Emi({
+            user_id: req.user.user_id,
+            loan_id: auth.current_loan_id,
+            amount: auth.monthly_emi,
+            emi_no: emi_no,
+            description: description,
+            created_at: nextMonth,
+            updated_at: nextMonth
+        });
+
+        newEmi = await newEmi.save();
 
         return response(res, "Loan request successfully", 201);
     } catch (ex) {

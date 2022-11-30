@@ -1,5 +1,6 @@
 import * as accountController from "../controllers/accountController";
 import {auth} from "../middlewares";
+import {getAllEmi} from "../controllers/accountController";
 
 const router = require("express").Router();
 
@@ -23,6 +24,14 @@ router.get("/loans", auth, accountController.getAllLoansInfo);
 
 // [POST] api/v1/account/loan-money  create a load
 router.post("/loan-money", auth, accountController.createLoan);
+
+
+
+// [POST] api/v1/account/emis  get all emi for current logged user
+router.get("/emis", auth, accountController.getAllEmi);
+
+// [POST] api/v1/account/submit-emi  submit a monthly emi
+router.post("/submit-emi", auth, accountController.createEmi);
 
 
 export default router

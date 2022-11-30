@@ -9,10 +9,10 @@ interface Props extends HTMLAttributes<HTMLInputElement>{
     defaultValue?: string | number;
     className?: string;
     inputClass?: string;
-    onChange: Function;
+    onChange?: Function;
     type?: "text" | "number" | "textarea"
     error?: any;
-    validate: any;
+    validate?: any;
     labelIcon?: ReactNode;
     options?: { name: string, value: string | number }[];
 }
@@ -37,8 +37,11 @@ const InputGroup: FC<Props> = (props) => {
 
     function handleChange(e: any) {
         const target = e.target;
-        let result = validator(validate, target.value);
-        onChange(e, result);
+        let result = ""
+        if (validate) {
+            result = validator(validate, target.value);
+        }
+        onChange && onChange(e, result);
     }
 
     return useMemo(() => {

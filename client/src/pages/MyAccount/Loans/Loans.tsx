@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, {SyntheticEvent, useEffect, useState} from "react";
 import { api } from "../../../axios/api";
-import Avatar from "../../../components/Avatar/Avatar";
-import date from "../../../utils/date";
 import useStore from "../../../context/useStore";
 
 import Table, { Column } from "components/Table/Table";
+import Button from "../../../components/Button/Button";
+import Modal from "../../../components/Modal/Modal";
+import InputGroup from "../../../components/InputGroup/InputGroup";
 
 const Loans = () => {
     const [transactions, setTransactions] = useState([]);
+    const [emi,setEmi] = useState([]);
+
+
 
     const [{ auth }] = useStore();
+
+    const [openPayCurrentMonthEMIForm, setOpenPayCurrentMonthEMIForm] = useState(false)
 
     useEffect(() => {
         api.get("/api/v1/account/loans").then(({ data, status }) => {
@@ -17,7 +23,13 @@ const Loans = () => {
                 setTransactions(data);
             }
         });
+        api.get("/api/v1/account/emis").then(({ data, status }) => {
+            if (status === 200) {
+                setEmi(data);
+            }
+        });
     }, []);
+
 
     function calc(amount: number, loadDuration: number, interestRate: number) {
         let month = Number(loadDuration) * 12;
@@ -51,6 +63,43 @@ const Loans = () => {
         },
     ];
 
+    const emiColumns: Column[] = [
+        { dataIndex: "id", title: "Id" },
+        // {  dataIndex: "id", title: "Id"  },
+        { dataIndex: "created_at", title: "Emi Month", sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0), render: (v) => new Date(v).toDateString() },
+        // { dataIndex: "interest_rate", title: "Rate (Annual)", sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0), render: (v) => v + "%" },
+        { dataIndex: "amount", title: "Amount", sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0), render: (v) => "$" + v },
+        // {
+        //     title: "Monthly Emi",
+        //     dataIndex: "monthly_emi",
+        //     sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0),
+        //     render: (_, v) => "$" + calc(v.amount, v.loan_duration, v.interest_rate).monthlyPay,
+        // },
+        // {
+        //     title: "Total pay",
+        //     sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0),
+        //     render: (_, v) => "$" + calc(v.amount, v.loan_duration, v.interest_rate).totalPay,
+        // },
+    ];
+
+
+    function handlePayEMI(e: SyntheticEvent){
+        e.preventDefault();
+        let form = (e.target) as HTMLFormElement
+        let description = form.description.value
+        let agree = form.agree.checked
+
+        if(agree && description){
+            api.post("/api/v1/account/submit-emi", {
+                description: description
+            }).then(({ data, status }) => {
+                console.log(data, status)
+            });
+        }
+
+    }
+
+
     return (
         <div>
             <div>
@@ -83,14 +132,35 @@ const Loans = () => {
                     </li>
                 </div>
 
+                <Button onClick={()=>setOpenPayCurrentMonthEMIForm(true)} className="btn-primary mt-10">Pay Current Month EMI</Button>
+                <Modal className="max-w-md" isOpen={openPayCurrentMonthEMIForm} onClose={()=>setOpenPayCurrentMonthEMIForm(false)}>
+                    <h1 className="heading-subtitle">Pay current Month EMI ($234)</h1>
+                    <p className="text-body text-center">For this EMI we reducer amount from your account balance</p>
+                    <form className="mt-4" onSubmit={handlePayEMI}>
+                        <InputGroup
+                            name="description"
+                            type="textarea"
+                            placeholder="Enter summary"
+                        />
+
+                        <div className="flex items-center gap-x-2 text-body mt-4">
+                            <input type="checkbox"  id="agree" name="agree"/>
+                            <label htmlFor="agree">Agree</label>
+                        </div>
+
+                        <Button className="btn-primary mt-4" type="submit">Pay</Button>
+                    </form>
+
+                </Modal>
+
                 <div className="mt-8">
                     <h1 className="heading-subtitle !text-start mt-3 ">EMI received</h1>
                     <div className="card !p-0 overflow-hidden rounded-xl text-sm">
                         <Table
                             theadClass={{ th: "!pl-6 bg-primary-50 text-dark-20 dark:text-dark-10 font-semibold" }}
                             tbodyClass={{ td: "!pl-6 dark:text-dark-40", tr: "hover:bg-dark-100/20" }}
-                            dataSource={transactions}
-                            columns={columns}
+                            dataSource={emi}
+                            columns={emiColumns}
                         />
                     </div>
                 </div>

@@ -11,15 +11,17 @@ class Account extends Base {
     public user_id
     public balance
     public withdraw
-    public income
+    public deposit
+    public current_loan_id
 
     constructor(data) {
         super(Account.tableName);
-        this.account_id = data?.account_id;
-        this.user_id = data?.user_id;
-        this.balance = data?.balance;
+        this.account_id = data.account_id;
+        this.user_id = data.user_id;
+        this.balance = data.balance;
         this.withdraw = data?.withdraw;
-        this.income = data?.income
+        this.deposit = data.deposit
+        this.current_loan_id = data?.current_loan_id
     }
 }
 

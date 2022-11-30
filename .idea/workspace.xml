@@ -7,23 +7,15 @@
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Registration/Registration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Registration/Registration.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/Features.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/Features.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/HeroSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/HeroSection.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/HomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/Testimonials.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/Testimonials.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/WhyChooseUs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/WhyChooseUs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/WorkingProcess.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/WorkingProcess.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/AccountDashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/AccountDashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/InputGroup/InputGroup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/InputGroup/InputGroup.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Modal/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Modal/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/CountrieCover.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/CountrieCover.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/Loans/Loans.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Loans/Loans.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/RecentActivity/RecentActivity.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/RecentActivity/RecentActivity.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/RecentMoneyTransfer/RecentMoneyTransfer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/RecentMoneyTransfer/RecentMoneyTransfer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/Sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/sidebar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Sidebar/sidebar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/Transactions/Transactions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Transactions/Transactions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/moneyTransfer/MoneyTransfer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/moneyTransfer/MoneyTransfer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/accountController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/accountController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/Account.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/Account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/Base.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/Base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/accountRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/accountRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/utilities/SQL_Date.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/utilities/SQL_Date.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +86,7 @@
       <workItem from="1669030570779" duration="559000" />
       <workItem from="1669031140964" duration="25879000" />
       <workItem from="1669741787800" duration="12970000" />
-      <workItem from="1669791251422" duration="12519000" />
+      <workItem from="1669791251422" duration="18339000" />
     </task>
     <servers />
   </component>

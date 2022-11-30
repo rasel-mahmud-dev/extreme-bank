@@ -54,6 +54,7 @@ class Base {
                   VALUES (${trimLastComma(values, 1)})
               `
                   let [r, _] = await Db.execute(sql)
+
                   if(r.affectedRows > 0){
                       resolve({
                           ...other,
