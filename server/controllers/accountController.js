@@ -2,13 +2,14 @@ import response from "../response";
 import Base from "../models/Base";
 import { compare, makeHash } from "../bcrypt/bcrypt";
 import Loan from "../models/Loan";
-import SQL_Date from "../utilities/SQL_Date";
 import Emi from "../models/Emi";
 import Account from "../models/Account";
+import { ObjectId } from "mongodb";
+import date from "../utilities/date";
 
 export const createBankAccount = async (req, res, next) => {
     try {
-        let { account_no } = req.body
+        let { account_no, nid, phone } = req.body;
 
         let account = await Account.findOne({ user_id: req.user.user_id });
 
@@ -22,7 +23,7 @@ export const createBankAccount = async (req, res, next) => {
             deposit: 0,
             withdraw: 0,
             account_no: account_no,
-            is_loan_eligible: true
+            is_loan_eligible: true,
         });
 
         newAcc = await newAcc.save();
@@ -38,14 +39,11 @@ export const createBankAccount = async (req, res, next) => {
 
 export const getAccountInfo = async (req, res, next) => {
     try {
-        let sql = `Select * from accounts where user_id = ?`;
-        let Db = await Base.Db;
-        let [rows, _] = await Db.query(sql, [req.user.user_id]);
-        if (rows.length) {
-            response(res, {
-                ...rows[0],
-            });
+        let acc = await Account.findOne({ user_id: new ObjectId(req.user.user_id) });
+        if (!acc) {
+            response(res, "Please create an account", 404);
         }
+        response(res, acc, 200);
     } catch (ex) {
         next(ex);
     }
@@ -197,12 +195,7 @@ export const transaction = async (req, res, next) => {
 
 export const getAllLoansInfo = async (req, res, next) => {
     try {
-        let Db = await Base.Db;
-
-        let [loans] = await Db.query(`select * from loans where user_id = ?`, [req.user.user_id]);
-        if (!loans) {
-            return next(Error("Internal error. Please try again"));
-        }
+        let loans = await Loan.find();
         return response(res, loans, 200);
     } catch (ex) {
         next(ex);
@@ -211,51 +204,45 @@ export const getAllLoansInfo = async (req, res, next) => {
 
 export const createLoan = async (req, res, next) => {
     try {
-        const { loanPurpose, nid, amount, loanDuration } = req.body;
+        const { loanPurpose, nid, amount, loanDuration, description } = req.body;
 
-        let Db = await Base.Db;
-
-        let [[auth]] = await Db.query(
-            `select a.account_no, a.is_loan_eligible from users u join accounts a on a.user_id = u.user_id where u.user_id = ?`,
-            [req.user.user_id]
-        );
-        if (!auth) {
+        let acc = await Account.findOne({ user_id: new ObjectId(req.user.user_id) });
+        if (!acc) {
             return next(Error("Internal error. Please try again"));
         }
-        if (auth.is_loan_eligible !== 1) {
+        if (!acc.is_loan_eligible) {
             return next(Error("You are not Loan Eligible"));
         }
 
         let newLoan = new Loan({
             user_id: req.user.user_id,
-            account_no: auth.account_no,
+            account_no: acc.account_no,
             loan_purpose: loanPurpose,
-            interest_rate: 5,
+            interest_rate: 10,
             nid: nid,
             amount: amount,
             loan_duration: loanDuration,
-            expired_at: SQL_Date(), // increase from now
-            description: "",
+            isCompleted: true,
+            description: description,
         });
 
         newLoan = await newLoan.save();
-
         if (!newLoan) {
             return next(Error("Internal error. Please try again"));
         }
 
         // increase user account  balance
-        let [result] = await Db.execute(
-            `
-            UPDATE accounts
-                SET balance = balance + ?,
-                is_loan_eligible =  0
-             where account_no = ?
-         `,
-            [amount, auth.account_no]
+        let doc = await Account.updateOne(
+            { account_no: acc.account_no },
+            {
+                $set: {
+                    is_loan_eligible: false,
+                },
+                $inc: { balance: Number(amount) },
+            }
         );
 
-        if (!result.affectedRows) {
+        if (!doc.modifiedCount) {
             return response(res, "Loan request fail, Please try again", 500);
         }
 
@@ -267,22 +254,7 @@ export const createLoan = async (req, res, next) => {
 
 export const getAllEmi = async (req, res, next) => {
     try {
-        let Db = await Base.Db;
-
-        let [[account]] = await Db.query(`select * from accounts where user_id= ?`, [
-            req.user.user_id,
-        ]);
-        if (!account) {
-            return response(res, "Account not found", 404);
-        }
-
-        let [emis] = await Db.query(
-            `
-                select * from emi where loan_id = ? order by created_at desc
-            `,
-            [account.current_loan_id]
-        );
-
+        let emis = await Emi.find({ user_id: new ObjectId(req.user.user_id) });
         return response(res, emis, 200);
     } catch (ex) {
         next(ex);
@@ -293,59 +265,77 @@ export const createEmi = async (req, res, next) => {
     try {
         const { description } = req.body;
 
-        let Db = await Base.Db;
+        let account = await Account.aggregate([
+            {
+                $match: {
+                    user_id: new ObjectId(req.user.user_id),
+                },
+            },
+            {
+                $lookup: {
+                    from: "loans",
+                    localField: "current_loan_id",
+                    foreignField: "_id",
+                    as: "current_loan",
+                },
+            },
+            { $unwind: { path: "$current_loan", preserveNullAndEmptyArrays: true } },
+        ]);
 
-        let [[auth]] = await Db.query(
-            `
-            select a.account_no, a.current_loan_id, a.is_loan_eligible, l.monthly_emi
-            from users u 
-                join accounts a on a.user_id = u.user_id
-                    join loans l on l.id = a.current_loan_id
-            where u.user_id = ?`,
-            [req.user.user_id]
-        );
-
-        if (!auth) {
-            return next(Error("Internal error. Please try again"));
+        if (account.length === 0) {
+            return response(res, "Account not found", 404);
         }
 
-        let [emis] = await Db.query(
-            `
-                select * from emi where loan_id = ? order by created_at desc
-            `,
-            [auth.current_loan_id]
-        );
+        account = account[0];
 
-        let emi_no = 1;
-        let lastEmi;
-
-        if (emis && emis.length > 0) {
-            emi_no = emis.length + 1;
-            lastEmi = emis[0];
-        }
+        let lastEMi = await (
+            await Emi.collection
+        )
+            .find({ loan_id: new ObjectId(account.current_loan_id) })
+            .limit(1)
+            .sort({ created_at: 1 })
+            .toArray();
 
         let month = 1000 * 3600 * 24 * 30;
-
-        let nextMonth;
-        if (lastEmi) {
-            let date = Date.parse(lastEmi.created_at);
-            let d = new Date(date).getTime() + month;
-            nextMonth = SQL_Date(d);
+        let nextMonth = new Date();
+        if (lastEMi.length !== 0) {
+            lastEMi = lastEMi[0];
+            let da = Date.parse(lastEMi.created_at);
+            let d = new Date(da).getTime() + month;
+            nextMonth = date(d);
         }
 
-        let newEmi = new Emi({
+        let newEMi = new Emi({
             user_id: req.user.user_id,
-            loan_id: auth.current_loan_id,
-            amount: auth.monthly_emi,
-            emi_no: emi_no,
-            description: description,
+            loan_id: account.current_loan_id,
+            amount: account.current_loan.monthly_emi,
+            emi_no: lastEMi.length === 0 ? 1 : lastEMi.emi_no + 1,
+            description,
             created_at: nextMonth,
             updated_at: nextMonth,
         });
 
-        newEmi = await newEmi.save();
+        newEMi = newEMi.save();
+        if (!newEMi) {
+            return next(Error("Internal error. Please try again"));
+        }
 
-        return response(res, "Loan request successfully", 201);
+        let doc = await Account.updateOne(
+            {
+                user_id: new ObjectId(req.user.user_id),
+            },
+            {
+                $inc: {
+                    balance: - Number(account.current_loan.monthly_emi),
+                },
+            }
+        );
+
+        if (doc.modifiedCount) {
+            return response(res, "Emi received successfully", 201);
+        } else {
+            return next(Error("Emi received fail"), 500);
+        }
     } catch (ex) {
         next(ex);
     }

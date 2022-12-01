@@ -8,6 +8,7 @@ import getCookie from "../utilities/getCookie";
 import { makeHash } from "../bcrypt/bcrypt";
 import {cp} from "fs/promises";
 import imageUpload from "../services/imageUpload";
+import {ObjectId} from "mongodb";
 
 export const createNewUser = (req, res, next) => {
     // parse a file upload
@@ -96,7 +97,7 @@ export const loginUser = async (req, res, next) => {
         let match = await bcryptjs.compare(password, user.password);
         if (!match) return res.status(409).json({ message: "Password not match" });
 
-        let token = await createToken(user.user_id, user.email, user.roles);
+        let token = await createToken(user._id, user.email, user.roles);
         let { password: s, ...other } = user;
 
         // send cookie in header to set client browser
@@ -120,7 +121,7 @@ export const loginViaToken = async (req, res, next) => {
         let token = getCookie("token", req);
         if (!token) return response(res, "token not found", 404);
         let { user_id, email, roles } = await parseToken(token);
-        let user = await User.findOne({ user_id });
+        let user = await User.findOne({ _id: new ObjectId(user_id) });
         let { password, ...other } = user;
         response(res, other, 200);
     } catch (ex) {

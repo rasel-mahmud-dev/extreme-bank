@@ -4,7 +4,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import HomePage from "../pages/HomePage/HomePage";
 import App from "../App";
 import PrivateRoute from "./PrivateRoute";
-import MoneyTransfer from "../pages/MyAccount/moneyTransfer/MoneyTransfer";
+import MoneyTransfer from "../pages/MyAccount/MoneyTransfer/MoneyTransfer";
 import AccountDashboard from "../pages/MyAccount/AccountDashboard";
 import LoanRequest from "../pages/MyAccount/LoanRequest";
 import Transactions from "../pages/MyAccount/Transactions/Transactions";

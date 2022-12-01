@@ -1,4 +1,4 @@
-import { ReactElement, SyntheticEvent, useState } from "react";
+import { ReactElement, SyntheticEvent, useEffect, useState } from "react";
 
 import InputGroup from "../InputGroup/InputGroup";
 import Button from "../Button/Button";
@@ -6,8 +6,7 @@ import validator from "../../utils/validator";
 import { FiLock, FiMail, FiUser } from "react-icons/all";
 import { Link } from "react-router-dom";
 import ImagePicker from "../ImagePicker/ImagePicker";
-import axios from "axios";
-import {api} from "../../axios/api";
+import { api } from "../../axios/api";
 
 interface Field {
     label?: string;
@@ -21,9 +20,13 @@ interface Field {
 }
 
 const Registration = () => {
-    const data: { [key: string]: Field } = {
+    const [infoData, setInfoData] = useState({
+        country: null,
+        divisions: null,
+    });
+
+    const [data, setData] = useState<{ [key: string]: Field }>({
         firstName: {
-            label: "firstName",
             name: "firstName",
             placeholder: "Enter firstName",
             onChange: handleChange,
@@ -33,7 +36,6 @@ const Registration = () => {
             labelIcon: <FiUser className="text-dark-400 text-lg" />,
         },
         lastName: {
-            label: "LastName",
             name: "lastName",
             placeholder: "Enter lastName",
             onChange: handleChange,
@@ -41,7 +43,6 @@ const Registration = () => {
         },
 
         email: {
-            label: "Email",
             name: "email",
             placeholder: "Enter email",
             onChange: handleChange,
@@ -50,9 +51,34 @@ const Registration = () => {
             },
             labelIcon: <FiMail className="text-dark-400 text-lg" />,
         },
+        country: {
+            name: "country",
+            type: "select",
+            placeholder: "Choose Country",
+            onChange: handleChange,
+            validate: {
+                required: "Email Required",
+            },
+            dataKey: { title: "name", id: "_id" },
+            onClick: handleLoadCountry,
+            options: infoData.country,
+            labelIcon: <FiMail className="text-dark-400 text-lg" />,
+        },
+        division: {
+            name: "division",
+            type: "select",
+            placeholder: "Choose division",
+            onChange: handleChange,
+            validate: {
+                required: "division Required",
+            },
+            dataKey: { title: "name", id: "id" },
+            onClick: handleLoadDivision,
+            options: infoData.divisions,
+            labelIcon: <FiMail className="text-dark-400 text-lg" />,
+        },
 
         password: {
-            label: "Password",
             name: "password",
             type: "password",
             placeholder: "Enter password",
@@ -64,7 +90,6 @@ const Registration = () => {
             labelIcon: <FiLock className="text-dark-400 text-lg" />,
         },
         avatar: {
-            label: "",
             imagePreviewClass: "w-32",
             name: "avatar",
             placeholder: "Choose avatar",
@@ -75,7 +100,44 @@ const Registration = () => {
             },
             labelIcon: <FiLock className="text-dark-400 text-lg" />,
         },
-    };
+    });
+
+    function handleLoadCountry() {
+        if (infoData.country) {
+            let updateFormData = { ...data };
+            updateFormData.country = {
+                ...updateFormData.country,
+                options: infoData.country,
+            };
+            setData(updateFormData);
+        } else {
+            fetch("/countries.json")
+                .then((d) => d.json())
+                .then((jsonData: any) => {
+                    setInfoData((p) => ({ ...p, country: jsonData }));
+                    let updateFormData = { ...data };
+                    updateFormData.country = {
+                        ...updateFormData.country,
+                        options: jsonData,
+                    };
+                    setData(updateFormData);
+                });
+        }
+    }
+
+    function handleLoadDivision() {
+        fetch("/divisions.json")
+            .then((d) => d.json())
+            .then((jsonData: any) => {
+                // setCountries(data)
+                let updateFormData = { ...data };
+                updateFormData.division = {
+                    ...updateFormData.division,
+                    options: jsonData,
+                };
+                setData(updateFormData);
+            });
+    }
 
     const [httpResponse, setHttpResponse] = useState({
         isSuccess: false,
@@ -90,6 +152,9 @@ const Registration = () => {
 
     function handleChange(e: any, error: string) {
         const { name, value }: { name: DataKeys; value: any; error: string; file: any } = e.target;
+        if (name === "country") {
+            handleLoadDivision();
+        }
         setUserInput((prev) => ({ ...prev, [name]: value }));
         setErrors((prev) => ({ ...prev, [name]: error }));
     }
@@ -102,7 +167,7 @@ const Registration = () => {
         let isCompleted = true;
         // check validation before submit form
         let tempErrors: any = { ...errors };
-        let formData = new FormData()
+        let formData = new FormData();
         let key: DataKeys;
         for (key in data) {
             if (data[key].validate) {
@@ -110,18 +175,17 @@ const Registration = () => {
                 if (validate) {
                     isCompleted = false;
                 } else {
-                    if(key !== "avatar") {
-                        formData.append(key, userInput[key])
+                    if (key !== "avatar") {
+                        formData.append(key, userInput[key]);
                     }
                 }
                 tempErrors[key] = validate;
             } else {
-                if(key !== "avatar") {
-                    formData.append(key, userInput[key])
+                if (key !== "avatar") {
+                    formData.append(key, userInput[key]);
                 }
             }
         }
-
 
         if (!isCompleted) {
             setErrors(tempErrors);
@@ -129,8 +193,8 @@ const Registration = () => {
             return;
         }
 
-        if(userInput.avatar) {
-            formData.append("avatar", userInput.avatar)
+        if (userInput.avatar) {
+            formData.append("avatar", userInput.avatar);
         }
 
         api.post("/api/v1/auth/registration", formData, {
@@ -138,11 +202,12 @@ const Registration = () => {
                 "Content-Type": "multipart/form-data",
             },
         })
-            .then(r => {
-                console.log(r)
-            }).catch(ex=>{
-            console.log(ex)
-        })
+            .then((r) => {
+                console.log(r);
+            })
+            .catch((ex) => {
+                console.log(ex);
+            });
 
         // setHttpResponse((p) => ({ ...p, loading: true }));
         // setErrors(tempErrors);
@@ -152,12 +217,12 @@ const Registration = () => {
         <div className="container">
             <div className="max-w-lg mx-auto m-3 mt-4 rounded-xl">
                 <form onSubmit={handleLogin} className="card">
-                    <h1 className="text-center text-3xl text-dark-900 font-semibold">Registration</h1>
+                    <h1 className="card-title">Registration</h1>
                     {Object.keys(data).map((key, i: number) =>
                         key === "avatar" ? (
                             <ImagePicker error={errors?.avatar} {...data[key]} />
                         ) : (
-                            <InputGroup error={errors?.[key]} {...data[key]} className="mt-4" />
+                            <InputGroup value={userInput[key]} error={errors?.[key]} {...data[key]} className="mt-4" />
                         )
                     )}
 

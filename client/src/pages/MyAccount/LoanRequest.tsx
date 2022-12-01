@@ -32,11 +32,13 @@ const LoanRequest = () => {
         },
         loanPurpose: {
             name: "loanPurpose",
+            type: "select",
             placeholder: "Purpose of Loan",
             onChange: handleChange,
             validate: {
                 required: "loanPurpose required",
             },
+            dataKey: {title: "name", id: "value"},
             options: [
                 { name: "Business", value: "business" },
                 { name: "Education", value: "education" },
@@ -61,6 +63,8 @@ const LoanRequest = () => {
             validate: {
                 required: "loanDuration required",
             },
+            dataKey: {title: "name", id: "value"},
+            type: "select",
             options: [
                 { name: "1 Year", value: 1 },
                 { name: "2 Year", value: 2 },

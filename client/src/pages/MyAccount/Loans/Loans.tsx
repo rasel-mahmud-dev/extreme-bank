@@ -44,7 +44,7 @@ const Loans = () => {
     }
 
     const columns: Column[] = [
-        { dataIndex: "id", title: "Id" },
+        { dataIndex: "_id", title: "Id" },
         // {  dataIndex: "id", title: "Id"  },
         { dataIndex: "created_at", title: "Create At", sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0), render: (v) => new Date(v).toDateString() },
         { dataIndex: "loan_duration", title: "Duration", sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0), render: (v) => v + " year" },
@@ -64,7 +64,7 @@ const Loans = () => {
     ];
 
     const emiColumns: Column[] = [
-        { dataIndex: "id", title: "Id" },
+        { dataIndex: "_id", title: "Id" },
         // {  dataIndex: "id", title: "Id"  },
         { dataIndex: "created_at", title: "Emi Month", sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0), render: (v) => new Date(v).toDateString() },
         // { dataIndex: "interest_rate", title: "Rate (Annual)", sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0), render: (v) => v + "%" },

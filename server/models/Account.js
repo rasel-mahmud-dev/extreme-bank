@@ -1,18 +1,14 @@
-// const dbConnect = require("../database/dbConnect");
-
 import Base from "./Base";
-
-
-// import Joi from "joi";
 class Account extends Base {
-    static tableName = "accounts";
-    // id // uuid
-    // account_id
-    // user_id
-    // balance
-    // withdraw
-    // deposit
-    // current_loan_id
+    static collectionName = "accounts";
+    id
+    account_no
+    user_id
+    balance
+    withdraw
+    deposit
+    current_loan_id
+    current_loan_emi_recieved = 0
 
     constructor(data) {
         super(Account.tableName);

@@ -10,11 +10,15 @@ interface Props extends HTMLAttributes<HTMLInputElement>{
     className?: string;
     inputClass?: string;
     onChange?: Function;
-    type?: "text" | "number" | "textarea"
+    onClick?: any;
+    type?: "text" | "number" | "textarea" | "select"
     error?: any;
     validate?: any;
-    labelIcon?: ReactNode;
+    labelIcon?: ReactNode
+    value?: string
     options?: { name: string, value: string | number }[];
+    dataKey?: { title: string, id: string }
+
 }
 
 const InputGroup: FC<Props> = (props) => {
@@ -28,9 +32,12 @@ const InputGroup: FC<Props> = (props) => {
         type = "text",
         className,
         defaultValue,
+        dataKey,
         error,
+        value,
         labelIcon,
         options = null,
+        onClick
     } = props;
 
     // const [errorMessage, setErrorMessage] = useState("");
@@ -52,11 +59,11 @@ const InputGroup: FC<Props> = (props) => {
 
                     <div className="flex w-full items-center gap-x-2">
                         {labelIcon}
-                        {options ? (
-                            <select onChange={handleChange} name={name} id={name} className={`input ${inputClass} `} placeholder={placeholder}>
-                                <option value="">{placeholder}</option>
+                        {type === "select" ? (
+                            <select onClick={onClick} onChange={handleChange} name={name} id={name} className={`input ${inputClass} `} placeholder={placeholder}>
+                                <option value={value}>{placeholder}</option>
                                 {options?.map((opt) => (
-                                    <option value={opt.value}>{opt.name}</option>
+                                    <option value={opt[dataKey.id]}>{opt[dataKey.title]}</option>
                                 ))}
                             </select>
                         ) : type === "textarea" ? (
@@ -82,7 +89,7 @@ const InputGroup: FC<Props> = (props) => {
                 <span className="text-red-500 font-medium text-xs">{error ? error : ""}</span>
             </div>
         );
-    }, [error, props?.defaultValue]);
+    }, [error, props?.defaultValue, options]);
 };
 
 export default InputGroup;
