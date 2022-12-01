@@ -39,8 +39,6 @@ app.use(morgan("dev"))
 
 app.use(routes)
 
-
-
 // Capture 500 errors
 app.use((err,req,res,next) => {
   res.status(err.status || 500).send('Internal server Error');
