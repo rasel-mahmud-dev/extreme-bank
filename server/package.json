@@ -1,11 +1,17 @@
 {
-  "name": "node-sql",
+  "name": "node-mysql",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "repository": "https://github.com/rasel-mahmud-dev/extreme-bank/tree/with-mysql",
+  "author": {
+    "email": "rasel.mahmud.dev@gmail.com",
+    "name": "rasel mahmud",
+    "url": "https://rasel-portfolio.vercel.app"
+  },
   "scripts": {
     "dev": "set NODE_ENV=development&nodemon -r esm index.js",
-    "start": "set NODE_ENV=development&nodemon -r esm index.js"
+    "start": "node -r esm index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
