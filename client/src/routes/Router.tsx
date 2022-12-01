@@ -9,6 +9,7 @@ import AccountDashboard from "../pages/MyAccount/AccountDashboard";
 import LoanRequest from "../pages/MyAccount/LoanRequest";
 import Transactions from "../pages/MyAccount/Transactions/Transactions";
 import Loans from "../pages/MyAccount/Loans/Loans";
+import Loader from "../components/Loader/Loader";
 
 
 const MyAccount = lazy(()=>import("../pages/MyAccount/MyAccount"));
@@ -39,7 +40,7 @@ const routes = createBrowserRouter([
 
 const Router = () => {
 	return <div>
-		<Suspense fallback={<h1>Loading...</h1>}>
+		<Suspense fallback={<Loader  className="fixed card top-1/3 left-1/2 transform -translate-x-1/2" />}>
 			<RouterProvider router={routes} />
 		</Suspense>
 	</div>

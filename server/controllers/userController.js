@@ -1,38 +1,53 @@
 import User from "../models/User";
 
 const bcryptjs = require("bcryptjs");
-import errorConsole from "../logger/errorConsole";
 import { createToken, parseToken } from "../jwt";
 import response from "../response";
 import getCookie from "../utilities/getCookie";
+import {makeHash} from "../bcrypt/bcrypt";
+
 
 export const createNewUser = async (req, res, next) => {
     try {
-        let { first_name, last_name, email, password } = req.body;
+        const { email,first_name, last_name, avatar, password } = req.body;
         let user = await User.findOne({ email });
-        if (user) return res.send("user already registered");
 
-        let salt = await bcryptjs.genSalt(10);
-        let hashedPass = await bcryptjs.hash(password, salt);
+        if (user) {
+            return res.status(404).json({ message: "Your are already registered" });
+        }
+
+        let hash = makeHash(password)
+
         user = new User({
-            first_name,
-            last_name,
-            email,
-            password: hashedPass,
-            avatar: "",
+            first_name: first_name,
+            last_name: last_name,
             username: first_name + " " + last_name,
             roles: JSON.stringify(["CUSTOMER"]),
-        });
-        user = await user.save();
-        if (user) {
-            let token = await createToken(user.user_id, user.email);
-            res.json({
-                token: token,
-                ...user,
-            });
+            email: email,
+            password: hash,
+            avatar: avatar
+        })
+
+        user = await user.save()
+        if(!user){
+            return res.status(500).json({ message: "Registration fail. please try again" });
         }
+
+        let token = await createToken(user.user_id, user.email, user.roles);
+        let { password: s, ...other } = user;
+
+        // send cookie in header to set client browser
+        let exp = new Date(Date.now() + 1000 * 3600 * 24 * 7); // 7 days
+        res.cookie("token", token, {
+            domain: process.env.CLIENT,
+            path: "/",
+            secure: true,
+            expires: exp,
+            sameSite: "none",
+            httpOnly: true,
+        });
+        res.status(201).json({ ...other });
     } catch (ex) {
-        errorConsole(ex);
         if (ex.type === "VALIDATION_ERROR") {
             response(res, 422, ex.errors);
         } else if (ex.type === "ER_DUP_ENTRY") {
@@ -42,6 +57,7 @@ export const createNewUser = async (req, res, next) => {
         }
     }
 };
+
 
 export const loginUser = async (req, res, next) => {
     try {
@@ -65,6 +81,7 @@ export const loginUser = async (req, res, next) => {
             path: "/",
             secure: true,
             expires: exp,
+            sameSite: "none",
             httpOnly: true,
         });
         res.status(201).json({ ...other });
@@ -72,6 +89,7 @@ export const loginUser = async (req, res, next) => {
         next(ex);
     }
 };
+
 
 export const loginViaToken = async (req, res, next) => {
     try {

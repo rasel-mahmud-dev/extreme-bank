@@ -12,6 +12,8 @@ import { handleLogoutAction } from "../../context/actions/authAction";
 const Navigation = () => {
     const [{ auth }, dispatch] = useStore();
 
+    const [isDark, setDark] = useState(false);
+
     const items = [
         { name: "Home", to: "/" },
         { name: "Services", to: "/services" },
@@ -35,7 +37,7 @@ const Navigation = () => {
         setOpenMovileNav(!openMobileNav);
     }
 
-    const [isDark, setDark] = useState(true);
+
     useEffect(()=>{
         let theme = localStorage.getItem("theme")
         if(isDark){

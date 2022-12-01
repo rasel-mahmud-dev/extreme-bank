@@ -101,7 +101,6 @@ class Base {
                 }
             } catch (ex) {
                 reject(ex);
-                console.log(ex);
             }
         });
     }
