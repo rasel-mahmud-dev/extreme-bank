@@ -1,9 +1,40 @@
 import response from "../response";
 import Base from "../models/Base";
-import { compare } from "../bcrypt/bcrypt";
+import { compare, makeHash } from "../bcrypt/bcrypt";
 import Loan from "../models/Loan";
 import SQL_Date from "../utilities/SQL_Date";
 import Emi from "../models/Emi";
+import Account from "../models/Account";
+
+export const createBankAccount = async (req, res, next) => {
+    try {
+        let { account_no } = req.body
+
+        let account = await Account.findOne({ user_id: req.user.user_id });
+
+        if (account) {
+            return res.status(404).json({ message: "Your Account already exists" });
+        }
+
+        let newAcc = new Account({
+            user_id: req.user.user_id,
+            balance: 0,
+            deposit: 0,
+            withdraw: 0,
+            account_no: account_no,
+            is_loan_eligible: true
+        });
+
+        newAcc = await newAcc.save();
+        if (!newAcc) {
+            return res.status(500).json({ message: "Bank Account create fail. please try again" });
+        }
+
+        response(res, "Account create successfully", 201);
+    } catch (ex) {
+        next(ex);
+    }
+};
 
 export const getAccountInfo = async (req, res, next) => {
     try {
@@ -234,14 +265,15 @@ export const createLoan = async (req, res, next) => {
     }
 };
 
-
 export const getAllEmi = async (req, res, next) => {
     try {
         let Db = await Base.Db;
 
-        let [[account]] = await Db.query(`select * from accounts where user_id= ?`, [req.user.user_id])
-        if(!account){
-            return  response(res, "Account not found", 404)
+        let [[account]] = await Db.query(`select * from accounts where user_id= ?`, [
+            req.user.user_id,
+        ]);
+        if (!account) {
+            return response(res, "Account not found", 404);
         }
 
         let [emis] = await Db.query(
@@ -308,7 +340,7 @@ export const createEmi = async (req, res, next) => {
             emi_no: emi_no,
             description: description,
             created_at: nextMonth,
-            updated_at: nextMonth
+            updated_at: nextMonth,
         });
 
         newEmi = await newEmi.save();

@@ -1,13 +1,16 @@
 import * as accountController from "../controllers/accountController";
 import {auth} from "../middlewares";
-import {getAllEmi} from "../controllers/accountController";
+
 
 const router = require("express").Router();
+
+// create a bank account
+router.post("/", auth, accountController.createBankAccount);
 
 // get account detail for logged user
 router.get("/", auth, accountController.getAccountInfo);
 
-// get transactions able peopes
+// get transactions able peoples
 router.get("/peoples", auth, accountController.getOtherPeoples);
 
 
@@ -18,13 +21,11 @@ router.get("/transactions", auth, accountController.getAllTransaction);
 router.post("/transactions", auth, accountController.transaction);
 
 
-
 // [GET] api/v1/account/loans  get all loans
 router.get("/loans", auth, accountController.getAllLoansInfo);
 
 // [POST] api/v1/account/loan-money  create a load
 router.post("/loan-money", auth, accountController.createLoan);
-
 
 
 // [POST] api/v1/account/emis  get all emi for current logged user

@@ -9,16 +9,10 @@ require("dotenv").config()
 
 
 import routes  from "./routes"
-import dbConnect from "./database/dbConnect";
 
 // import logger from "./logger";
-//
-import initialDbQuery  from "./database/initialDbQuery"
-initialDbQuery()
 
 const port = process.env.PORT || 1000;
-
-
 
 
 const app = express()
