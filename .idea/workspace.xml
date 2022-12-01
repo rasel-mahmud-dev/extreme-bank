@@ -5,28 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/public/countries.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/divisions.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/upazilas.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CreateBankAccount/CreateBankAccount.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/DashboardHome.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/utilities/date.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/controllers/loanController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/bapperBank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bapperBank.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/InputGroup/InputGroup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/InputGroup/InputGroup.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/InputGroup/input-group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/InputGroup/input-group.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Registration/Registration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Registration/Registration.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Navigation/Navigation.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/AccountDashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/AccountDashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/LoanRequest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/LoanRequest.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/Loans/Loans.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/Loans/Loans.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/moneyTransfer/MoneyTransfer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/MoneyTransfer/MoneyTransfer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/routes/Router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/Router.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/MyAccount.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/MyAccount.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/RecentActivity/RecentActivity.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/RecentActivity/RecentActivity.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/RecentMoneyTransfer/RecentMoneyTransfer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/RecentMoneyTransfer/RecentMoneyTransfer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/controllers/accountController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/accountController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/userController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/Account.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/Account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/Emi.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/Emi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/Loan.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/Loan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/utilities/SQL_Date.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/accountRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/accountRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +95,7 @@
       <workItem from="1669031140964" duration="25879000" />
       <workItem from="1669741787800" duration="12970000" />
       <workItem from="1669791251422" duration="22594000" />
-      <workItem from="1669877870544" duration="21547000" />
+      <workItem from="1669877870544" duration="24840000" />
     </task>
     <servers />
   </component>

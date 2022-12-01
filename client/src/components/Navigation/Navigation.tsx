@@ -12,7 +12,7 @@ import { handleLogoutAction } from "../../context/actions/authAction";
 const Navigation = () => {
     const [{ auth }, dispatch] = useStore();
 
-    const [isDark, setDark] = useState(false);
+    const [isDark, setDark] = useState(true);
 
     const items = [
         { name: "Home", to: "/" },

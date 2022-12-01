@@ -8,11 +8,11 @@ const AccountDashboard = () => {
     const [{ account }, dispatch] = useStore();
 
     React.useEffect(() => {
-        getAccountInfoAction(dispatch);
+        getAccountInfoAction(dispatch)
         return () => {};
     }, []);
 
-    console.log(account)
+
 
     return (
         <div>

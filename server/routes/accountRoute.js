@@ -21,18 +21,5 @@ router.get("/transactions", auth, accountController.getAllTransaction);
 router.post("/transactions", auth, accountController.transaction);
 
 
-// [GET] api/v1/account/loans  get all loans
-router.get("/loans", auth, accountController.getAllLoansInfo);
-
-// [POST] api/v1/account/loan-money  create a load
-router.post("/loan-money", auth, accountController.createLoan);
-
-
-// [POST] api/v1/account/emis  get all emi for current logged user
-router.get("/emis", auth, accountController.getAllEmi);
-
-// [POST] api/v1/account/submit-emi  submit a monthly emi
-router.post("/submit-emi", auth, accountController.createEmi);
-
 
 export default router

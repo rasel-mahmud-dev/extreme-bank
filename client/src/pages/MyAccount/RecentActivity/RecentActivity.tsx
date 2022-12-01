@@ -15,11 +15,11 @@ const RecentActivity = () => {
 		<div className="">
 			
 			<div className="flex justify-between items-center">
-      		<h3 className='text-lg font-semibold'>Recent Activity</h3>
+      		<h3 className='heading-subtitle'>Recent Activity</h3>
             <span className="text-blue-600 text-xs">View All</span>
           </div>
 			
-			<div className="card rounded-2xl p-3 mt-4">
+			<div className="card rounded-2xl p-3 mt-2">
 				
 				
             {data.map((item) => (<div className="border-b border-neutral-500/10 py-4">
