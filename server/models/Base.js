@@ -1,28 +1,25 @@
-// import errorConsole from "../logger/errorConsole";
-// import dbConnect from "../database/dbConnect";
-//
-// import logger from "../logger";
-
 import dbConnect from "../database/dbConnect";
 
 
 class Base {
-    tableName = "";
+    collectionName = "";
+    static collectionName = "";
 
-    constructor(tableName) {
+    constructor(collectionName) {
         // when call with new keyword extend classes...
-        this.tableName = tableName;
+        Base.collectionName = collectionName;
     }
 
     static databaseConnection;
 
-    static get Db(){
+    static Db(collection){
         return new Promise(async (resolve, reject) => {
             try {
+                // use caching database client connection
                 if (!Base.databaseConnection) {
                     Base.databaseConnection = await dbConnect();
                 }
-                resolve(Base.databaseConnection);
+                resolve(Base.databaseConnection.collection(collection));
             } catch (ex) {
                 reject(ex);
             }
@@ -30,128 +27,44 @@ class Base {
     }
 
     save(){
-
-          return new Promise(async (resolve, reject)=>{
-              let { tableName, ...other } = this
-
-              let values = '';
-              let fields = ''
-
-              for (const otherValueKey in other) {
-                  // if value and key exists
-                  if(otherValueKey && other[otherValueKey]) {
-                      fields += otherValueKey + ", "
-                      values += `'${other[otherValueKey]}'` + ","
-                  }
-              }
-
-              let trimLastComma = (value, negationIndex)=> value.slice(0, value.length - negationIndex)
-
-              try {
-                  let Db = await Base.Db;
-                  let sql = `
-                  INSERT INTO ${tableName} (${trimLastComma(fields, 2)})
-                  VALUES (${trimLastComma(values, 1)})
-              `
-                  let [r, _] = await Db.execute(sql)
-
-                  if(r.affectedRows > 0){
-                      resolve({
-                          ...other,
-                          id: r.insertId
-                      })
-                  }
-              } catch (ex) {
-                  if(ex.code === "ER_DUP_ENTRY"){
-                      reject({
-                          type: "ER_DUP_ENTRY",
-                          message: ex.sqlMessage
-                      })
-                  } else {
-                      reject(ex)
-                  }
-              }
-          })
-    }
-
-
-    static findOne(valuesObj, selectFields) {
-        return new Promise(async (resolve, reject) => {
-            let db;
-
-            try {
-                db = await dbConnect();
-                let tableName = this.tableName;
-                let fieldName = "";
-                let value = "";
-                for (let key in valuesObj) {
-                    fieldName = key;
-                    value = valuesObj[key];
-                }
-
-                let sql = `SELECT ${
-                    selectFields ? selectFields : "*"
-                } from ${tableName} where ${fieldName} = "${value}"  `;
-                let [r, _] = await db.execute(sql);
-
-                if (r.length > 0) {
-                    resolve(r[0]);
+        return new Promise(async (resolve, reject)=>{
+            try{
+                let {collectionName, ...other} = this
+                let insertResult = await (await Base.Db(Base.collectionName)).insertOne(other)
+                if(insertResult.insertedId){
+                    other._id = insertResult.insertedId
+                    resolve(other)
                 } else {
-                    resolve(null);
+                    resolve(null)
                 }
-            } catch (ex) {
-                reject(ex);
+            } catch (ex){
+                reject(ex)
             }
-        });
+        })
     }
 
-    // static removeOne(valuesObj){
-    //   return new Promise(async (resolve, reject) => {
-    //     let db
-    //     try{
-    //       db = await dbConnect()
-    //       let tableName = this.tableName
-    //
-    //       let fieldName = ""
-    //       let value = ""
-    //       for(let key in valuesObj){
-    //         fieldName = key
-    //         value = valuesObj[key]
-    //       }
-    //
-    //       let sql  = `DELETE from ${tableName} where ${fieldName} = "${value}"  `
-    //       let [r, _] = await db.execute(sql)
-    //       if(r.affectedRows > 0){
-    //         resolve(true)
-    //       } else {
-    //         resolve(false)
-    //       }
-    //     } catch (ex){
-    //       errorConsole(ex)
-    //       reject(ex)
-    //     } finally {
-    //       db && db.end && db.end()
-    //     }
-    //   })
-    // }
-    //
-    // static async find(sql){
-    //
-    //   return new Promise(async (resolve, reject)=>{
-    //     let db;
-    //     try {
-    //       db = await dbConnect()
-    //       let [docs, _] = await db.execute( sql ? sql : `SELECT * from ${this.tableName}`)
-    //       resolve(docs)
-    //     } catch (ex){
-    //       errorConsole(ex)
-    //       reject(ex)
-    //     }
-    //     finally{
-    //       db && db.end && db.end()
-    //     }
-    //   })
-    // }
+    static get collection(){
+        return Base.Db(this.collectionName)
+    }
+
+    static async find(...params) {
+        return (await Base.Db(this.collectionName)).find(...params).toArray();
+    }
+    static async findOne(...params) {
+        return (await Base.Db(this.collectionName)).findOne(...params)
+    }
+
+    static async deleteOne(filter) {
+        return (await Base.Db(this.collectionName)).deleteOne(filter)
+    }
+
+    static async updateOne(filter, updateData, opt= {}) {
+        return (await Base.Db(this.collectionName)).updateOne(filter, updateData, opt)
+    }
+
+    static async aggregate(pipelines) {
+        return (await Base.Db(this.collectionName)).aggregate(pipelines).toArray();
+    }
 }
 
 export default Base;

@@ -5,10 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/services/imageUpload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/client/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ImagePicker/ImagePicker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ImagePicker/ImagePicker.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Registration/Registration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Registration/Registration.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes/PrivateRoute.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/PrivateRoute.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes/Router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/Router.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/database/dbConnect.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/database/dbConnect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/database/initialQuery.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/Base.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/Base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +93,7 @@
       <workItem from="1669031140964" duration="25879000" />
       <workItem from="1669741787800" duration="12970000" />
       <workItem from="1669791251422" duration="22594000" />
-      <workItem from="1669877870544" duration="4731000" />
+      <workItem from="1669877870544" duration="11910000" />
     </task>
     <servers />
   </component>

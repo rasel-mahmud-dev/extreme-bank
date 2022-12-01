@@ -40,10 +40,13 @@ app.use(morgan("dev"))
 app.use(routes)
 
 // Capture 500 errors
-app.use((err,req,res,next) => {
-  res.status(err.status || 500).send('Internal server Error');
+app.use((err, req, res, next)=>{
+    let message = "Internal error, Please try again"
+    if(err && err.message){
+        message = err.message
+    }
+    res.status(500).json({message: message})
 })
-
 // Capture 404 errors
 app.use((req,res,next) => {
   res.status(404).send("PAGE NOT FOUND");

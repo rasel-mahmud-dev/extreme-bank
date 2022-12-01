@@ -1,4 +1,3 @@
-
 # ExtremeBank (CLIENT)
 ### A online banking site
 ## Repo: https://github.com/rasel-mahmud-dev/extreme-bank/tree/with-mysql/client
@@ -34,9 +33,11 @@ password: 12345
 
 
 
-# ExtremeBank (Backend + With MYSQL)
+# ExtremeBank (Backend + With Mongodb) 
 
-## Repo: https://github.com/rasel-mahmud-dev/extreme-bank/tree/with-mysql
+#### Mongodb has free cloud service. since mysql free service gone to deep sleep and api return error. That why I also create mongodb version of this site api   
+
+## Repo: https://github.com/rasel-mahmud-dev/extreme-bank/tree/with-mongodb
 ## Live: https://extreme-bank.vercel.app
 
 
@@ -54,7 +55,7 @@ password: 12345
 
 
 ## Database.
-- Mysql (Native)
+- Mongodb (Native)
 
 ## Packages uses.
 - Expressjs
@@ -62,7 +63,7 @@ password: 12345
 - dotenv
 - jwt(jsonwebtoken)
 - bcryptjs
-- mysql database
+- mongodb database
 - winston logger
 
 #### Auth/User endpoint

@@ -1,9 +1,9 @@
 {
-  "name": "node-mysql",
+  "name": "node-mongodb",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "repository": "https://github.com/rasel-mahmud-dev/extreme-bank/tree/with-mysql",
+  "repository": "https://github.com/rasel-mahmud-dev/extreme-bank/tree/with-mongodb",
   "author": {
     "email": "rasel.mahmud.dev@gmail.com",
     "name": "rasel mahmud",
@@ -15,19 +15,19 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.32.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "formidable": "^2.0.1",
     "joi": "^17.7.0",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.12.1",
     "morgan": "^1.10.0",
-    "mysql": "^2.18.1",
-    "mysql2": "^2.3.3",
     "nodemon": "^2.0.20",
     "winston": "^3.8.2"
   },
   "devDependencies": {
-    "esbuild": "^0.15.15",
     "esm": "^3.2.25"
   }
 }

@@ -40,7 +40,7 @@ const routes = createBrowserRouter([
 
 const Router = () => {
 	return <div>
-		<Suspense fallback={<Loader  className="fixed card top-1/3 left-1/2 transform -translate-x-1/2" />}>
+		<Suspense fallback={<Loader  className="page-loader" />}>
 			<RouterProvider router={routes} />
 		</Suspense>
 	</div>

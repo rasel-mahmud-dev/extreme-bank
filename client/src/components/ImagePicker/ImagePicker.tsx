@@ -8,7 +8,7 @@ interface Props extends HTMLAttributes<HTMLInputElement> {
     defaultValue?: string;
     className?: string;
     inputClass?: string;
-    onChange: ({}, error?: string) => void;
+    onChange: (e: any, error?: string) => void;
     type?: "text" | "number";
     error?: any;
     validate: any;

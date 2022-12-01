@@ -3,6 +3,7 @@ client/dist
 
 server/.idea
 server/dist
+server/.env_sql
 server/.env
 server/.vercel
 server/tmp

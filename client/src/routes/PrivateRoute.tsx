@@ -9,7 +9,7 @@ const PrivateRoute = (props) => {
     const [state]  = useStore()
 
     if (!state.isAuthLoaded) {
-        return <Loader />;
+        return <Loader className="page-loader" />;
     }
 
     if (!state.auth) {
