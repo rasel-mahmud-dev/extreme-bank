@@ -10,6 +10,7 @@ import {cp} from "fs/promises";
 import imageUpload from "../services/imageUpload";
 import {ObjectId} from "mongodb";
 import Notification from "../models/Notification";
+import setCookie from "../utilities/setCookie";
 
 export const createNewUser = (req, res, next) => {
     // parse a file upload
@@ -40,7 +41,6 @@ export const createNewUser = (req, res, next) => {
             }
 
 
-
             let hash = makeHash(password);
 
             user = new User({
@@ -58,23 +58,17 @@ export const createNewUser = (req, res, next) => {
                 return res.status(500).json({ message: "Registration fail. please try again" });
             }
 
-            let token = await createToken(user.user_id, user.email, user.roles);
+            let token = await createToken(user._id, user.email, user.roles);
             let { password: s, ...other } = user;
 
             // send cookie in header to set client browser
-            let exp = new Date(Date.now() + 1000 * 3600 * 24 * 7); // 7 days
-            res.cookie("token", token, {
-                domain: process.env.CLIENT,
-                path: "/",
-                secure: true,
-                expires: exp,
-                sameSite: "none",
-                httpOnly: true,
-            });
+            setCookie(res, token)
+
+            Notification.createNotification({user_id:user._id, label: "Welcome Mr. "+user.username}).then().catch()
+
             res.status(201).json({ ...other });
 
         } catch (ex) {
-            console.log(ex)
             if (ex.type === "VALIDATION_ERROR") {
                 response(res, 422, ex.errors);
             } else if (ex.type === "ER_DUP_ENTRY") {
@@ -102,15 +96,8 @@ export const loginUser = async (req, res, next) => {
         let { password: s, ...other } = user;
 
         // send cookie in header to set client browser
-        let exp = new Date(Date.now() + 1000 * 3600 * 24 * 7); // 7 days
-        res.cookie("token", token, {
-            domain: process.env.CLIENT,
-            path: "/",
-            secure: true,
-            expires: exp,
-            sameSite: "none",
-            httpOnly: true,
-        });
+
+        setCookie(res, token)
 
 
         Notification.createNotification({user_id:user._id, label: "Login completed"}).then().catch()

@@ -10,6 +10,9 @@ import { api } from "../../axios/api";
 import ResponseModal from "../ActionModal/ResponseModal";
 import * as React from "react";
 import catchErrorMessage from "../../utils/catchErrorMessage";
+import {handleLoginAction, handleRegistrationAction} from "../../context/actions/authAction";
+import useStore from "context/useStore";
+
 
 interface Field {
     label?: string;
@@ -23,6 +26,9 @@ interface Field {
 }
 
 const Registration = () => {
+
+    const [{}, dispatch] = useStore()
+
     const [infoData, setInfoData] = useState({
         country: null,
         divisions: null,
@@ -187,25 +193,21 @@ const Registration = () => {
 
         setHttpResponse((p) => ({ ...p, loading: true }));
 
-        api.post("/api/v1/auth/registration", formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        })
+        handleRegistrationAction(formData, dispatch)
+
             .then((r) => {
                 setHttpResponse({ ...httpResponse, loading: false, isSuccess: false });
                 setTimeout(()=>{
-                    setHttpResponse(p=>({ ...p, message: r.data.message}));
-                    if(location.state?.from){
-                        navigate(location.state.from || "/")
-                    }
-                }, 500)
+                    setHttpResponse(p=>({ ...p, message: "Registration completed."}));
+                    navigate(location.state?.from || "/")
+
+                }, 200)
             })
             .catch((ex) => {
                 setHttpResponse({ ...httpResponse, loading: false, isSuccess: false });
                 setTimeout(()=>{
-                    setHttpResponse(p=>({ ...p, message: catchErrorMessage(ex) }));
-                }, 500)
+                    setHttpResponse(p=>({ ...p, message: ex }));
+                }, 200)
             });
 
         // setHttpResponse((p) => ({ ...p, loading: true }));

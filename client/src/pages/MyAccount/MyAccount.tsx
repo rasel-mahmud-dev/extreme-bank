@@ -20,7 +20,7 @@ const MyAccount = () => {
     return (
         <div className="container px-4 lg:!px-0 page-g">
             <div className="flex">
-                <Sidebar />
+                <Sidebar hasAccount={!!account} />
 
                 <div className="content">
                     <div>

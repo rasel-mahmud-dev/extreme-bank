@@ -3,6 +3,26 @@ import {ACTION_TYPES} from "../../types";
 import {Dispatch} from "react";
 import catchErrorMessage from "../../utils/catchErrorMessage";
 
+export async function handleRegistrationAction(formData: FormData, dispatch:Dispatch<any>){
+	return new Promise(async (resolve, reject)=>{
+
+        api.post("/api/v1/auth/registration", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        }).then(({status, data})=>{
+			if(status === 201){
+				dispatch({
+					type: ACTION_TYPES.LOGIN,
+					payload: data
+				})
+				resolve(data)
+			}
+		}).catch(ex=>{
+			reject(catchErrorMessage(ex))
+		})
+	})
+}
 export async function handleLoginAction(payload: object, dispatch:Dispatch<any>){
 	return new Promise(async (resolve, reject)=>{
 		api.post("/api/v1/auth/login", payload).then(({status, data})=>{

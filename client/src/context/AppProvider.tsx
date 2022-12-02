@@ -6,15 +6,15 @@ export let dispatch: Dispatch<any>;
 
 export interface AppContextInterface {
     auth: any;
-    account: object;
+    account?: object;
     isAuthLoaded: boolean;
     notifications: any[];
-    isSidebarExpand: boolean
+    isSidebarExpand: boolean;
 }
 
 const initialState: AppContextInterface = {
     auth: null,
-    account: {},
+    account: undefined,
     isAuthLoaded: false,
     isSidebarExpand: false,
     notifications: [],
@@ -53,7 +53,10 @@ function reducer(state: AppContextInterface, action: any) {
             return {
                 ...state,
                 isAuthLoaded: true,
+                account: undefined,
+                notifications: [],
                 auth: null,
+                isSidebarExpand: false,
             };
         case ACTION_TYPES.TOGGLE_SIDEBAR:
             return {
@@ -73,4 +76,4 @@ function AppProvider(props) {
     return <AppContext.Provider value={state}>{props.children}</AppContext.Provider>;
 }
 
-export default AppProvider
+export default AppProvider;

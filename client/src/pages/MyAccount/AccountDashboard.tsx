@@ -13,11 +13,12 @@ const AccountDashboard = () => {
     }, []);
 
 
-
     return (
         <div>
 
-            <DashboardHome account={account} />
+
+
+            {account ? <DashboardHome account={account} /> : <CreateBackAccount /> }
 
 
 

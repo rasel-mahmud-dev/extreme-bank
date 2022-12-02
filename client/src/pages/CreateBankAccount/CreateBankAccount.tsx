@@ -1,13 +1,15 @@
 import { ReactElement, SyntheticEvent, useState } from "react";
 import validator from "../../utils/validator";
-import { FiLock, FiMail, FiUser } from "react-icons/all";
+import {BiCard, FiLock, FiMail, FiUser, GoLocation} from "react-icons/all";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
-import {api} from "../../axios/api";
+import { api } from "../../axios/api";
 import ImagePicker from "../../components/ImagePicker/ImagePicker";
 import InputGroup from "../../components/InputGroup/InputGroup";
 import Button from "../../components/Button/Button";
+import ResponseModal from "../../components/ActionModal/ResponseModal";
+import * as React from "react";
 
 interface Field {
     label?: string;
@@ -20,31 +22,24 @@ interface Field {
     labelIcon?: ReactElement;
 }
 
-
 const CreateBankAccount = () => {
-
-
-
     const data: { [key: string]: Field } = {
-        firstName: {
-            label: "firstName",
-            name: "firstName",
-            placeholder: "Enter firstName",
+        NID: {
+            name: "NID",
+            placeholder: "Enter NID",
             onChange: handleChange,
             validate: {
-                required: "firstName Required",
+                required: "NID Required",
             },
-            labelIcon: <FiUser className="text-dark-400 text-lg" />,
+            labelIcon: <BiCard className="text-dark-400 text-lg" />,
         },
         lastName: {
-            label: "LastName",
-            name: "lastName",
-            placeholder: "Enter lastName",
+            name: "Address",
+            placeholder: "Address",
             onChange: handleChange,
-            labelIcon: <FiUser className="text-dark-400 text-lg" />,
+            labelIcon: <GoLocation className="text-dark-400 text-lg" />,
         },
         email: {
-            label: "Email",
             name: "email",
             placeholder: "Enter email",
             onChange: handleChange,
@@ -52,9 +47,8 @@ const CreateBankAccount = () => {
                 required: "Email Required",
             },
             labelIcon: <FiMail className="text-dark-400 text-lg" />,
-        }
+        },
     };
-
 
     const [httpResponse, setHttpResponse] = useState({
         isSuccess: false,
@@ -81,7 +75,7 @@ const CreateBankAccount = () => {
         let isCompleted = true;
         // check validation before submit form
         let tempErrors: any = { ...errors };
-        let formData = new FormData()
+        let formData = new FormData();
         let key: DataKeys;
         for (key in data) {
             if (data[key].validate) {
@@ -89,39 +83,39 @@ const CreateBankAccount = () => {
                 if (validate) {
                     isCompleted = false;
                 } else {
-                    if(key !== "avatar") {
-                        formData.append(key, userInput[key])
+                    if (key !== "avatar") {
+                        formData.append(key, userInput[key]);
                     }
                 }
                 tempErrors[key] = validate;
             } else {
-                if(key !== "avatar") {
-                    formData.append(key, userInput[key])
+                if (key !== "avatar") {
+                    formData.append(key, userInput[key]);
                 }
             }
         }
-
 
         if (!isCompleted) {
             setErrors(tempErrors);
             setHttpResponse((p) => ({ ...p, loading: false, message: "" }));
             return;
         }
+        setHttpResponse((p) => ({ ...p, loading: true }));
 
-        if(userInput.avatar) {
-            formData.append("avatar", userInput.avatar)
+        if (userInput.avatar) {
+            formData.append("avatar", userInput.avatar);
         }
 
-        api.post("/api/v1/auth/registration", formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        })
-            .then(r => {
-                console.log(r)
-            }).catch(ex=>{
-            console.log(ex)
-        })
+        // api.post("/api/v1/auth/registration", formData, {
+        //     headers: {
+        //         "Content-Type": "multipart/form-data",
+        //     },
+        // })
+        //     .then(r => {
+        //         console.log(r)
+        //     }).catch(ex=>{
+        //     console.log(ex)
+        // })
 
         // setHttpResponse((p) => ({ ...p, loading: true }));
         // setErrors(tempErrors);
@@ -131,10 +125,16 @@ const CreateBankAccount = () => {
         <div className="container">
             <div className="mt-4 rounded-xl">
                 <form onSubmit={handleLogin} className="card">
+                    <ResponseModal
+                        loadingTitle="Login Processing"
+                        {...httpResponse}
+                        onClose={() => setHttpResponse((p) => ({ ...p, message: "", loading: false }))}
+                    />
+
                     <h1 className="card-title">Create a Bank Account</h1>
-                    {Object.keys(data).map((key, i: number) =>
+                    {Object.keys(data).map((key, i: number) => (
                         <InputGroup error={errors?.[key]} {...data[key]} className="mt-4" />
-                    )}
+                    ))}
                     <Button className="btn-primary mt-4 w-full">Create Account</Button>
                 </form>
             </div>
