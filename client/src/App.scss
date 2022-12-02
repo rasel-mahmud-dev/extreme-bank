@@ -84,5 +84,5 @@ li, ul{
   @apply fixed card top-1/4 left-1/2 transform -translate-x-1/2
 }
 .badge{
-  @apply absolute text-xs py-px px-1 bg-primary-400 rounded-2xl -top-3 left-2
+  @apply absolute text-xs py-px px-2 bg-primary-400 rounded-2xl -top-3 left-2 select-none text-dark-10;
 }

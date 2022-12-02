@@ -6,17 +6,19 @@ import { BiBell, BsMoon, BsSun, HiBars4 } from "react-icons/all";
 import useStore from "../../context/useStore";
 import Avatar from "../Avatar/Avatar";
 import Dropdown from "../Dropdown/Dropdown";
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import { handleLogoutAction } from "../../context/actions/authAction";
-import dateTime from "../../utils/date";
-import {markAsReadNotification} from "../../context/actions/accountAction";
 import NotificationDropdown from "./NotificationDropdown";
 
 const Navigation = () => {
-    const [{ auth, notifications }, dispatch] = useStore();
+    const [{ auth, notifications = [] }, dispatch] = useStore();
+
+    let countNewNotification = notifications.reduce((acc, cur) => {
+        if (!cur.isRead) acc++;
+        return acc;
+    }, 0);
 
     const [isDark, setDark] = useState(true);
-
 
     const items = [
         { name: "Home", to: "/" },
@@ -41,18 +43,16 @@ const Navigation = () => {
         setOpenMovileNav(!openMobileNav);
     }
 
-    useEffect(()=>{
-        let theme = localStorage.getItem("theme")
-        if(isDark){
-            document.documentElement.classList.add('dark')
-            localStorage.theme = 'dark'
+    useEffect(() => {
+        let theme = localStorage.getItem("theme");
+        if (isDark) {
+            document.documentElement.classList.add("dark");
+            localStorage.theme = "dark";
         } else {
-            document.documentElement.classList.remove('dark')
-            localStorage.theme = ''
+            document.documentElement.classList.remove("dark");
+            localStorage.theme = "";
         }
-
-    }, [isDark])
-
+    }, [isDark]);
 
     return (
         <div className="bg-white dark:bg-dark-600 shadow-xl fixed-nav">
@@ -94,9 +94,7 @@ const Navigation = () => {
                             <li className="list-none py-5 relative ">
                                 <div className="relative" onClick={() => setDropdownMenu("notification")}>
                                     <BiBell className="text-2xl" />
-                                    <span className="badge">
-                                        {notifications?.length}
-                                    </span>
+                                    {countNewNotification ? <span className="badge">{countNewNotification}</span> : ""}
                                 </div>
 
                                 <NotificationDropdown dropdownMenu={dropdownMenu} setDropdownMenu={setDropdownMenu} />

@@ -6,18 +6,19 @@ import response from "../response";
 export async function markAsReadNotification(req, res, next) {
     let {notificationIds} = req.body
 
-    notificationIds = notificationIds.map(item=>new ObjectId(item))
+    notificationIds = notificationIds.map(item => new ObjectId(item))
     try {
         let docs = await (await Notification.collection).updateMany(
             {
                 user_id: new ObjectId(req.user.user_id),
-                _id: {$in: notificationIds }
+                _id: {$in: notificationIds}
 
             }, {
-                $set: { isRead: true }
+                $set: {isRead: true}
             }
         )
-        if(docs.modifiedCount){
+
+        if (docs.modifiedCount) {
             response(res, "notifications", 201)
         } else {
             response(res, "No update", 200)

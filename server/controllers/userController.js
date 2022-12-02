@@ -111,6 +111,17 @@ export const loginUser = async (req, res, next) => {
             sameSite: "none",
             httpOnly: true,
         });
+
+
+        let notification  = new Notification({
+            user_id: user._id,
+            label: "Login Successfully. Mr " + user.username ,
+            message: 'You login at ' + new Date().toDateString()
+        })
+        notification.save().then(doc=>{
+            console.log(doc)
+        })
+
         res.status(201).json({ ...other });
     } catch (ex) {
         next(ex);
@@ -124,17 +135,6 @@ export const loginViaToken = async (req, res, next) => {
         let { user_id, email, roles } = await parseToken(token);
         let user = await User.findOne({ _id: new ObjectId(user_id) });
         let { password, ...other } = user;
-
-        let notification  = new Notification({
-            user_id: user_id,
-            label: "Login Successfully. Mr " + user.username ,
-            message: 'You login at ' + new Date().toDateString()
-        })
-
-        notification.save().then(doc=>{
-            console.log(doc)
-        })
-
 
         response(res, other, 200);
     } catch (ex) {
