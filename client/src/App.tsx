@@ -5,7 +5,7 @@ import "./App.scss";
 import { Outlet } from "react-router-dom";
 // import {authFetchingAction} from "./context/actions/authAction";
 import useStore from "./context/useStore";
-import { authFetchingAction } from "./context/actions/authAction";
+import {authFetchingAction, fetchNotificationsAction} from "./context/actions/authAction";
 import Footer from "./components/Footer/Footer";
 
 const App = () => {
@@ -17,11 +17,19 @@ const App = () => {
     }
   }
 
-  const [state, dispatch] = useStore();
+  const [{auth}, dispatch] = useStore();
 
   useEffect(() => {
     authFetchingAction(dispatch);
   }, []);
+
+
+  useEffect(()=>{
+      if(auth){
+          fetchNotificationsAction(auth._id, dispatch)
+      }
+  }, [auth])
+
 
   return (
     <div className="App">

@@ -9,6 +9,7 @@ import { makeHash } from "../bcrypt/bcrypt";
 import {cp} from "fs/promises";
 import imageUpload from "../services/imageUpload";
 import {ObjectId} from "mongodb";
+import Notification from "../models/Notification";
 
 export const createNewUser = (req, res, next) => {
     // parse a file upload
@@ -123,6 +124,18 @@ export const loginViaToken = async (req, res, next) => {
         let { user_id, email, roles } = await parseToken(token);
         let user = await User.findOne({ _id: new ObjectId(user_id) });
         let { password, ...other } = user;
+
+        let notification  = new Notification({
+            user_id: user_id,
+            label: "Login Successfully. Mr " + user.username ,
+            message: 'You login at ' + new Date().toDateString()
+        })
+
+        notification.save().then(doc=>{
+            console.log(doc)
+        })
+
+
         response(res, other, 200);
     } catch (ex) {
         next(ex);

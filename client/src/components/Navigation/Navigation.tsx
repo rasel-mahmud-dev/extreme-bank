@@ -6,13 +6,17 @@ import { BiBell, BsMoon, BsSun, HiBars4 } from "react-icons/all";
 import useStore from "../../context/useStore";
 import Avatar from "../Avatar/Avatar";
 import Dropdown from "../Dropdown/Dropdown";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import { handleLogoutAction } from "../../context/actions/authAction";
+import dateTime from "../../utils/date";
+import {markAsReadNotification} from "../../context/actions/accountAction";
+import NotificationDropdown from "./NotificationDropdown";
 
 const Navigation = () => {
-    const [{ auth }, dispatch] = useStore();
+    const [{ auth, notifications }, dispatch] = useStore();
 
     const [isDark, setDark] = useState(true);
+
 
     const items = [
         { name: "Home", to: "/" },
@@ -37,7 +41,6 @@ const Navigation = () => {
         setOpenMovileNav(!openMobileNav);
     }
 
-
     useEffect(()=>{
         let theme = localStorage.getItem("theme")
         if(isDark){
@@ -49,6 +52,7 @@ const Navigation = () => {
         }
 
     }, [isDark])
+
 
     return (
         <div className="bg-white dark:bg-dark-600 shadow-xl fixed-nav">
@@ -87,8 +91,15 @@ const Navigation = () => {
                         </li>
 
                         {auth && (
-                            <li className="list-none py-5">
-                                <BiBell className="text-2xl" />
+                            <li className="list-none py-5 relative ">
+                                <div className="relative" onClick={() => setDropdownMenu("notification")}>
+                                    <BiBell className="text-2xl" />
+                                    <span className="badge">
+                                        {notifications?.length}
+                                    </span>
+                                </div>
+
+                                <NotificationDropdown dropdownMenu={dropdownMenu} setDropdownMenu={setDropdownMenu} />
                             </li>
                         )}
                         <li className="list-none">
@@ -107,19 +118,29 @@ const Navigation = () => {
                                     >
                                         <div className="flex flex-col gap-2">
                                             <Button variant="list" className="bg-transparent">
-                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">Dashboard</Link>
+                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">
+                                                    Dashboard
+                                                </Link>
                                             </Button>
                                             <Button variant="list" className="bg-transparent">
-                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">Dashboard</Link>
+                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">
+                                                    Dashboard
+                                                </Link>
                                             </Button>
                                             <Button variant="list" className="bg-transparent">
-                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">Dashboard</Link>
+                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">
+                                                    Dashboard
+                                                </Link>
                                             </Button>
                                             <Button variant="list" className="bg-transparent">
-                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">Dashboard</Link>
+                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">
+                                                    Dashboard
+                                                </Link>
                                             </Button>
                                             <Button variant="list" className="bg-transparent">
-                                                <a className="!text-dark-700 dark:!text-dark-20" onClick={handleLogout}>Logout</a>
+                                                <a className="!text-dark-700 dark:!text-dark-20" onClick={handleLogout}>
+                                                    Logout
+                                                </a>
                                             </Button>
                                         </div>
                                     </Dropdown>

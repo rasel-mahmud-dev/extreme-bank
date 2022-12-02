@@ -9,6 +9,7 @@ require("dotenv").config()
 
 
 import routes  from "./routes"
+import dbConnect from "./database/dbConnect";
 
 // import logger from "./logger";
 

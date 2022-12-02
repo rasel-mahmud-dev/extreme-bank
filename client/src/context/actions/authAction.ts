@@ -49,3 +49,18 @@ export async function authFetchingAction(dispatch: Dispatch<any>){
 		})
 	})
 }
+
+export async function fetchNotificationsAction(authId: string, dispatch: Dispatch<any>){
+	return new Promise(async (resolve, reject)=>{
+		api.get("/api/v1/notifications").then(({status, data})=>{
+			if(status === 200){
+				dispatch({
+					type: ACTION_TYPES.FETCH_NOTIFICATION,
+					payload: data
+				})
+			}
+		}).catch(ex=>{
+			reject(catchErrorMessage(ex))
+		})
+	})
+}

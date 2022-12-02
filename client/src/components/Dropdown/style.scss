@@ -2,6 +2,9 @@
   @apply absolute opacity-0 z-50 invisible mt-3 p-4 bg-white dark:bg-dark-700 rounded-md;
   transition: all .2s ease;
   transform: translateY(10px);
+  &::-webkit-scrollbar{
+    width: 2px;
+  }
 
   &.dropdown-open{
     opacity: 1;

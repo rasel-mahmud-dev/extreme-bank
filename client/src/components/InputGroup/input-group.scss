@@ -1,12 +1,11 @@
 .input-group{
-  label{ color: #2f2f2f; font-weight: 500}
   border-bottom: 1.5px solid rgba(147, 147, 147, 0.2);
   .input{
     flex: 1;
     width: 100% !important;
     background: transparent;
     border: none;
-    color: #606060;
+    @apply text-dark-800 dark:text-dark-10;
     padding: 10px 0px;
     border-radius: 8px;
     outline: none !important;
@@ -14,4 +13,16 @@
       color: currentColor;
     }
   }
+}
+
+option{
+  @apply bg-dark-20 dark:bg-dark-600;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition-delay: 9999s;
+  transition-delay: 9999s;
 }

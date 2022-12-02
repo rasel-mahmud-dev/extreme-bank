@@ -146,9 +146,9 @@ const LoanRequest = () => {
 
     return (
         <div>
-            <div>
+            <div className="">
                 <h1 className="heading-title !text-start mt-4 mb-8">Loan Request</h1>
-                <div className="rounded px-4 pb-4 pt-1 bg-white rounded-xl">
+                <div className="card">
                     <form onSubmit={handleLogin}>
 
                         <ResponseModal

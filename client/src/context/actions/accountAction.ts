@@ -18,3 +18,16 @@ export async function getAccountInfoAction(dispatch:Dispatch<any>){
 		})
 	})
 }
+
+
+export async function markAsReadNotification(notificationIds: string[] = []){
+	return new Promise(async (resolve, reject)=>{
+		api.post("/api/v1/notifications/read", {notificationIds}).then(({status, data})=>{
+			if(status === 201){
+				resolve(data)
+			}
+		}).catch(ex=>{
+			reject(catchErrorMessage(ex))
+		})
+	})
+}

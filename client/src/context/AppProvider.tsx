@@ -9,7 +9,8 @@ export interface AppContextInterface {
 	auth: any
 	name: string
 	account: object,
-	isAuthLoaded: boolean
+	isAuthLoaded: boolean,
+    notifications: any[]
 }
 
 const initialState: AppContextInterface = {
@@ -17,11 +18,17 @@ const initialState: AppContextInterface = {
 	account: {},
 	isAuthLoaded: false,
 	name:  "rase",
+    notifications: []
 }
 
 function reducer(state: AppContextInterface, action: any) {
 	switch (action.type) {
-		case ACTION_TYPES.SET_ACCOUNT:
+		case ACTION_TYPES.FETCH_NOTIFICATION:
+			return {
+				...state,
+				notifications: action.payload
+			}
+            case ACTION_TYPES.SET_ACCOUNT:
 			return {
 				...state,
 				account: action.payload

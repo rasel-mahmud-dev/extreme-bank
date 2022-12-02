@@ -72,8 +72,8 @@ li, ul{
 }
 
 .hide-viewport{
-  //opacity: 0;
-  //transform: translateY(100px);
+  opacity: 0;
+  transform: translateY(100px);
 }
 
 .show-viewport{
@@ -82,4 +82,7 @@ li, ul{
 }
 .page-loader{
   @apply fixed card top-1/4 left-1/2 transform -translate-x-1/2
+}
+.badge{
+  @apply absolute text-xs py-px px-1 bg-primary-400 rounded-2xl -top-3 left-2
 }
