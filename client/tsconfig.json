@@ -22,7 +22,8 @@
     "baseUrl": "./src",
     "paths": {
       "components": ["./src/components/"],
-      "app": ["./src/"]
+      "app": ["./src/"],
+      "context": ["./src/context"]
     }
   },
   "include": [

@@ -21,19 +21,35 @@
     //display: block;
   }
 }
-
-
+.sidebar2-backdrop{
+  visibility: hidden!important;
+  opacity: 0;
+  z-index: 998 !important;
+}
 
 .content {
   flex: 1;
   margin-left: 15px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1023px) {
   .sidebar2{
     //display: none;
+    position: fixed;
+    left: -280px;
+    //margin-left: -0px;
   }
   .content {
-    //margin-left: 0;
+    margin-left: 0;
   }
+  .sidebar2.expand{
+    left: 10px;
+    @apply shadow-sm2 dark:shadow-dark-sm2
+  }
+
+  .backdrop-show{
+    visibility: visible!important;
+    opacity: 1 !important;
+  }
+
 }

@@ -3,6 +3,7 @@ import useStore from "../../context/useStore";
 import { getAccountInfoAction } from "../../context/actions/accountAction";
 import RecentActivity from "./RecentActivity/RecentActivity";
 import RecentMoneyTransfer from "./RecentMoneyTransfer/RecentMoneyTransfer";
+import WithSidebarButton from "../../components/WithSidebarButton/WithSidebarButton";
 
 const DashboardHome = ({account}) => {
 
@@ -10,7 +11,9 @@ const DashboardHome = ({account}) => {
         <div>
 
             <div>
-                <h1 className="heading-title !text-start mt-4 mb-8">My Account</h1>
+                <WithSidebarButton className="my-4">
+                    <h1 className="heading-title">My Account</h1>
+                </WithSidebarButton>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
                     <div className="card !bg-gradient-to-r from-secondary-200 to-secondary-700">

@@ -6,17 +6,17 @@ export let dispatch: Dispatch<any>;
 
 export interface AppContextInterface {
     auth: any;
-    name: string;
     account: object;
     isAuthLoaded: boolean;
     notifications: any[];
+    isSidebarExpand: boolean
 }
 
 const initialState: AppContextInterface = {
     auth: null,
     account: {},
     isAuthLoaded: false,
-    name: "rase",
+    isSidebarExpand: false,
     notifications: [],
 };
 
@@ -43,7 +43,6 @@ function reducer(state: AppContextInterface, action: any) {
                 account: action.payload,
             };
         case ACTION_TYPES.LOGIN:
-            // updateState.index.js = action.payload
             return {
                 ...state,
                 isAuthLoaded: true,
@@ -51,11 +50,15 @@ function reducer(state: AppContextInterface, action: any) {
             };
 
         case ACTION_TYPES.LOGOUT:
-            // updateState.index.js = action.payload
             return {
                 ...state,
                 isAuthLoaded: true,
                 auth: null,
+            };
+        case ACTION_TYPES.TOGGLE_SIDEBAR:
+            return {
+                ...state,
+                isSidebarExpand: !state.isSidebarExpand,
             };
 
         default:

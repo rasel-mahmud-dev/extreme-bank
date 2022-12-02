@@ -7,6 +7,7 @@ import Button from "../../../components/Button/Button";
 import Modal from "../../../components/Modal/Modal";
 import InputGroup from "../../../components/InputGroup/InputGroup";
 import {ACTION_TYPES} from "../../../types";
+import WithSidebarButton from "../../../components/WithSidebarButton/WithSidebarButton";
 
 const Loans = () => {
     const [transactions, setTransactions] = useState([]);
@@ -123,11 +124,13 @@ const Loans = () => {
     return (
         <div>
             <div>
-                <h1 className="heading-title !text-start mt-3 mb-4 uppercase">My Loans</h1>
+                <WithSidebarButton className="my-4">
+                <h1 className="heading-title !text-start">My Loans</h1>
 
+                </WithSidebarButton>
                 <h1 className="heading-subtitle  !text-start mt-3">Current loan</h1>
                 {currentLoan && (
-                    <div className="grid grid-cols-5 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                         <li className="card  !bg-gradient-to-r from-primary-600 to-primary-100">
                             <label className="font-semibold text-dark-10 uppercase">Principal Amount</label>
                             <h4 className="text-dark-20 font-semibold">${currentLoan.amount}</h4>
@@ -182,6 +185,8 @@ const Loans = () => {
                             theadClass={{ th: "!pl-6 bg-primary-50 text-dark-20 dark:text-dark-10 font-semibold" }}
                             tbodyClass={{ td: "!pl-6 dark:text-dark-40", tr: "hover:bg-dark-100/20" }}
                             dataSource={emi}
+                            fixed={true}
+                            scroll={{x: 500}}
                             columns={emiColumns}
                         />
                     </div>
@@ -195,6 +200,8 @@ const Loans = () => {
                             tbodyClass={{ td: "!pl-6 dark:text-dark-40", tr: "hover:bg-dark-100/20" }}
                             dataSource={transactions}
                             columns={columns}
+                            fixed={true}
+                            scroll={{x: 500}}
                         />
                     </div>
                 </div>

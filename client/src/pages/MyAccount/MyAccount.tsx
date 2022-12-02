@@ -18,7 +18,7 @@ const MyAccount = () => {
 
 
     return (
-        <div className="container page-g">
+        <div className="container px-4 lg:!px-0 page-g">
             <div className="flex">
                 <Sidebar />
 

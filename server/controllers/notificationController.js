@@ -32,7 +32,7 @@ export async function getAllNotifications(req, res, next) {
     try {
         let notifications = await (await Notification.collection).find({
             user_id: new ObjectId(req.user.user_id)
-        }).sort({created_at: -1}).toArray();
+        }).sort({created_at: -1}).limit(20).toArray();
 
         response(res, notifications, 200)
 

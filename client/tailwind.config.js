@@ -52,6 +52,7 @@ module.exports = {
             xxxs: "0 2px 13px 2px #9f9f9f05"
         },
         zIndex: {
+            998: "998",
             1000: "1000"
         }
     },
