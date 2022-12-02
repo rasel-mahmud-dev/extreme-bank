@@ -31,20 +31,28 @@ const Transactions = () => {
                                     <div className="rounded-4xl">
                                         {/*<li className="list-none bg-red-400 w-max p-5 text-2xl rounded-2xl text-white shadow-lg shadow shadow-red-500/30  ">*/}
                                         <li className={`list-none w-max text-2xl rounded-2xl text-white shadow-bg-md bg-`}>
-                                            <Avatar imgClass="w-8 h-8" src={transaction?.receiver_avatar} username={transaction?.receiver_name} />
+                                            <Avatar imgClass="w-8 h-8" src={
+                                                transaction.receiver_id === auth._id
+                                                    ? transaction?.receiver.avatar
+                                                : transaction?.sender.avatar
+                                            } username={transaction?.receiver.username} />
                                         </li>
                                     </div>
                                     <div className="flex justify-between flex-1 items-center">
                                         <div>
-                                            <h5 className="font-semibold text-md">{transaction?.receiver_name}</h5>
+                                            <h5 className="card-label">{
+                                                transaction.receiver_id === auth._id
+                                                    ? transaction?.receiver.username
+                                                    : transaction?.sender.username
+                                                }</h5>
                                             <span className="text-sm text-dark-200 font-medium">{date(transaction.created_at)}</span>
                                             <span className="text-primary-400 bg-primary-400/10 rounded-md text-xs ml-4 px-3 py-px">
-                                                {auth.user_id === transaction.sender ? "Send Money": "Received Money" }
+                                                {auth._id === transaction.sender_id ? "Send Money": "Received Money" }
                                             </span>
 
                                         </div>
                                         <div className="justify-end">
-                                            <h2 className={`font-bold text-lg text-end  text`}>${transaction.amount}</h2>
+                                            <h2 className={`card-label`}>${transaction.amount}</h2>
                                             <p className={`text-neutral-400 text-sm`}>{transaction.payment_type}</p>
                                         </div>
                                     </div>

@@ -52,24 +52,38 @@ export const getAccountInfo = async (req, res, next) => {
 
 export const getAllTransaction = async (req, res, next) => {
     try {
-        const {limit} = req.query;
+        // const {limit = 20} = req.query;
+        // let paginate = " ORDER BY created_at desc";
+        // if (limit) {
+        //     paginate = paginate + " LIMIT " + limit;
+        // }
 
-        let paginate = " ORDER BY created_at desc";
-        if (limit) {
-            paginate = paginate + " LIMIT " + limit;
-        }
+        const transactions = await Transaction.aggregate([
+            {
+                $match: {
+                    $or: [
+                        {sender_id: new ObjectId(req.user.user_id)},
+                        {receiver_id: new ObjectId(req.user.user_id)}
+                    ]
+                }
+            },
+            { $lookup: {
+                from: "users",
+                    localField: "sender_id",
+                    foreignField: "_id",
+                    as: "sender"
+                } },
+            { $unwind: { path: "$sender" }  },
+            { $lookup: {
+                    from: "users",
+                    localField: "receiver_id",
+                    foreignField: "_id",
+                    as: "receiver"
+                } },
+            { $unwind: { path: "$receiver" }  }
+        ])
+        response(res, transactions);
 
-        let sql = `
-        Select t.*, ru.username as receiver_name, ru.avatar as receiver_avatar 
-            from transactions t left 
-            join users ru on ru.user_id = t.receiver 
-            where sender = ? OR receiver = ? ${paginate}`;
-
-        let Db = await Base.Db;
-        let [rows, _] = await Db.query(sql, [req.user.user_id, req.user.user_id]);
-        if (rows.length) {
-            response(res, rows);
-        }
     } catch (ex) {
         next(ex);
     }

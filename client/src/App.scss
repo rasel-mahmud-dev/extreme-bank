@@ -56,6 +56,9 @@ html{
 .card-title{
   @apply text-center text-2xl text-dark-700 dark:text-dark-20 font-semibold;
 }
+.card-label{
+  @apply text-sm text-dark-700 dark:text-dark-20 font-semibold;
+}
 
 .card{
   h4 {

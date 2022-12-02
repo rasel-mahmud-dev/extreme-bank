@@ -4,6 +4,38 @@ import Button from "../Button/Button";
 import InputGroup from "../InputGroup/InputGroup";
 import {Link} from "react-router-dom";
 
+function SocialLinks(){
+    return (
+        <ul className="flex gap-4 mt-4">
+            <a
+                className="card-label hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
+                href="https://www.facebook.com/rasel-mahmud-dev"
+            >
+                <FaFacebookF className="text-lg" />
+            </a>
+            <a
+                className="card-label hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
+                href="https://github.com/rasel-mahmud-dev"
+                target="_blank"
+            >
+                <FaGithub className="text-lg" />
+            </a>{" "}
+            <a
+                className="card-label hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
+                href="/"
+            >
+                <FaYoutube className="text-lg" />
+            </a>
+            <a
+                className="card-label hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
+                href="https://www.instagram.com/raselmraju"
+                target="_blank"
+            >
+                <FaInstagram className="text-lg" />
+            </a>
+        </ul>
+    )
+}
 
 const Footer = () => {
     return (
@@ -17,34 +49,7 @@ const Footer = () => {
                             businesses, and nations through digital money transferring, developing the edge you need to conquer
                             what’s next
                         </p>
-                        <ul className="flex gap-4 mt-4">
-                            <a
-                                className="hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-neutral/30  rounded-box"
-                                href="https://www.facebook.com/rasel-mahmud-dev"
-                            >
-                                <FaFacebookF className="text-2xl md:text-lg" />
-                            </a>
-                            <a
-                                className="hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-neutral/30  rounded-box"
-                                href="https://github.com/rasel-mahmud-dev"
-                                target="_blank"
-                            >
-                                <FaGithub className="text-2xl md:text-lg" />
-                            </a>{" "}
-                            <a
-                                className="hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-neutral/30  rounded-box"
-                                href="/"
-                            >
-                                <FaYoutube className="text-xl md:text-lg" />
-                            </a>
-                            <a
-                                className="hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-neutral/30  rounded-box"
-                                href="https://www.instagram.com/raselmraju"
-                                target="_blank"
-                            >
-                                <FaInstagram className="text-2xl md:text-lg" />
-                            </a>
-                        </ul>
+                        <SocialLinks />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-between col-span-5 lg:col-span-6 w-full mt-4 md:mt-0">
                         <div className="mt-10 lg:mt-0">
