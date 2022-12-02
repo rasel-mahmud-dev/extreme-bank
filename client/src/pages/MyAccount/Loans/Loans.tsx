@@ -110,6 +110,10 @@ const Loans = () => {
                         }
                     })
                     setEmi([data.emi, ...emi])
+                    dispatch({
+                        type: ACTION_TYPES.SET_NOTIFICATION,
+                        payload: data.notification
+                    })
                     setOpenPayCurrentMonthEMIForm(false)
                 }
             });

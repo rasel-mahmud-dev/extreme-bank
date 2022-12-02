@@ -18,6 +18,30 @@ class Notification extends Base {
         this.message = data.message;
         this.label = data.label;
     }
+
+    static createNotification({user_id, label, message = ""}) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let newNot = {
+                    user_id: user_id,
+                    label: label,
+                    message: message
+                }
+                let notification = new Notification(newNot)
+                let doc = await notification.save()
+                if (doc) {
+                    resolve(doc)
+                } else {
+                    resolve(null)
+                }
+
+            } catch (ex) {
+                resolve(null)
+            }
+
+        })
+    }
+
 }
 
 export default Notification;

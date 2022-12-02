@@ -1,9 +1,10 @@
 import Loan from "../models/Loan";
 import response from "../response";
+import Notification from "../models/Notification";
 import Account from "../models/Account";
 import {ObjectId} from "mongodb";
 import Emi from "../models/Emi";
-import date from "../utilities/date";
+
 
 export const getCurrentLoan = async (req, res, next) => {
     try {
@@ -154,12 +155,19 @@ export const payEmi = async (req, res, next) => {
             }
         );
 
-
         if (doc.modifiedCount) {
             let account = await Account.findOne({user_id: new ObjectId(req.user.user_id)})
+
+            let notification = await Notification.createNotification({
+                user_id: req.user.user_id,
+                label: "Emi Received. EMi No: "+ newEMi.emi_no,
+                message: `Amount: ${newEMi.amount}  EMI ID: ${newEMi._id}`
+            })
+
             return response(res, {
                 account: account,
                 emi: newEMi,
+                notification,
                 message: "Emi received successfully"
             }, 201);
         } else {

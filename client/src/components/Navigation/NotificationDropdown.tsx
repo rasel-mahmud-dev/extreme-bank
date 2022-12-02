@@ -74,7 +74,7 @@ const NotificationDropdown = ({setDropdownMenu, dropdownMenu}) => {
                 <div className="flex flex-col gap-1" ref={notificationRef}>
                     {notifications.map(notification=>(
                         <div key={notification._id} className={`notification ${notification.isRead ? 'notification-read': ''}`} data-id={ notification.isRead ? "" : notification._id}>
-                            <p className="text-sm">{notification.label.substring(0, 30)}...</p>
+                            <p className="text-sm">{notification.label.substring(0, 65)}...</p>
                             <span className="text-xs font-semibold">{dateTime(notification.created_at)}
                                 {!notification.isRead && <span className="!static badge ml-2">new</span> }
                             </span>

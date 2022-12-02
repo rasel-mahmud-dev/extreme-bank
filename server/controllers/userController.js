@@ -113,14 +113,8 @@ export const loginUser = async (req, res, next) => {
         });
 
 
-        let notification  = new Notification({
-            user_id: user._id,
-            label: "Login Successfully. Mr " + user.username ,
-            message: 'You login at ' + new Date().toDateString()
-        })
-        notification.save().then(doc=>{
-            console.log(doc)
-        })
+        Notification.createNotification({user_id:user._id, label: "Login completed"}).then().catch()
+
 
         res.status(201).json({ ...other });
     } catch (ex) {
