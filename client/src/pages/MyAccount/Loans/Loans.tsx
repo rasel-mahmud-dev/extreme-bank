@@ -161,6 +161,7 @@ const Loans = () => {
                 <Button onClick={() => setOpenPayCurrentMonthEMIForm(true)} className="btn-primary mt-10">
                     Pay Current Month EMI
                 </Button>
+
                 <Modal className="max-w-md" isOpen={openPayCurrentMonthEMIForm} onClose={() => setOpenPayCurrentMonthEMIForm(false)}>
                     <h1 className="heading-subtitle">Pay current Month EMI ($234)</h1>
                     <p className="text-body text-center">For this EMI we reducer amount from your account balance</p>
@@ -182,11 +183,10 @@ const Loans = () => {
                     <h1 className="heading-subtitle !text-start mt-3 ">EMI received</h1>
                     <div className="card !p-0 overflow-hidden rounded-xl text-sm">
                         <Table
+                            minWidth={200}
                             theadClass={{ th: "!pl-6 bg-primary-50 text-dark-20 dark:text-dark-10 font-semibold" }}
                             tbodyClass={{ td: "!pl-6 dark:text-dark-40", tr: "hover:bg-dark-100/20" }}
                             dataSource={emi}
-                            fixed={true}
-                            scroll={{x: 500}}
                             columns={emiColumns}
                         />
                     </div>

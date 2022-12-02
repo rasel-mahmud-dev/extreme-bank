@@ -1,20 +1,21 @@
 import response from "../response";
 import Base from "../models/Base";
-import { compare, makeHash } from "../bcrypt/bcrypt";
-import Loan from "../models/Loan";
-import Emi from "../models/Emi";
+import {compare, makeHash} from "../bcrypt/bcrypt";
 import Account from "../models/Account";
-import { ObjectId } from "mongodb";
-import date from "../utilities/date";
+import {ObjectId} from "mongodb";
+import User from "../models/User";
+import Transaction from "../models/Transaction";
+import Notification from "../models/Notification";
+
 
 export const createBankAccount = async (req, res, next) => {
     try {
-        let { account_no, nid, phone } = req.body;
+        let {account_no, nid, phone} = req.body;
 
-        let account = await Account.findOne({ user_id: req.user.user_id });
+        let account = await Account.findOne({user_id: req.user.user_id});
 
         if (account) {
-            return res.status(404).json({ message: "Your Account already exists" });
+            return res.status(404).json({message: "Your Account already exists"});
         }
 
         let newAcc = new Account({
@@ -28,7 +29,7 @@ export const createBankAccount = async (req, res, next) => {
 
         newAcc = await newAcc.save();
         if (!newAcc) {
-            return res.status(500).json({ message: "Bank Account create fail. please try again" });
+            return res.status(500).json({message: "Bank Account create fail. please try again"});
         }
 
         response(res, "Account create successfully", 201);
@@ -39,7 +40,7 @@ export const createBankAccount = async (req, res, next) => {
 
 export const getAccountInfo = async (req, res, next) => {
     try {
-        let acc = await Account.findOne({ user_id: new ObjectId(req.user.user_id) });
+        let acc = await Account.findOne({user_id: new ObjectId(req.user.user_id)});
         if (!acc) {
             response(res, "Please create an account", 404);
         }
@@ -51,7 +52,7 @@ export const getAccountInfo = async (req, res, next) => {
 
 export const getAllTransaction = async (req, res, next) => {
     try {
-        const { limit } = req.query;
+        const {limit} = req.query;
 
         let paginate = " ORDER BY created_at desc";
         if (limit) {
@@ -76,7 +77,7 @@ export const getAllTransaction = async (req, res, next) => {
 
 export const getOtherPeoples = async (req, res, next) => {
     try {
-        const { limit } = req.query;
+        const {limit} = req.query;
 
         let paginate = "";
         if (limit) {
@@ -94,101 +95,97 @@ export const getOtherPeoples = async (req, res, next) => {
     }
 };
 
-export const transaction = async (req, res, next) => {
+export const moneyTransfer = async (req, res, next) => {
     try {
-        const { account_no, amount, password, description, payment_type } = req.body;
-        let Db = await Base.Db;
+        const {account_no, amount, password, description, payment_type} = req.body;
 
         // find auth account info such as password, account no
-        let [authUser] = await Db.query(
-            `
-            select u.*, a.balance, a.account_no from users u 
-                left join accounts a on u.user_id = a.user_id 
-                where u.user_id = ? 
-            `,
-            [req.user.user_id]
-        );
-
-        if (!authUser.length) {
-            return response(res);
+        let user = await User.aggregate([
+            {$match: {_id: new ObjectId(req.user.user_id)}},
+            {
+                $lookup: {
+                    from: "accounts",
+                    localField: "_id",
+                    foreignField: "user_id",
+                    as: "account"
+                }
+            },
+            {$unwind: {path: "$account", preserveNullAndEmptyArrays: false}}
+        ])
+        if (!user || user.length === 0) {
+            return response(res, "sorry account not found", 404)
         }
-        authUser = authUser[0];
+        user = user[0]
 
-        if (account_no === authUser.account_no) {
+        if (account_no === user.account_no) {
             return response(res, "You can't send money to your own account", 422);
         }
 
-        if (!compare(password, authUser.password)) {
+
+        if (!compare(password, user.password)) {
             return response(res, "Please provide valid password", 401);
         }
 
-        if (authUser.balance < amount) {
-            return response(res, "Insufficient Balance", 401);
+        if (user.account.balance < amount) {
+            return response(res, "Insufficient Balance", 409);
         }
 
         // find destination account
-        let [receiverUser] = await Db.query(`select * from accounts where account_no = ? `, [
-            account_no,
-        ]);
-        if (!receiverUser.length) {
+        let desAccount = await Account.findOne({account_no: account_no})
+        if (!desAccount) {
             return response(res, "Account number is wrong", 404);
         }
-        receiverUser = receiverUser[0];
-
         // increase destination user balance
-        let [result] = await Db.execute(
-            `
-            UPDATE accounts
-                SET balance = balance + ?,
-                   income = income + ?
-             where account_no = ?
-         `,
-            [amount, amount, receiverUser.account_no]
-        );
-
-        if (!result.affectedRows) {
-            return response(res, "Money transaction fail", 500);
-        }
+        await Account.updateOne({_id: new ObjectId(desAccount._id)}, {
+            $inc: {
+                balance: amount
+            }
+        })
 
         // decrease sender balance
-        let [result2] = await Db.execute(
-            `
-            UPDATE accounts
-                SET 
-                    balance = balance - ?,
-                    withdraw = withdraw + ?
-             where account_no = ?
-         `,
-            [amount, amount, authUser.account_no]
-        );
+        await Account.updateOne({_id: new ObjectId(user.account._id)}, {
+            $inc: {
+                balance: -amount
+            }
+        })
 
-        if (!result2.affectedRows) {
-            // please revert preview money sending or better use data transaction
-            // please revert preview money sending or better use data transaction
-            // please revert preview money sending or better use data transaction
-            // please revert preview money sending or better use data transaction
-            return response(res, "Money transaction fail", 500);
-        }
+
+        // if (!result2.affectedRows) {
+        //     // please revert preview money sending or better use data transaction
+        //     // please revert preview money sending or better use data transaction
+        //     // please revert preview money sending or better use data transaction
+        //     // please revert preview money sending or better use data transaction
+        //     return response(res, "Money transaction fail", 500);
+        // }
 
         // create a transaction
-        // decrease sender balance
-        let [result3] = await Db.execute(
-            `
-                INSERT INTO transactions (receiver, sender, amount, description, payment_type) VALUES (?, ?, ?, ?, ?)
-            `,
-            [receiverUser.user_id, authUser.user_id, amount, description, payment_type]
-        );
+        let newTransaction = new Transaction({
+            sender_id: user.user_id,
+            receiver_id: desAccount.user_id,
+            amount: amount,
+            description: description,
+            payment_type: payment_type,
+        })
+        newTransaction = await newTransaction.save();
 
-        if (!result3.affectedRows) {
-            // please revert preview all step or better use data transaction
-            // please revert preview all step or better use data transaction
-            // please revert preview all step or better use data transaction
-            // please revert preview all step or better use data transaction
-            return response(res, "Money transaction fail", 500);
-        }
+        let notificationReceiver = await Notification.createNotification({
+            user_id: desAccount.user_id,
+            label: "You Received $" + amount + "from " + user.username
+        });
 
-        return response(res, "Money transaction successes", 201);
+        let notificationSender = await Notification.createNotification({
+            user_id: user.user_id,
+            label: "You send $" + amount + " to " + desAccount.account_no
+        });
+
+        return response(res, {
+            message: "Money transaction successes",
+            notification: notificationSender,
+            // notification: notificationReceiver,
+            transaction: newTransaction,
+        }, 201);
     } catch (ex) {
+        console.log(ex)
         next(ex);
     }
 };

@@ -34,8 +34,7 @@ const MoneyTransfer = () => {
             validate: {
                 required: "accountNo Required",
                 number: "Account number must be a number",
-                minLength: { value: 5, message: "account no  should be 5 digit" },
-                maxLength: { value: 5, message: "account no  should be 5 digit" },
+                length: { value: 16, message: "account no should be 16 digit" },
             },
             labelIcon: <MdNoAccounts className="text-dark-400 text-lg" />,
         },
@@ -110,7 +109,7 @@ const MoneyTransfer = () => {
             return;
         }
         setHttpResponse((p) => ({ ...p, loading: true }));
-        api.post("/api/v1/account/transactions", {
+        api.post("/api/v1/account/money-transfer", {
             // ...userInput
             account_no: Number(userInput.account_no),
             amount: Number(userInput.amount),

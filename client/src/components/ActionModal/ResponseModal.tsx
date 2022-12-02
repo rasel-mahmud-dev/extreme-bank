@@ -18,7 +18,7 @@ const ResponseModal: FC<Props> = ({ loadingTitle, loading, message, isSuccess, o
                     <p><Loader title={loadingTitle}/></p>
                 </div>
             ): !loading && message &&  (
-                <h1>{message}</h1>
+                <h1 className="mt-2 font-medium text-dark-600 dark:text-dark-20">{message}</h1>
             )}
         </Modal>
     );

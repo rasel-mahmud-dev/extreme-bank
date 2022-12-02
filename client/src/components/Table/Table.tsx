@@ -16,6 +16,8 @@ export interface Column extends HTMLAttributes<HTMLElement> {
 [];
 
 interface TableProps extends HTMLAttributes<HTMLTableElement> {
+    minWidth?: number
+    maxWidth?: number
     dataSource: any;
     theadClass?: { th?: string; td?: string; thead?: string };
     tbodyClass?: { tr?: string; td?: string; tbody?: string };
@@ -26,7 +28,7 @@ interface TableProps extends HTMLAttributes<HTMLTableElement> {
 }
 
 const Table: FC<TableProps> = (props) => {
-    const { theadClass, tbodyClass, className, dataSource, columns, fixed, scroll, pagination } = props;
+    const { theadClass,minWidth,maxWidth, tbodyClass, className, dataSource, columns, fixed, scroll, pagination } = props;
     
     let fixedTable = { maxHeight: fixed ? 500 : "auto", minWidth: 0 };
 
@@ -189,9 +191,11 @@ const Table: FC<TableProps> = (props) => {
         <div>
             <div
                 className={`rsl-table ${fixed ? "table-fixed" : ""}`}
-                style={fixedTable.maxHeight ? { maxHeight: fixedTable.maxHeight } : {}}
+                style={fixedTable.maxHeight ? { maxHeight: fixedTable.maxHeight } : {
+                    maxWidth: maxWidth
+                }}
             >
-                <table className={className} style={fixedTable.minWidth ? { minWidth: fixedTable.minWidth } : {}}>
+                <table className={className} style={minWidth ? { minWidth: minWidth } : {}}>
                     <Thead
                         onSort={handleSort}
                         theadClass={theadClass}

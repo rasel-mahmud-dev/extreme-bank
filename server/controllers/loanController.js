@@ -16,7 +16,7 @@ export const getCurrentLoan = async (req, res, next) => {
 };
 export const getAllLoansInfo = async (req, res, next) => {
     try {
-        let loans = await Loan.find();
+        let loans = await Loan.find({user_id: new ObjectId(req.user.user_id)});
         return response(res, loans, 200);
     } catch (ex) {
         next(ex);

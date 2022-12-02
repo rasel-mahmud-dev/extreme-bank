@@ -7,6 +7,9 @@ import { FiLock, FiMail, FiUser } from "react-icons/all";
 import { Link } from "react-router-dom";
 import ImagePicker from "../ImagePicker/ImagePicker";
 import { api } from "../../axios/api";
+import ResponseModal from "../ActionModal/ResponseModal";
+import * as React from "react";
+import catchErrorMessage from "../../utils/catchErrorMessage";
 
 interface Field {
     label?: string;
@@ -25,7 +28,7 @@ const Registration = () => {
         divisions: null,
     });
 
-    const [data, setData] = useState<{ [key: string]: Field }>({
+    const data = {
         firstName: {
             name: "firstName",
             placeholder: "Enter firstName",
@@ -51,32 +54,33 @@ const Registration = () => {
             },
             labelIcon: <FiMail className="text-dark-400 text-lg" />,
         },
-        country: {
-            name: "country",
-            type: "select",
-            placeholder: "Choose Country",
-            onChange: handleChange,
-            validate: {
-                required: "Email Required",
-            },
-            dataKey: { title: "name", id: "_id" },
-            onClick: handleLoadCountry,
-            options: infoData.country,
-            labelIcon: <FiMail className="text-dark-400 text-lg" />,
-        },
-        division: {
-            name: "division",
-            type: "select",
-            placeholder: "Choose division",
-            onChange: handleChange,
-            validate: {
-                required: "division Required",
-            },
-            dataKey: { title: "name", id: "id" },
-            onClick: handleLoadDivision,
-            options: infoData.divisions,
-            labelIcon: <FiMail className="text-dark-400 text-lg" />,
-        },
+
+        // country: {
+        //     name: "country",
+        //     type: "select",
+        //     placeholder: "Choose Country",
+        //     onChange: handleChange,
+        //     validate: {
+        //         required: "Email Required",
+        //     },
+        //     dataKey: { title: "name", id: "_id" },
+        //     onClick: handleLoadCountry,
+        //     options: infoData.country,
+        //     labelIcon: <FiMail className="text-dark-400 text-lg" />,
+        // },
+        // division: {
+        //     name: "division",
+        //     type: "select",
+        //     placeholder: "Choose division",
+        //     onChange: handleChange,
+        //     validate: {
+        //         required: "division Required",
+        //     },
+        //     dataKey: { title: "name", id: "id" },
+        //     onClick: handleLoadDivision,
+        //     options: infoData.divisions,
+        //     labelIcon: <FiMail className="text-dark-400 text-lg" />,
+        // },
 
         password: {
             name: "password",
@@ -100,43 +104,26 @@ const Registration = () => {
             },
             labelIcon: <FiLock className="text-dark-400 text-lg" />,
         },
-    });
+    };
 
     function handleLoadCountry() {
-        if (infoData.country) {
-            let updateFormData = { ...data };
-            updateFormData.country = {
-                ...updateFormData.country,
-                options: infoData.country,
-            };
-            setData(updateFormData);
-        } else {
+        if (!infoData.country) {
             fetch("/countries.json")
                 .then((d) => d.json())
                 .then((jsonData: any) => {
                     setInfoData((p) => ({ ...p, country: jsonData }));
-                    let updateFormData = { ...data };
-                    updateFormData.country = {
-                        ...updateFormData.country,
-                        options: jsonData,
-                    };
-                    setData(updateFormData);
                 });
         }
     }
 
     function handleLoadDivision() {
-        fetch("/divisions.json")
-            .then((d) => d.json())
-            .then((jsonData: any) => {
-                // setCountries(data)
-                let updateFormData = { ...data };
-                updateFormData.division = {
-                    ...updateFormData.division,
-                    options: jsonData,
-                };
-                setData(updateFormData);
-            });
+        if (!infoData.divisions) {
+            fetch("/divisions.json")
+                .then((d) => d.json())
+                .then((jsonData: any) => {
+                    setInfoData((p) => ({ ...p, divisions: jsonData }));
+                });
+        }
     }
 
     const [httpResponse, setHttpResponse] = useState({
@@ -152,9 +139,6 @@ const Registration = () => {
 
     function handleChange(e: any, error: string) {
         const { name, value }: { name: DataKeys; value: any; error: string; file: any } = e.target;
-        if (name === "country") {
-            handleLoadDivision();
-        }
         setUserInput((prev) => ({ ...prev, [name]: value }));
         setErrors((prev) => ({ ...prev, [name]: error }));
     }
@@ -162,7 +146,7 @@ const Registration = () => {
     function handleLogin(e: SyntheticEvent) {
         e.preventDefault();
 
-        setHttpResponse((p) => ({ ...p, loading: false, message: "" }));
+        setHttpResponse((p) => ({ ...p, loading: false }));
 
         let isCompleted = true;
         // check validation before submit form
@@ -197,16 +181,24 @@ const Registration = () => {
             formData.append("avatar", userInput.avatar);
         }
 
+        setHttpResponse((p) => ({ ...p, loading: true }));
+
         api.post("/api/v1/auth/registration", formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
             },
         })
             .then((r) => {
-                console.log(r);
+                setHttpResponse({ ...httpResponse, loading: false, isSuccess: false });
+                setTimeout(()=>{
+                    setHttpResponse(p=>({ ...p, message: r.data.message}));
+                }, 500)
             })
             .catch((ex) => {
-                console.log(ex);
+                setHttpResponse({ ...httpResponse, loading: false, isSuccess: false });
+                setTimeout(()=>{
+                    setHttpResponse(p=>({ ...p, message: catchErrorMessage(ex) }));
+                }, 500)
             });
 
         // setHttpResponse((p) => ({ ...p, loading: true }));
@@ -218,6 +210,13 @@ const Registration = () => {
             <div className="max-w-lg mx-auto m-3 mt-4 rounded-xl">
                 <form onSubmit={handleLogin} className="card">
                     <h1 className="card-title">Registration</h1>
+
+                    <ResponseModal
+                        loadingTitle="Registration Processing"
+                        {...httpResponse}
+                        onClose={() => setHttpResponse((p) => ({ ...p, message: "", loading: false }))}
+                    />
+
                     {Object.keys(data).map((key, i: number) =>
                         key === "avatar" ? (
                             <ImagePicker error={errors?.avatar} {...data[key]} />
@@ -230,10 +229,10 @@ const Registration = () => {
 
                     <Button className="btn-primary mt-4 w-full">Registration</Button>
 
-                    <div className="flex justify-between mt-5 text-dark-100 text-sm font-normal">
-                        <h6>Forgot Password</h6>
+                    <div className="flex justify-center mt-5 gap-x-2 text-dark-100 text-sm font-normal">
+                        <h6>Already have an account ?</h6>
                         <Link to="/login">
-                            <h6>Create Account</h6>
+                            <h6>Login</h6>
                         </Link>
                     </div>
                 </form>

@@ -104,7 +104,7 @@ const Login = () => {
 
                 <div className="max-w-lg mx-auto card m-3 mt-4 rounded-xl">
                     <form onSubmit={handleLogin}>
-                        <h1 className="text-center text-3xl text-dark-900 font-semibold">Login</h1>
+                        <h1 className="card-title">Login</h1>
 
                         {Object.keys(data).map((key, i) => (
                             <InputGroup error={errors[key]} {...data[key]} className="mt-4" />
@@ -114,9 +114,9 @@ const Login = () => {
 
                         <Button className="btn-primary mt-4 w-full">Login</Button>
 
-                        <div className="flex justify-between mt-5 text-dark-100 text-sm font-normal">
+                        <div className="flex justify-center gap-x-2 mt-5 text-dark-100 text-sm font-normal">
                             <Link to="/forgot-password">
-                                <h6>Forgot Password</h6>
+                                <h6>Didn't have an account ?</h6>
                             </Link>
                             <Link to="/registration">
                                 <h6>Create Account</h6>

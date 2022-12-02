@@ -18,7 +18,7 @@ router.get("/peoples", auth, accountController.getOtherPeoples);
 router.get("/transactions", auth, accountController.getAllTransaction);
 
 // make new transactions
-router.post("/transactions", auth, accountController.transaction);
+router.post("/money-transfer", auth, accountController.moneyTransfer);
 
 
 
