@@ -13,7 +13,7 @@ const NotificationDropdown = ({setDropdownMenu, dropdownMenu}) => {
     const notificationViewsIds = useRef([])
 
     useEffect(()=>{
-        if(dropdownMenu === ""){
+        if(dropdownMenu === "" && notificationViewsIds?.current.length){
             markAsReadNotification(notificationViewsIds.current)
 
             let updateNotifications = [...notifications]
@@ -28,6 +28,7 @@ const NotificationDropdown = ({setDropdownMenu, dropdownMenu}) => {
                 type: ACTION_TYPES.FETCH_NOTIFICATION,
                 payload: updateNotifications
             })
+            notificationViewsIds.current = []
         }
     }, [dropdownMenu])
 

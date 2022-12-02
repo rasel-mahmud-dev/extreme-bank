@@ -1,6 +1,7 @@
 // const dbConnect = require("../database/dbConnect");
 
 import Base from "./Base";
+import {ObjectId} from "mongodb";
 
 
 // import Joi from "joi";
@@ -17,8 +18,8 @@ class Transaction extends Base {
 
     constructor(data) {
         super(Transaction.collectionName);
-        this.sender_id = data.sender_id;
-        this.receiver_id = data.receiver_id;
+        this.sender_id = new ObjectId(data.sender_id);
+        this.receiver_id = new ObjectId( data.receiver_id);
         this.amount = data.amount;
         this.description = data.description;
         this.payment_type = data.payment_type

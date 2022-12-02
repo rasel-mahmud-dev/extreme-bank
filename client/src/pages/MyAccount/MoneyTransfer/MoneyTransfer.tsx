@@ -8,6 +8,7 @@ import { api } from "../../../axios/api";
 import catchErrorMessage from "../../../utils/catchErrorMessage";
 import { Link } from "react-router-dom";
 import Avatar from "../../../components/Avatar/Avatar";
+import ResponseModal from "../../../components/ActionModal/ResponseModal";
 
 const MoneyTransfer = () => {
     const [httpResponse, setHttpResponse] = useState({
@@ -88,11 +89,11 @@ const MoneyTransfer = () => {
 
     function handleLogin(e: SyntheticEvent) {
         e.preventDefault();
-        setHttpResponse((p) => ({ ...p, loading: false, message: "" }));
+        setHttpResponse((p) => ({...p, loading: false, message: ""}));
 
         let isCompleted = true;
         // check validation before submit form
-        let tempErrors: any = { ...errors };
+        let tempErrors: any = {...errors};
         for (let key in data) {
             if (data[key]?.validate) {
                 let validate = validator(data[key]?.validate, userInput[key]);
@@ -108,7 +109,7 @@ const MoneyTransfer = () => {
             // setHttpResponse((p) => ({...p, loading: false, message: ""}));
             return;
         }
-        setHttpResponse((p) => ({ ...p, loading: true }));
+        setHttpResponse((p) => ({...p, loading: true}));
         api.post("/api/v1/account/money-transfer", {
             // ...userInput
             account_no: Number(userInput.account_no),
@@ -117,28 +118,20 @@ const MoneyTransfer = () => {
             description: userInput.description,
             payment_type: "Bank"
         })
-            .then(({ status, data }) => {
+            .then(({status, data}) => {
                 if (status === 201) {
-                    setHttpResponse({ isSuccess: true, loading: false, message: data.message });
+                    setHttpResponse({isSuccess: true, loading: false, message: ""});
                     setTimeout(() => {
-                        setHttpResponse((p) => ({ ...p, loading: false }));
-                    }, 1000);
+                        setHttpResponse((p) => ({...p, loading: false, message: data.message}));
+                    }, 300);
                 }
             })
             .catch((msg) => {
-                setHttpResponse({ loading: false, isSuccess: false, message: catchErrorMessage(msg) });
+                setHttpResponse({isSuccess: true, loading: false, message: ""});
+                setTimeout(() => {
+                    setHttpResponse({loading: false, isSuccess: false, message: catchErrorMessage(msg)});
+                }, 300);
             })
-            .finally(() => {
-                // setHttpResponse({loading: false, isSuccess: false, message: ""});
-            });
-
-        // handleLoginAction(userInput, dispatch)
-        // .then((r) => {
-        //     setHttpResponse((p) => ({...p, loading: false}));
-        // })
-        // .catch((msg) => {
-        //     setHttpResponse({loading: false, isSuccess: false, message: msg});
-        // });
     }
 
     return (
@@ -150,7 +143,12 @@ const MoneyTransfer = () => {
 
                 <div className="rounded card mt-4 rounded-xl">
                     <form onSubmit={handleLogin}>
-                        <HttpResponse state={httpResponse} />
+                        <ResponseModal
+                            loadingTitle="Money Transfer Processing"
+                            {...httpResponse}
+                            onClose={() => setHttpResponse((p) => ({ ...p, message: "", loading: false }))}
+                        />
+
                         {Object.keys(data).map((key, i) => (
                             <InputGroup error={errors[key]} {...data[key]} className="mt-4" />
                         ))}

@@ -131,7 +131,7 @@ export const moneyTransfer = async (req, res, next) => {
         }
         user = user[0]
 
-        if (account_no === user.account_no) {
+        if (account_no === user.account.account_no) {
             return response(res, "You can't send money to your own account", 422);
         }
 
@@ -174,7 +174,7 @@ export const moneyTransfer = async (req, res, next) => {
 
         // create a transaction
         let newTransaction = new Transaction({
-            sender_id: user.user_id,
+            sender_id: user._id,
             receiver_id: desAccount.user_id,
             amount: amount,
             description: description,
@@ -188,7 +188,7 @@ export const moneyTransfer = async (req, res, next) => {
         });
 
         let notificationSender = await Notification.createNotification({
-            user_id: user.user_id,
+            user_id: user._id,
             label: "You send $" + amount + " to " + desAccount.account_no
         });
 

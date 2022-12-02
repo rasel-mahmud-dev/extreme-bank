@@ -4,7 +4,7 @@ import InputGroup from "../InputGroup/InputGroup";
 import Button from "../Button/Button";
 import validator from "../../utils/validator";
 import { FiLock, FiMail, FiUser } from "react-icons/all";
-import { Link } from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import ImagePicker from "../ImagePicker/ImagePicker";
 import { api } from "../../axios/api";
 import ResponseModal from "../ActionModal/ResponseModal";
@@ -27,6 +27,10 @@ const Registration = () => {
         country: null,
         divisions: null,
     });
+
+    const location = useLocation()
+    const navigate = useNavigate()
+
 
     const data = {
         firstName: {
@@ -192,6 +196,9 @@ const Registration = () => {
                 setHttpResponse({ ...httpResponse, loading: false, isSuccess: false });
                 setTimeout(()=>{
                     setHttpResponse(p=>({ ...p, message: r.data.message}));
+                    if(location.state?.from){
+                        navigate(location.state.from || "/")
+                    }
                 }, 500)
             })
             .catch((ex) => {

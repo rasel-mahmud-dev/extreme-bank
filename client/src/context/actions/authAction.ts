@@ -45,7 +45,11 @@ export async function authFetchingAction(dispatch: Dispatch<any>){
 				})
 			}
 		}).catch(ex=>{
-			reject(catchErrorMessage(ex))
+            dispatch({
+                type: ACTION_TYPES.LOGIN,
+                payload: null
+            })
+			// reject(catchErrorMessage(ex))
 		})
 	})
 }

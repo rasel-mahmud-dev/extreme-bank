@@ -5,7 +5,7 @@ import InputGroup from "../InputGroup/InputGroup";
 import Button from "../Button/Button";
 import validator from "../../utils/validator";
 import { FiLock, FiMail } from "react-icons/all";
-import { Link } from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import useStore from "../../context/useStore";
 import { handleLoginAction } from "../../context/actions/authAction";
 import HttpResponse from "../HttpResponse/HttpResponse";
@@ -15,6 +15,9 @@ import ResponseModal from "../ActionModal/ResponseModal";
 
 const Login = () => {
     const [state, dispatch] = useStore();
+
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const [httpResponse, setHttpResponse] = useState({
         isSuccess: false,
@@ -82,12 +85,16 @@ const Login = () => {
         handleLoginAction(userInput, dispatch)
             .then((r) => {
                 setHttpResponse((p) => ({ ...p, loading: false }));
+                setTimeout(()=>{
+                    setHttpResponse(p=>({ ...p, message: "Login successful" }));
+                    navigate(location.state?.from || "/")
+                }, 200)
             })
             .catch((msg) => {
                 setHttpResponse({ ...httpResponse, loading: false, isSuccess: false });
                 setTimeout(()=>{
                     setHttpResponse(p=>({ ...p, message: msg }));
-                }, 500)
+                }, 200)
             });
     }
 
