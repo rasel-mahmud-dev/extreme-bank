@@ -1,29 +1,34 @@
-import React, { useEffect, useState } from "react";
-import useStore from "../../context/useStore";
+import React, { useEffect } from "react";
+import Sidebar from "./Sidebar/Sidebar";
+import { Outlet } from "react-router-dom";
 import { getAccountInfoAction } from "../../context/actions/accountAction";
-import CreateBackAccount from "../CreateBankAccount/CreateBankAccount";
-import DashboardHome from "./DashboardHome";
+import useStore from "../../context/useStore";
 
 const AccountDashboard = () => {
     const [{ account }, dispatch] = useStore();
 
-    React.useEffect(() => {
-        getAccountInfoAction(dispatch)
+    useEffect(() => {
+
+        getAccountInfoAction(dispatch);
         return () => {};
+
     }, []);
 
 
     return (
-        <div>
+        <div className="container px-4 lg:!px-0 page-g">
+            <div className="flex">
+                <Sidebar hasAccount={!!account} />
 
-
-
-            {account ? <DashboardHome account={account} /> : <CreateBackAccount /> }
-
-
-
+                <div className="content">
+                    <div>
+                        <Outlet />
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
 
 export default AccountDashboard;
+

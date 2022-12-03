@@ -5,14 +5,15 @@ import HomePage from "../pages/HomePage/HomePage";
 import App from "../App";
 import PrivateRoute from "./PrivateRoute";
 import MoneyTransfer from "../pages/MyAccount/MoneyTransfer/MoneyTransfer";
-import AccountDashboard from "../pages/MyAccount/AccountDashboard";
 import LoanRequest from "../pages/MyAccount/LoanRequest";
 import Transactions from "../pages/MyAccount/Transactions/Transactions";
 import Loans from "../pages/MyAccount/Loans/Loans";
 import Loader from "../components/Loader/Loader";
 
+import DashboardHome from "../pages/MyAccount/DashboardHome";
 
-const MyAccount = lazy(()=>import("../pages/MyAccount/MyAccount"));
+
+const AccountDashboard = lazy(()=>import("../pages/MyAccount/AccountDashboard"));
 const Login = lazy(()=>import("../components/Login/Login"));
 const Registration = lazy(()=>import("../components/Registration/Registration"))
 const Services = lazy(()=>import("../pages/Services/Services"))
@@ -25,9 +26,9 @@ const routes = createBrowserRouter([
 			{ path: "/login", element: <Login />},
 			{ path: "/registration", element: <Registration />},
 			{ path: "/services", element: <Services />},
-			{ path: "/my-account", element: <PrivateRoute><MyAccount /></PrivateRoute>,
+			{ path: "/my-account", element: <PrivateRoute><AccountDashboard /></PrivateRoute>,
 			children: [
-				{path: "", element: <AccountDashboard></AccountDashboard>},
+				{path: "", element: <DashboardHome />},
 				{path: "send-money", element: <MoneyTransfer />},
 				{path: "load-request", element: <LoanRequest />},
 				{path: "transactions", element: <Transactions />},

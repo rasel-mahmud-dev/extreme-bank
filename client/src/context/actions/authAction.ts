@@ -44,8 +44,7 @@ export async function handleLogoutAction(dispatch: Dispatch<any>){
 		api.get("/api/v1/auth/logout").then(({status, data})=>{
 			if(status === 200){
 				dispatch({
-					type: ACTION_TYPES.LOGIN,
-					payload: null
+					type: ACTION_TYPES.LOGOUT
 				})
 				resolve(true)
 			}

@@ -32,11 +32,11 @@ const RecentActivity = () => {
                 </div>
                 <div className="flex justify-between flex-1 items-center">
                   <div>
-                    <h5 className="font-semibold text-md">{item.label}</h5>
+                    <h5 className="card-label">{item.label}</h5>
 					  <span className="text-sm text-dark-200 font-medium">12th March 2022</span>
                   </div>
                   <div className="justify-end">
-                    <h2 className={`font-bold text-lg text-end  text-${item.className}`}>${item.amount}</h2>
+                    <h2 className={`font-bold card-label !text-lg text-end  text-${item.className}`}>${item.amount}</h2>
 					  <p className={`text-neutral-400 text-sm`}>{item.type}</p>
                   </div>
                 </div>

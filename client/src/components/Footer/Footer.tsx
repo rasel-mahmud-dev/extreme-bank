@@ -53,8 +53,8 @@ const Footer = () => {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-between col-span-5 lg:col-span-6 w-full mt-4 md:mt-0">
                         <div className="mt-10 lg:mt-0">
-                            <h3 className="font-semibold text-neutral-focus">Featured Programs</h3>
-                            <ul className="mt-4">
+                            <h3 className="font-semibold heading-subtitle !text-start">Featured Programs</h3>
+                            <ul className="mt-2">
                                 <li className="text-dark-300 font-medium text-sm pt-1">
                                     Money Transfer
                                 </li>
@@ -73,8 +73,8 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div className="mt-10 lg:mt-0">
-                            <h3 className="font-semibold text-neutral-focus">Support</h3>
-                            <ul className="mt-4">
+                            <h3 className="font-semibold heading-subtitle !text-start">Support</h3>
+                            <ul className="mt-2">
                                 <li className="text-dark-300 font-medium text-sm pt-1">
                                     <a href="#" className="hover:text-primary-500">
                                         Contact Us
@@ -99,8 +99,8 @@ const Footer = () => {
                         </div>
 
                         <div className="mt-10 lg:mt-0">
-                            <h3 className="font-semibold text-neutral-focus">Quick Links</h3>
-                            <ul className="mt-4">
+                            <h3 className="font-semibold heading-subtitle !text-start">Quick Links</h3>
+                            <ul className="mt-2">
                                 <li className="text-dark-300 font-medium text-sm pt-1">
                                     <Link to="/my-account" className="hover:text-primary-500">
                                         My Account
@@ -114,16 +114,18 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div className="mt-10 lg:mt-0">
-                            <h3 className="font-semibold text-neutral-focus">GET IN TOUCH!</h3>
-                            <p className="text-dark-300 font-medium text-sm">
-                                Every Single Updates and Notifications
-                            </p>
-                            <ul className="mt-4">
-                                <InputGroup
-                                    placeholder="Your Email"
-                                    className="input bg-transparent input-bordered w-full max-w-xs"
-                                 onChange={()=>{}} validate={{}}/>
-                                <Button className="btn-primary mt-4 ">Subscribe</Button>
+                            <h3 className="font-semibold heading-subtitle !text-start">GET IN TOUCH!</h3>
+                            <ul className="mt-2">
+                                <p className="text-dark-300 font-medium text-sm">
+                                    Every Single Updates and Notifications
+                                </p>
+                                <div className="mt-3">
+                                    <InputGroup
+                                        placeholder="Your Email"
+                                        className="input bg-transparent input-bordered w-full max-w-xs"
+                                        onChange={()=>{}} validate={{}}/>
+                                    <Button className="btn-primary mt-4 ">Subscribe</Button>
+                                </div>
                             </ul>
                         </div>
                     </div>

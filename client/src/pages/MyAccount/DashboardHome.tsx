@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
-import useStore from "../../context/useStore";
-import { getAccountInfoAction } from "../../context/actions/accountAction";
+import React from "react";
 import RecentActivity from "./RecentActivity/RecentActivity";
 import RecentMoneyTransfer from "./RecentMoneyTransfer/RecentMoneyTransfer";
 import WithSidebarButton from "../../components/WithSidebarButton/WithSidebarButton";
+import useStore from "../../context/useStore";
 
-const DashboardHome = ({account}) => {
+const DashboardHome = () => {
+    const [{ account }, dispatch] = useStore();
 
     return (
         <div>
-
             <div>
                 <WithSidebarButton className="my-4">
                     <h1 className="heading-title">My Account</h1>
@@ -21,7 +20,7 @@ const DashboardHome = ({account}) => {
                             <img className="w-6" src="/money.png" alt="" />
                             <span className="text-white font-medium text-md uppercase">Balance</span>
                         </label>
-                        <h1 className="!text-start !text-2xl text-white font-semibold">${account.balance}</h1>
+                        <h1 className="!text-start !text-2xl text-white font-semibold">${account?.balance}</h1>
                     </div>
 
                     <div className="card !bg-gradient-to-r from-primary-600 to-primary-100">
@@ -29,7 +28,7 @@ const DashboardHome = ({account}) => {
                             <img className="w-6" src="/atm.png" alt="" />
                             <span className="text-white font-medium text-md uppercase">Deposit</span>
                         </label>
-                        <h1 className="!text-start !text-2xl text-white font-semibold">${account.income}</h1>
+                        <h1 className="!text-start !text-2xl text-white font-semibold">${account?.deposit}</h1>
                     </div>
 
                     <div className="card !bg-gradient-to-br from-blue-400 to-blue-700">
@@ -37,7 +36,7 @@ const DashboardHome = ({account}) => {
                             <img className="w-6" src="/atm.png" alt="" />
                             <span className="text-white font-medium text-md uppercase">Withdrawal</span>
                         </label>
-                        <h1 className="!text-start !text-2xl text-white font-semibold">${account.withdraw}</h1>
+                        <h1 className="!text-start !text-2xl text-white font-semibold">${account?.withdraw}</h1>
                     </div>
                 </div>
             </div>

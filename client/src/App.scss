@@ -49,7 +49,7 @@ html{
 
 .card{
   background: rgba(255, 255, 255,1);
-  @apply dark:bg-dark-600 dark:shadow-dark-sm2;
+  @apply shadow-xxs dark:bg-dark-600 dark:shadow-dark-sm2;
   border-radius: 10px;
   padding: 20px;
 }

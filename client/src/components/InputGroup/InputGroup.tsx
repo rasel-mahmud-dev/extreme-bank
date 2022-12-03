@@ -1,8 +1,8 @@
 import "./input-group.scss";
 import validator from "../../utils/validator";
-import {FC, HTMLAttributes, HTMLInputTypeAttribute, ReactNode, useMemo} from "react";
+import { FC, HTMLAttributes, HTMLInputTypeAttribute, ReactNode, useMemo } from "react";
 
-interface Props extends HTMLAttributes<HTMLInputElement>{
+interface Props extends HTMLAttributes<HTMLInputElement> {
     label?: string;
     placeholder?: string;
     name?: string;
@@ -11,14 +11,13 @@ interface Props extends HTMLAttributes<HTMLInputElement>{
     inputClass?: string;
     onChange?: Function;
     onClick?: any;
-    type?: "text" | "number" | "textarea" | "select"
+    type?: "text" | "number" | "textarea" | "select";
     error?: any;
     validate?: any;
-    labelIcon?: ReactNode
-    value?: string
-    options?: { name: string, value: string | number }[];
-    dataKey?: { title: string, id: string }
-
+    labelIcon?: ReactNode;
+    value?: string;
+    options?: { name: string; value: string | number }[];
+    dataKey?: { title: string; id: string };
 }
 
 const InputGroup: FC<Props> = (props) => {
@@ -37,14 +36,14 @@ const InputGroup: FC<Props> = (props) => {
         value,
         labelIcon,
         options = null,
-        onClick
+        onClick,
     } = props;
 
     // const [errorMessage, setErrorMessage] = useState("");
 
     function handleChange(e: any) {
         const target = e.target;
-        let result = ""
+        let result = "";
         if (validate) {
             result = validator(validate, target.value);
         }
@@ -60,21 +59,22 @@ const InputGroup: FC<Props> = (props) => {
                     <div className="flex w-full items-center gap-x-2">
                         {labelIcon}
                         {type === "select" ? (
-                            <select onClick={onClick} onChange={handleChange} name={name} id={name} className={`input ${inputClass} `} placeholder={placeholder}>
-                                <option value={value}>{placeholder}</option>
-                                {options?.map((opt) => (
-                                    <option value={opt[dataKey.id]}>{opt[dataKey.title]}</option>
-                                ))}
-                            </select>
-                        ) : type === "textarea" ? (
-                            <textarea
+                            <select
+                                onClick={onClick}
                                 onChange={handleChange}
                                 name={name}
                                 id={name}
                                 className={`input ${inputClass} `}
                                 placeholder={placeholder}
-                            />
-                            ) : (
+                            >
+                                <option value={value}>{placeholder}</option>
+                                {options?.map((opt, index) => (
+                                    <option key={index} value={opt[dataKey.id]}>{opt[dataKey.title]}</option>
+                                ))}
+                            </select>
+                        ) : type === "textarea" ? (
+                            <textarea onChange={handleChange} name={name} id={name} className={`input ${inputClass} `} placeholder={placeholder} />
+                        ) : (
                             <input
                                 onChange={handleChange}
                                 type={type}
@@ -89,7 +89,7 @@ const InputGroup: FC<Props> = (props) => {
                 <span className="text-red-500 font-medium text-xs">{error ? error : ""}</span>
             </div>
         );
-    }, [error, props?.defaultValue, options]);
+    }, [error, props?.defaultValue, options, onClick]);
 };
 
 export default InputGroup;
