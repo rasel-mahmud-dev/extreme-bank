@@ -3,11 +3,13 @@ import RecentActivity from "./RecentActivity/RecentActivity";
 import RecentMoneyTransfer from "./RecentMoneyTransfer/RecentMoneyTransfer";
 import WithSidebarButton from "../../components/WithSidebarButton/WithSidebarButton";
 import useStore from "../../context/useStore";
+import dateTime from "../../utils/date";
 
 const DashboardHome = () => {
     const [{ account }, dispatch] = useStore();
 
-    return (
+
+    return account ? (
         <div>
             <div>
                 <WithSidebarButton className="my-4">
@@ -41,12 +43,58 @@ const DashboardHome = () => {
                 </div>
             </div>
 
+            <div className="mt-8">
+                <h3 className="heading-subtitle !text-start">Account Detail</h3>
+
+                <div className="card rounded-2xl p-3 mt-2 card-label grid grid-cols-1 md:grid-cols-2 gap-2">
+
+                    <div className="flex items-center ">
+                        <h2 className="w-24">Name:</h2>
+                        <span className="text-body font-medium ml-4"> {account?.user?.username}</span>
+                    </div>
+
+                    <div className="flex items-center">
+                        <h2 className="w-24">Email:</h2>
+                        <span className="text-body font-medium ml-4"> {account?.user?.email}</span>
+                    </div>
+
+                    <div className="flex items-center">
+                        <h2 className="w-24"> Account No:</h2>
+                        <span className="text-body font-medium ml-4"> {account.account_no}</span>
+                    </div>
+
+                    <div className="flex items-center">
+                        <h2 className="w-24">NID:</h2>
+                        <span className="text-body font-medium ml-4"> {account?.user?.NID}</span>
+                    </div>
+
+                    <div className="flex items-center">
+                        <h2 className="w-24">Country:</h2>
+                        <span className="text-body font-medium ml-4"> {account?.user?.country}</span>
+                    </div>
+                    <div className="flex items-center">
+                        <h2 className="w-24">Division:</h2>
+                        <span className="text-body font-medium ml-4"> {account?.user?.division}</span>
+                    </div>
+                    <div className="flex items-center">
+                        <h2 className="w-24">upazila:</h2>
+                        <span className="text-body font-medium ml-4"> {account?.user?.upazila}</span>
+                    </div>
+
+                    <div className="flex items-center">
+                        <h2 className="w-24">Join on:</h2>
+                        <span className="text-body font-medium ml-4"> {dateTime(account?.user?.created_at)}</span>
+                    </div>
+
+                </div>
+            </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10">
                 <RecentActivity />
                 <RecentMoneyTransfer />
             </div>
         </div>
-    );
+    ) : null;
 };
 
 export default DashboardHome;

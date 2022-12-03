@@ -1,11 +1,9 @@
 import React, { SyntheticEvent, useEffect, useState } from "react";
-import { BiHeart, BiLock, BiMoney, BsClock, CgClose, FiLock, FiMail, MdMoney, MdNoAccounts } from "react-icons/all";
+import { BiHeart,  BsClock,  MdMoney } from "react-icons/all";
 import validator from "../../utils/validator";
 import InputGroup from "../../components/InputGroup/InputGroup";
-import HttpResponse from "../../components/HttpResponse/HttpResponse";
 import Button from "../../components/Button/Button";
 import { api } from "../../axios/api";
-import { IDeliveryAction } from "@cloudinary/url-gen/actions/delivery";
 import ResponseModal from "../../components/ActionModal/ResponseModal";
 
 const LoanRequest = () => {
