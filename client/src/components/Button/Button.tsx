@@ -5,7 +5,7 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
     className?: string;
     children?: ReactNode;
     variant?: "list" | "";
-    type: "button" | "submit";
+    type?: "button" | "submit";
 }
 
 const Button: FC<Props> = (props) => {

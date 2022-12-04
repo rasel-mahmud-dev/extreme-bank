@@ -1,13 +1,8 @@
 import passport from "passport";
 import * as userController from "../controllers/userController";
-import User from "../models/User";
-import createUserService from "../services/createUserService";
-import {createToken} from "../jwt";
-import setCookie from "../utilities/setCookie";
-import Notification from "../models/Notification";
+
 
 const router = require("express").Router();
-
 
 
 // Getting login URL

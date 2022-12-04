@@ -70,7 +70,7 @@ const NotificationDropdown = ({setDropdownMenu, dropdownMenu}) => {
             <Dropdown
                 onClose={() => setDropdownMenu("")}
                 isOpen={dropdownMenu === "notification"}
-                className="!p-0 right-0 w-60 shadow-md max-h-64 h-screen overflow-y-auto"
+                className="!p-0 right-0 w-60 shadow-card max-h-64 h-screen overflow-y-auto"
             >
                 <div className="flex flex-col gap-1" ref={notificationRef}>
                     {notifications.map(notification=>(

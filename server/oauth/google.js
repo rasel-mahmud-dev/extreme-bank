@@ -2,10 +2,6 @@ import passport from "passport";
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 
-// let GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET
-// let GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID
-// let callbackURL = `${process.env.BACKEND_URL}/api/v1/auth/google/callback`
-
 let GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET
 let GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID
 let callbackURL = `${process.env.BACKEND_URL}/api/v1/auth/google/callback`

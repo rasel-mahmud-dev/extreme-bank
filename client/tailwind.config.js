@@ -49,7 +49,9 @@ module.exports = {
             sm2: "1px 3px 20px 4px #cbcbcb59",
             "dark-sm2": "0px 3px 14px -3px #00000040",
             xxs: "0 2px 15px -4px #36363626",
-            xxxs: "0 2px 13px 2px #9f9f9f05"
+            xxxs: "0 2px 13px 2px #9f9f9f05",
+            "dropdown-light": "2px 3px 19px 0px #a7a7a75c",
+            "dropdown-dark": "0px 1px 17px 0px #00000094"
         },
         zIndex: {
             998: "998",

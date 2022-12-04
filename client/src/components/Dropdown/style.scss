@@ -1,5 +1,5 @@
 .dropdown {
-  @apply absolute opacity-0 z-50 invisible mt-3 p-4 bg-white dark:bg-dark-700 rounded-md;
+  @apply absolute opacity-0 z-50 invisible mt-3 p-4 bg-white dark:bg-dark-700 rounded-md shadow-dropdown-light dark:shadow-dropdown-dark;
   transition: all .2s ease;
   transform: translateY(10px);
   &::-webkit-scrollbar{

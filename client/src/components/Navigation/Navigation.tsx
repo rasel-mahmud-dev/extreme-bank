@@ -69,7 +69,8 @@ const Navigation = () => {
             <div className="container flex justify-between items-center">
                 <div className="py-5">
                     <Link to="/">
-                        <img src="/logo.png" className="w-24" alt="" />
+                        <img src="/Group 3.png" className="w-52" alt="" />
+                        {/*<img src="/logo.png" className="w-24" alt="" />*/}
                     </Link>
                 </div>
                 <div className="flex items-center justify-between gap-x-5 text-dark-800 dark:text-white">
@@ -122,7 +123,7 @@ const Navigation = () => {
                                     <Dropdown
                                         onClose={() => setDropdownMenu("")}
                                         isOpen={dropdownMenu === "auth"}
-                                        className="p-4 right-0 w-60 shadow-md"
+                                        className="p-4 right-0 w-60 shadow-card"
                                     >
                                         <div className="flex flex-col gap-2">
                                             <Button variant="list" className="bg-transparent">
