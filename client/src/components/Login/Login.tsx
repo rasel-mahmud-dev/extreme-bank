@@ -12,6 +12,7 @@ import HttpResponse from "../HttpResponse/HttpResponse";
 import ActionModal from "../ActionModal/ActionModal";
 import Loader from "../Loader/Loader";
 import ResponseModal from "../ActionModal/ResponseModal";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
     const [state, dispatch] = useStore();
@@ -129,6 +130,9 @@ const Login = () => {
                                 <h6>Create Account</h6>
                             </Link>
                         </div>
+
+                        <SocialLogin />
+
                     </form>
                 </div>
             </div>

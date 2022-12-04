@@ -40,11 +40,23 @@ export const createBankAccount = async (req, res, next) => {
 
 export const getAccountInfo = async (req, res, next) => {
     try {
-        let acc = await Account.findOne({user_id: new ObjectId(req.user.user_id)});
-        if (!acc) {
+        let acc = await Account.aggregate([
+            {$match: {
+                user_id: new ObjectId(req.user.user_id)
+            }},
+            { $lookup: {
+                from: "users",
+                    localField: "user_id",
+                    foreignField: "_id",
+                    as: "user"
+                }  },
+            {$unwind: {path: "$user"}}
+        ]);
+
+        if (!acc || acc.length === 0) {
             response(res, "Please create an account", 404);
         }
-        response(res, acc, 200);
+        response(res, acc[0], 200);
     } catch (ex) {
         next(ex);
     }

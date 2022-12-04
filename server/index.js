@@ -10,6 +10,9 @@ require("dotenv").config()
 
 import routes  from "./routes"
 import dbConnect from "./database/dbConnect";
+import uuid from "./utilities/uuid";
+import passport from "passport";
+
 
 // import logger from "./logger";
 
@@ -38,16 +41,27 @@ app.use(express.json())
 app.use("/static/", express.static("static"))
 app.use(morgan("dev"))
 
+
+app.use(passport.initialize({}))
+
+require("./oauth/google")
+
+
 app.use(routes)
 
 // Capture 500 errors
 app.use((err, req, res, next)=>{
     let message = "Internal error, Please try again"
+    let status = 500
     if(err && err.message){
         message = err.message
     }
-    res.status(500).json({message: message})
+    if(err && err.status){
+        status = err.status
+    }
+    res.status(status).json({message: message})
 })
+
 // Capture 404 errors
 app.use((req,res,next) => {
   res.status(404).send("PAGE NOT FOUND");
@@ -57,5 +71,3 @@ app.use((req,res,next) => {
 app.listen(port,  ()=>{
   logger.info(`Server started and running on http://localhost:${port}`)
 })
-
-

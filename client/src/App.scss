@@ -22,7 +22,7 @@
   font-weight: 600;
   text-align: center;
   font-size: 16px;
-  @apply text-dark-700 dark:text-dark-20
+  @apply text-primary-400
 }
 
 .heading-title{
@@ -35,7 +35,7 @@
   @apply text-dark-600 dark:text-dark-100
 }
 .section{
-  @apply my-32
+  @apply pt-20 pb-2 md:pt-20 lg:pb-10 lg:pt-20 lg:pb-20
 }
 
 html{

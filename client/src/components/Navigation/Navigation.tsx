@@ -18,11 +18,11 @@ const Navigation = () => {
         return acc;
     }, 0);
 
-    const [isDark, setDark] = useState(true);
+    const [isDark, setDark] = useState(null);
 
     const items = [
         { name: "Home", to: "/" },
-        { name: "Services", to: "/services" },
+        { name: "Services", href: "/#services" },
         { name: "Features", href: "/#features" },
         { name: "Money Transfer", to: "/my-account/send-money" },
         { name: "My Account", to: "/my-account" },
@@ -43,16 +43,26 @@ const Navigation = () => {
         setOpenMovileNav(!openMobileNav);
     }
 
+
     useEffect(() => {
-        let theme = localStorage.getItem("theme");
         if (isDark) {
             document.documentElement.classList.add("dark");
-            localStorage.theme = "dark";
+            localStorage.isDark = "0";
         } else {
             document.documentElement.classList.remove("dark");
-            localStorage.theme = "";
+            localStorage.isDark = "1";
         }
     }, [isDark]);
+
+
+    useEffect(() => {
+        let theme = localStorage.getItem("isDark");
+        if (theme === "1") {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+    }, []);
 
     return (
         <div className="bg-white dark:bg-dark-600 shadow-xl fixed-nav">

@@ -8,6 +8,10 @@ import useStore from "./context/useStore";
 import {authFetchingAction, fetchNotificationsAction} from "./context/actions/authAction";
 import Footer from "./components/Footer/Footer";
 
+
+// initialize firebase on our project
+// import "./firebase"
+
 const App = () => {
   function toggleFullScreen() {
     if (!document.fullscreenElement) {

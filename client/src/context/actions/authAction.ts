@@ -3,6 +3,48 @@ import {ACTION_TYPES} from "../../types";
 import {Dispatch} from "react";
 import catchErrorMessage from "../../utils/catchErrorMessage";
 
+// import {
+//     signInWithPopup,
+//     GoogleAuthProvider,
+//     signOut,
+//     getAuth
+// } from "firebase/auth";
+
+// export function googleSignInAction() {
+//     let auth = getAuth()
+//     return new Promise(async (resolve, reject) => {
+//         try {
+//             const provider = new GoogleAuthProvider();
+//             let result = await signInWithPopup(auth, provider);
+//             const user = result.user;
+//             if (user) {
+//                 resolve(user);
+//             }else{
+//                 reject("Google login fail")
+//             }
+//
+//         } catch (ex) {
+//             reject(ex);
+//         }
+//     });
+// }
+
+export function firebaseSignOutAction(dispatch: Dispatch<{}>) {
+    // let auth = getAuth()
+    // return new Promise(async (resolve, _) => {
+    //     try {
+    //         localStorage.removeItem("token")
+    //         dispatch({ type: "LOGOUT" });
+    //         await signOut(auth)
+    //     } catch (ex) {
+    //
+    //     }
+    // });
+}
+
+
+
+
 export async function handleRegistrationAction(formData: FormData, dispatch:Dispatch<any>){
 	return new Promise(async (resolve, reject)=>{
 

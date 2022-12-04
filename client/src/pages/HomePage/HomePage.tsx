@@ -70,8 +70,8 @@ const HomePage = () => {
               <BiBell className="text-xl" />
             </li>
             <li className="list-none w-max p-5 text-white flex items-center justify-center text-xl w-12 h-12  rounded-3xl bg-white/30 icon-shadow">
-              {index.js ? (
-				  <Avatar src={index.js.avatar} username={index.js.username} className="text-sm font-medium"/>
+              {index.ts ? (
+				  <Avatar src={index.ts.avatar} username={index.ts.username} className="text-sm font-medium"/>
 			  ) : <Link to="/login">
                 <BiUser/>
               </Link>}

@@ -1,72 +1,139 @@
 import User from "../models/User";
-
-const bcryptjs = require("bcryptjs");
 const formidable = require("formidable");
-import { createToken, parseToken } from "../jwt";
+
+import {createToken, parseToken} from "../jwt";
 import response from "../response";
 import getCookie from "../utilities/getCookie";
-import { makeHash } from "../bcrypt/bcrypt";
+import {makeHash} from "../bcrypt/bcrypt";
 import {cp} from "fs/promises";
 import imageUpload from "../services/imageUpload";
 import {ObjectId} from "mongodb";
 import Notification from "../models/Notification";
 import setCookie from "../utilities/setCookie";
+import loginService from "../services/loginService";
+import createUserService from "../services/createUserService";
+
+
+export const loginWithGoogle = async (req, res, next) => {
+    try {
+
+        // Successful authentication, redirect home.
+        if (!req.user) {
+            return
+        }
+
+        const {username, id, email, photo} = req.user
+
+        let user = await User.findOne({email: email});
+
+        if (!user) {
+            let name = username.split(" ")
+            let {acc, user: authUser} = await createUserService({
+                first_name: name[0],
+                last_name: name[1] ? name[1] : "",
+                avatarUrl: photo,
+                address: "",
+                googleId: id,
+                zipCode: "",
+                division: "",
+                country: "",
+                upazila: "",
+                NID: "",
+                email: email,
+                hash: ""
+            })
+            user = authUser
+        }
+
+        let token = await createToken(user._id, user.email, user.roles);
+        // send cookie in header to set client browser
+        setCookie(res, token)
+
+        Notification.createNotification({
+            user_id: user._id,
+            label: "Welcome Mr. " + user.username
+        }).then().catch()
+
+        res.redirect(process.env.FRONTEND + "/google-callback");
+
+
+    } catch (ex) {
+
+    }
+}
 
 export const createNewUser = (req, res, next) => {
     // parse a file upload
-    const form = formidable({ multiples: false });
+    const form = formidable({multiples: false});
 
     form.parse(req, async (err, fields, files) => {
         if (err) return response(res, "Can't read form data", 500);
 
         try {
-            const { email, firstName, lastName, password } = fields;
-            let user = await User.findOne({ email });
+            const {
+                firstName,
+                lastName,
+                email,
+                password,
+                country,
+                upazila,
+                NID,
+                address,
+                zipCode,
+                division
+            } = fields;
+
+            let user = await User.findOne({email});
             if (user) {
-                return res.status(404).json({ message: "Your are already registered" });
+                return res.status(404).json({message: "Your are already registered"});
             }
 
-            let newPath  = files.avatar.filepath.replace(files.avatar.newFilename, files.avatar.originalFilename)
+            let newPath = files.avatar.filepath.replace(files.avatar.newFilename, files.avatar.originalFilename)
             await cp(files.avatar.filepath, newPath)
 
             let avatarUrl = "";
 
-            try{
+            try {
                 let uploadInfo = await imageUpload(newPath, "extreme-bank")
-                if(uploadInfo){
+                if (uploadInfo) {
                     avatarUrl = uploadInfo.secure_url
                 }
-            } catch (ex){
+            } catch (ex) {
 
             }
 
 
             let hash = makeHash(password);
 
-            user = new User({
+
+            let {acc, user: authUser} = await createUserService({
                 first_name: firstName,
                 last_name: lastName,
-                username: firstName + " " + lastName,
-                roles: ["CUSTOMER"],
-                email: email,
-                password: hash,
-                avatar: avatarUrl,
-            });
+                avatarUrl,
+                address,
+                zipCode,
+                division,
+                country,
+                upazila,
+                NID,
+                email,
+                hash
+            })
 
-            user = await user.save();
-            if (!user) {
-                return res.status(500).json({ message: "Registration fail. please try again" });
-            }
+            let {password: s, ...other} = authUser;
 
-            let token = await createToken(user._id, user.email, user.roles);
-            let { password: s, ...other } = user;
+
+            let token = await createToken(authUser._id, authUser.email, authUser.roles);
 
             // send cookie in header to set client browser
             setCookie(res, token)
 
-            Notification.createNotification({user_id:user._id, label: "Welcome Mr. "+user.username}).then().catch()
+            Notification.createNotification({
+                user_id: user._id,
+                label: "Welcome Mr. " + user.username
+            }).then().catch()
 
-            res.status(201).json({ ...other });
+            res.status(201).json({...other});
 
         } catch (ex) {
             if (ex.type === "VALIDATION_ERROR") {
@@ -82,29 +149,16 @@ export const createNewUser = (req, res, next) => {
 
 export const loginUser = async (req, res, next) => {
     try {
-        const { email, password } = req.body;
-        let user = await User.findOne({ email });
+        const {email, password} = req.body;
 
-        if (!user) {
-            return res.status(404).json({ message: "Your are not registered" });
-        }
-
-        let match = await bcryptjs.compare(password, user.password);
-        if (!match) return res.status(409).json({ message: "Password not match" });
-
-        let token = await createToken(user._id, user.email, user.roles);
-        let { password: s, ...other } = user;
+        let {token, userData} = await loginService(email, password)
 
         // send cookie in header to set client browser
-
         setCookie(res, token)
 
-
-        Notification.createNotification({user_id:user._id, label: "Login completed"}).then().catch()
-
-
-        res.status(201).json({ ...other });
+        res.status(201).json({...userData});
     } catch (ex) {
+        console.log(ex)
         next(ex);
     }
 };
@@ -113,9 +167,9 @@ export const loginViaToken = async (req, res, next) => {
     try {
         let token = getCookie("token", req);
         if (!token) return response(res, "token not found", 404);
-        let { user_id, email, roles } = await parseToken(token);
-        let user = await User.findOne({ _id: new ObjectId(user_id) });
-        let { password, ...other } = user;
+        let {user_id, email, roles} = await parseToken(token);
+        let user = await User.findOne({_id: new ObjectId(user_id)});
+        let {password, ...other} = user;
 
         response(res, other, 200);
     } catch (ex) {

@@ -33,7 +33,7 @@ const WhyChooseUs = () => {
 	
 	
 	return (
-		<section className="section hide-viewport container">
+		<section className="section hide-viewport container" id="features">
 			<h5 className="heading-subtitle">Why Choose Use</h5>
 			<h1 className="heading-title">A New Era Of Online Banking Pay</h1>
 			<p className="text-center max-w-2xl mx-auto mt-4 text-dark-300">
@@ -41,9 +41,9 @@ const WhyChooseUs = () => {
 				your money to your friends & family from anywhere
 			</p>
 			
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-10 justify-self-center">
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4 md:mt-8 justify-self-center">
 				{data.map((item) => (
-					<div className="card   overflow-hidden px-4 pb-6 pt-4 m-4">
+					<div className="card overflow-hidden">
 				<div className="r">
 					<Avatar username="" className="rounded w-12 mx-auto" imgClass="rounded" src={item.image}/>
 				</div>

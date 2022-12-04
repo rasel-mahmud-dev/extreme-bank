@@ -1,18 +1,17 @@
 import Base from "./Base";
 class Account extends Base {
     static collectionName = "accounts";
-    id
+    _id
     account_no
     user_id
     balance
     withdraw
     deposit
     current_loan_id
-    current_loan_emi_recieved = 0
 
     constructor(data) {
-        super(Account.tableName);
-        this.account_id = data.account_id;
+        super(Account.collectionName);
+        this.account_no = Number(data.account_no);
         this.user_id = data.user_id;
         this.balance = data.balance;
         this.withdraw = data.withdraw;

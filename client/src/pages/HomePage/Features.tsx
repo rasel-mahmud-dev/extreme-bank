@@ -43,13 +43,13 @@ const Features = () => {
     ]);
 
     return (
-        <section className="section hide-viewport container" id="features">
+        <section className="section hide-viewport container" id="services">
             <h5 className="heading-subtitle">Key Features</h5>
             <h1 className="heading-title">How We Support You</h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4 md:mt-8">
                 {data.map((item) => (
-                    <div className="card overflow-hidden px-4 pb-6 pt-4 m-4">
+                    <div className="card overflow-hidden">
                         <div className="w-16 mx-auto">
                             <Avatar username="" className="rounded" imgClass="rounded" src={item.image} />
                         </div>

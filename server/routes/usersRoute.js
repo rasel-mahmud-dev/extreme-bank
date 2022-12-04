@@ -1,7 +1,22 @@
+import passport from "passport";
 import * as userController from "../controllers/userController";
-
+import User from "../models/User";
+import createUserService from "../services/createUserService";
+import {createToken} from "../jwt";
+import setCookie from "../utilities/setCookie";
+import Notification from "../models/Notification";
 
 const router = require("express").Router();
+
+
+
+// Getting login URL
+router.get("/google/callback",  passport.authenticate('google', {  session: false}), userController.loginWithGoogle  );
+
+router.get("/google/login",   passport.authenticate('google', {
+    scope : ['profile', 'email'] }));
+
+// router.post("/google/login", userController.loginWithGoogle);
 
 router.post("/login", userController.loginUser);
 router.post("/registration", userController.createNewUser);

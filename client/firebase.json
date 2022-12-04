@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "extreme-bank",
     "public": "dist",
     "ignore": [
       "firebase.json",

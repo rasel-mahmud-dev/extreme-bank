@@ -1,20 +1,20 @@
-import {FC, HTMLAttributes, ReactNode} from "react";
+import { FC, HTMLAttributes, ReactNode } from "react";
 import "./button.scss";
 
-interface Props extends HTMLAttributes<HTMLButtonElement>{
-    className?: string
-    children?: ReactNode
-    variant?: "list" | ""
+interface Props extends HTMLAttributes<HTMLButtonElement> {
+    className?: string;
+    children?: ReactNode;
+    variant?: "list" | "";
+    type: "button" | "submit";
 }
 
 const Button: FC<Props> = (props) => {
-    const {children, className="", variant,...attr} = props
-
+    const { children, className = "", variant, ...attr } = props;
 
     return (
         <button {...attr} className={`btn ${variant === "list" ? "btn-list" : "shadow-bg-md"} ${className}`}>
-        {children}
-      </button>
+            {children}
+        </button>
     );
 };
 

@@ -49,8 +49,8 @@ const Testimonials = () => {
 						modules={[Autoplay, Pagination]}
 					>
 						{testimonials.map((item) => (
-							<SwiperSlide key={item._id} className="pb-8">
-								<div className="card  !shadow-light overflow-hidden px-4 pb-6 pt-4 m-4">
+							<SwiperSlide key={item._id} className="pb-8 px-2">
+								<div className="card !shadow-light overflow-hidden pb-6 pt-4 ">
 									<div className="w-16 mx-auto">
 										<Avatar username="" className="w-20" src={item.image} />
 									</div>
