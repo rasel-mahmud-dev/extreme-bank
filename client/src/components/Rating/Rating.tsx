@@ -9,7 +9,7 @@ const Rating = ({ rate, label=true, className="" }) => {
 				.map((_, index) => (
 					<BsStarFill
 						key={index}
-						className={`text-dark-50/50 cursor-pointer ${
+						className={`text-dark-20 cursor-pointer  text-xs ${
 							rate >= index + 1 ? "!text-orange-400" : ""
 						}`}
 					/>

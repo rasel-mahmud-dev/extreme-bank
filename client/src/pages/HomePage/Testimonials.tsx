@@ -1,27 +1,33 @@
 import Loader from "components/Loader/Loader";
 import Rating from "components/Rating/Rating";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Autoplay, Pagination} from "swiper";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import {Swiper, SwiperSlide} from "swiper/react";
 import Avatar from "../../components/Avatar/Avatar";
+import {api} from "../../axios/api";
 
 const Testimonials = () => {
-	const [testimonials, setTestimonials] = useState([
-		{_id: 1, name: "alex", image: "https://ruxa-vue.hibootstrap.com/img/client-4.19537ca9.jpg", rate: "5", text: "werewrewr"},
-		{_id: 1, name: "alex", image: "https://ruxa-vue.hibootstrap.com/img/client-4.19537ca9.jpg", rate: "5", text: "werewrewr"},
-		{_id: 1, name: "alex", image: "https://ruxa-vue.hibootstrap.com/img/client-4.19537ca9.jpg", rate: "5", text: "werewrewr"},
-		{_id: 1, name: "alex", image: "https://ruxa-vue.hibootstrap.com/img/client-4.19537ca9.jpg", rate: "5", text: "werewrewr"},
-		{_id: 1, name: "alex", image: "https://ruxa-vue.hibootstrap.com/img/client-4.19537ca9.jpg", rate: "5", text: "werewrewr"},
-	]);
-	
-	
-	return (
+    const [testimonials, setTestimonials] = useState<{
+        image: string,
+        rate: number,
+        text: string,
+        name: string
+    }[]>([]);
+
+    useEffect(() => {
+        api.get("/api/v1/reviews").then(({ status, data }) => {
+            setTestimonials(data);
+        });
+    }, []);
+
+
+    return (
 		<section className="section hide-viewport container">
 			<h5 className="heading-subtitle">Our Testimonials</h5>
-			<h1 className="heading-title">What Our Client Says</h1>
+			<h1 className="heading-title mb-8">What Our Client Says</h1>
 			
 			{testimonials && (
 				<div className="">
@@ -57,9 +63,8 @@ const Testimonials = () => {
 									<h4 className="text-center text-sm font-semibold mt-2 mb-1 ">{item.name}</h4>
 									<Rating className="justify-center" rate={item.rate} label={false}/>
 									<p className="whitespace-pre-line text-center text-dark-300 mt-3">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-											 quod recusandae	llo inventore necessitatibus quod recusandae?
-									</p>
+                                        {item.text}
+                                    </p>
 								</div>
 							</SwiperSlide>
 						))}

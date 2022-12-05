@@ -1,8 +1,9 @@
 import React from "react";
-import { FaFacebookF, FaGithub, FaInstagram, FaYoutube } from "react-icons/fa";
+import {FaFacebookF, FaGithub,  FaInstagram, FaYoutube} from "react-icons/fa";
 import Button from "../Button/Button";
 import InputGroup from "../InputGroup/InputGroup";
 import {Link} from "react-router-dom";
+import {BiGlobe} from "react-icons/all";
 
 function SocialLinks(){
     return (
@@ -12,6 +13,12 @@ function SocialLinks(){
                 href="https://www.facebook.com/rasel-mahmud-dev"
             >
                 <FaFacebookF className="text-lg" />
+            </a>
+            <a
+                className="card-label hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
+                href="https://rasel-portfolio.vercel.app"
+            >
+                <BiGlobe className="text-lg" />
             </a>
             <a
                 className="card-label hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
@@ -72,31 +79,6 @@ const Footer = () => {
                                 </li>
                             </ul>
                         </div>
-                        <div className="mt-10 lg:mt-0">
-                            <h3 className="font-semibold heading-subtitle !text-start">Support</h3>
-                            <ul className="mt-2">
-                                <li className="text-dark-300 font-medium text-sm pt-1">
-                                    <a href="#" className="hover:text-primary-500">
-                                        Contact Us
-                                    </a>
-                                </li>
-                                <li className="text-dark-300 font-medium text-sm pt-1">
-                                    <a href="#" className="hover:text-primary-500">
-                                        Help and FAQ
-                                    </a>
-                                </li>
-                                <li className="text-dark-300 font-medium text-sm pt-1">
-                                    <a href="#" className="hover:text-primary-500">
-                                        Service Status
-                                    </a>
-                                </li>
-                                <li className="text-dark-300 font-medium text-sm pt-1">
-                                    <a href="#" className="hover:text-primary-500">
-                                        Tech Requirements
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
 
                         <div className="mt-10 lg:mt-0">
                             <h3 className="font-semibold heading-subtitle !text-start">Quick Links</h3>
@@ -111,6 +93,23 @@ const Footer = () => {
                                         Transfer Money
                                     </Link>
                                 </li>
+
+                                <li className="text-dark-300 font-medium text-sm pt-1">
+                                    <a href="#" className="hover:text-primary-500">
+                                        Contact Us
+                                    </a>
+                                </li>
+                                <li className="text-dark-300 font-medium text-sm pt-1">
+                                    <Link to="/faqs" className="hover:text-primary-500">
+                                        Help and FAQ
+                                    </Link>
+                                </li>
+                                <li className="text-dark-300 font-medium text-sm pt-1">
+                                    <Link to="reviews" className="hover:text-primary-500">
+                                        Reviews
+                                    </Link>
+                                </li>
+
                             </ul>
                         </div>
                         <div className="mt-10 lg:mt-0">

@@ -13,6 +13,8 @@ import Loader from "../components/Loader/Loader";
 import DashboardHome from "../pages/MyAccount/DashboardHome";
 import GoogleCallback from "../pages/Auth/GoogleCallback";
 import Deposit from "../pages/MyAccount/Deposit/Deposit";
+import FAQs from "../pages/FAQs/FAQs";
+import Reviews from "../pages/Reviews/Reviews";
 
 
 const AccountDashboard = lazy(()=>import("../pages/MyAccount/AccountDashboard"));
@@ -28,7 +30,9 @@ const routes = createBrowserRouter([
 			{ path: "/login", element: <Login />},
 			{ path: "/google-callback", element: <GoogleCallback />},
 			{ path: "/registration", element: <Registration />},
+			{ path: "/faqs", element: <FAQs />},
 			{ path: "/services", element: <Services />},
+			{ path: "/reviews", element: <Reviews />},
 			{ path: "/my-account", element: <PrivateRoute><AccountDashboard /></PrivateRoute>,
 			children: [
 				{path: "", element: <DashboardHome />},
