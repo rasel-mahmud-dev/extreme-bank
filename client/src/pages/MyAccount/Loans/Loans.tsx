@@ -8,6 +8,8 @@ import Modal from "../../../components/Modal/Modal";
 import InputGroup from "../../../components/InputGroup/InputGroup";
 import { ACTION_TYPES } from "../../../types";
 import WithSidebarButton from "../../../components/WithSidebarButton/WithSidebarButton";
+import ResponseModal from "../../../components/ActionModal/ResponseModal";
+import catchErrorMessage from "../../../utils/catchErrorMessage";
 
 type CurrentLoan = {
     amount: number;
@@ -20,9 +22,12 @@ type CurrentLoan = {
 };
 
 const Loans = () => {
-    const [transactions, setTransactions] = useState([]);
+    const [allLoans, setAllLoans] = useState([]);
     const [emi, setEmi] = useState([]);
-
+    const [httpResponse, setHttpResponse] = useState({
+        message: "",
+        loading: false,
+    });
     const [currentLoan, setCurrentLoan] = useState<CurrentLoan>(null as unknown as CurrentLoan);
 
     const [{ auth, account }, dispatch] = useStore();
@@ -32,14 +37,10 @@ const Loans = () => {
     useEffect(() => {
         api.get("/api/v1/loans").then(({ data, status }) => {
             if (status === 200) {
-                setTransactions(data);
+                setAllLoans(data);
             }
         });
-        api.get("/api/v1/loans/emis").then(({ data, status }) => {
-            if (status === 200) {
-                setEmi(data);
-            }
-        });
+
     }, []);
 
     useEffect(() => {
@@ -47,6 +48,12 @@ const Loans = () => {
             api.get("/api/v1/loans/loan/" + account.current_loan_id).then(({ data, status }) => {
                 if (status === 200) {
                     setCurrentLoan(data);
+                }
+            });
+
+            api.get("/api/v1/loans/emis?loan_id="+ account.current_loan_id).then(({ data, status }) => {
+                if (status === 200) {
+                    setEmi(data);
                 }
             });
         }
@@ -81,6 +88,7 @@ const Loans = () => {
             sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0),
             render: (_, v) => "$" + calc(v.amount, v.loan_duration, v.interest_rate).totalPay,
         },
+        { dataIndex: "is_completed", title: "Status", render: (v) => v ? "PAID" :  "UNPAID" },
     ];
 
     const emiColumns: Column[] = [
@@ -89,17 +97,6 @@ const Loans = () => {
         { dataIndex: "created_at", title: "Emi Month", sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0), render: (v) => new Date(v).toDateString() },
         // { dataIndex: "interest_rate", title: "Rate (Annual)", sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0), render: (v) => v + "%" },
         { dataIndex: "amount", title: "Amount", sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0), render: (v) => "$" + v },
-        // {
-        //     title: "Monthly Emi",
-        //     dataIndex: "monthly_emi",
-        //     sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0),
-        //     render: (_, v) => "$" + calc(v.amount, v.loan_duration, v.interest_rate).monthlyPay,
-        // },
-        // {
-        //     title: "Total pay",
-        //     sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0),
-        //     render: (_, v) => "$" + calc(v.amount, v.loan_duration, v.interest_rate).totalPay,
-        // },
     ];
 
     function handlePayEMI(e: SyntheticEvent) {
@@ -109,9 +106,13 @@ const Loans = () => {
         let agree = form.agree.checked;
 
         if (agree && description) {
+
+            setHttpResponse({message: "", loading: true})
+
             api.post<any>("/api/v1/loans/pay-emi", {
                 description: description,
             }).then(({ data, status }) => {
+                setHttpResponse({message: "", loading: false})
                 if (status === 201) {
                     dispatch({
                         type: ACTION_TYPES.SET_ACCOUNT,
@@ -125,9 +126,21 @@ const Loans = () => {
                         type: ACTION_TYPES.SET_NOTIFICATION,
                         payload: data.notification,
                     });
-                    setOpenPayCurrentMonthEMIForm(false);
+                    if(data.message){
+                        setTimeout(()=>{
+                            setHttpResponse({message: data.message, loading: false})
+                        }, 300)
+                    }
                 }
-            });
+            }).catch(ex=>{
+                setHttpResponse({message: "", loading: false})
+                setTimeout(()=>{
+                    setHttpResponse({message: catchErrorMessage(ex), loading: false})
+                }, 300)
+            })
+                .finally(()=>{
+                    setOpenPayCurrentMonthEMIForm(false);
+                })
         }
     }
 
@@ -138,6 +151,13 @@ const Loans = () => {
                     <h1 className="heading-title !text-start">My Loans</h1>
                 </WithSidebarButton>
                 <h1 className="heading-subtitle  !text-start mt-3">Current loan</h1>
+
+                <ResponseModal
+                    isSuccess={false}
+                    loadingTitle="Prepare Your Loan"
+                    {...httpResponse}
+                    onClose={() => setHttpResponse((p) => ({ ...p, message: "", loading: false }))}
+                />
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                     <li className="card  !bg-gradient-to-r from-primary-600 to-primary-100">
@@ -209,12 +229,12 @@ const Loans = () => {
 
                 <div className="mt-8">
                     <h1 className="heading-subtitle !text-start mt-3 ">Recent loans</h1>
-                    {transactions && emi.transactions > 0 ? (
+                    {allLoans && allLoans.length > 0 ? (
                         <div className="card !p-0 overflow-hidden rounded-xl text-sm">
                             <Table
                                 theadClass={{ th: "!pl-6 bg-primary-50 text-dark-20 dark:text-dark-10 font-semibold" }}
                                 tbodyClass={{ td: "!pl-6 dark:text-dark-40", tr: "hover:bg-dark-100/20" }}
-                                dataSource={transactions}
+                                dataSource={allLoans}
                                 columns={columns}
                                 fixed={true}
                                 scroll={{ x: 500 }}

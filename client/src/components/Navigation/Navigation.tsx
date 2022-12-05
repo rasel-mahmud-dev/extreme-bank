@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import {Link, NavLink, useLocation} from "react-router-dom";
 
 import "./navigation.scss";
 import Button from "../Button/Button";
@@ -12,6 +12,8 @@ import NotificationDropdown from "./NotificationDropdown";
 
 const Navigation = () => {
     const [{ auth, notifications = [] }, dispatch] = useStore();
+
+    const location = useLocation()
 
     let countNewNotification = notifications.reduce((acc, cur) => {
         if (!cur.isRead) acc++;
@@ -28,6 +30,9 @@ const Navigation = () => {
         { name: "My Account", to: "/my-account" },
         // {name: "About US", to: "/about-us"},
     ];
+
+
+    const [activeNavIndex, setActiveNavIndex] = useState(0);
     const [dropdownMenu, setDropdownMenu] = useState("");
     const [openMobileNav, setOpenMovileNav] = useState(false);
 
@@ -66,7 +71,30 @@ const Navigation = () => {
             document.documentElement.classList.remove("dark");
             setDark(0)
         }
+
+        window.addEventListener('hashchange', handleHashChange, false);
+        return ()=> window.removeEventListener("hashchange", handleHashChange, false)
+
     }, []);
+
+    function handleHashChange(){
+        window.addEventListener('hashchange', () => {
+            let hash = window.location.hash;
+            let index = items.findIndex((item=> item.href && item.href.slice(1) === hash))
+            setActiveNavIndex(index)
+        }, false);
+    }
+
+
+
+    useEffect(() => {
+        let hash = window.location.hash;
+        if(!hash){
+            setActiveNavIndex(-1)
+        }
+    }, [location.pathname]);
+
+
 
     return (
         <div className="bg-white dark:bg-dark-600 shadow-xl fixed-nav">
@@ -79,10 +107,10 @@ const Navigation = () => {
                 </div>
                 <div className="flex items-center justify-between gap-x-5 text-dark-800 dark:text-white">
                     <div className={`flex items-center gap-x-6 hidden md:flex ${openMobileNav ? "mobile-expand" : ""}`}>
-                        {items.map((item) => (
+                        {items.map((item, index) => (
                             <li className="list-none py-5 text-sm font-medium">
                                 {item.href ? (
-                                    <a className="" href={item.href}>
+                                    <a className={`${index === activeNavIndex ? "active-nav": ""}`} href={item.href}>
                                         {item.name}
                                     </a>
                                 ) : (
@@ -136,18 +164,19 @@ const Navigation = () => {
                                                 </Link>
                                             </Button>
                                             <Button variant="list" className="bg-transparent">
-                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">
-                                                    Dashboard
+                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account/deposit
+                                           ">
+                                                    My Deposit
+                                                </Link>
+                                            </Button>
+                                            <Button variant="list" className="bg-transparent">
+                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account/loans">
+                                                    My Loans
                                                 </Link>
                                             </Button>
                                             <Button variant="list" className="bg-transparent">
                                                 <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">
-                                                    Dashboard
-                                                </Link>
-                                            </Button>
-                                            <Button variant="list" className="bg-transparent">
-                                                <Link className="!text-dark-700 dark:!text-dark-20" to="/my-account">
-                                                    Dashboard
+                                                    My Transactions
                                                 </Link>
                                             </Button>
                                             <Button variant="list" className="bg-transparent">

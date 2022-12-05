@@ -38,3 +38,25 @@ export type Account = {
     withdraw: number
     _id: string
 }
+
+
+
+export type TransactionType = {
+    _id: string;
+    sender_id: string;
+    receiver_id: string;
+    amount: number;
+    description: string;
+    payment_type: string;
+    created_at: string;
+    updated_at: string;
+    sender: {
+        _id: string;
+        username: string;
+        avatar: string;
+    };
+    receiver: {
+        username: string;
+        avatar: string;
+    };
+};

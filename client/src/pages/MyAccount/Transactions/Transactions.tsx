@@ -3,26 +3,8 @@ import { api } from "../../../axios/api";
 import Avatar from "../../../components/Avatar/Avatar";
 import date from "../../../utils/date";
 import useStore from "../../../context/useStore";
+import {TransactionType} from "../../../types";
 
-type TransactionType = {
-    _id: string;
-    sender_id: string;
-    receiver_id: string;
-    amount: number;
-    description: string;
-    payment_type: string;
-    created_at: string;
-    updated_at: string;
-    sender: {
-        _id: string;
-        username: string;
-        avatar: string;
-    };
-    receiver: {
-        username: string;
-        avatar: string;
-    };
-};
 
 const Transactions = () => {
     const [transactions, setTransactions] = useState<TransactionType[]>([]);
@@ -44,8 +26,8 @@ const Transactions = () => {
                 <div className="card mt-4 rounded-xl">
                     {transactions &&
                         transactions.map((transaction) => (
-                            <div className="border-b border-neutral-500/10 py-4">
-                                <div className="flex gap-x-2">
+                            <div className="border-b border-neutral-500/10 py-4 last:border-none">
+                                <div className="flex gap-x-2 items-center">
                                     <div className="rounded-4xl">
                                         {/*<li className="list-none bg-red-400 w-max p-5 text-2xl rounded-2xl text-white shadow-lg shadow shadow-red-500/30  ">*/}
                                         <li className={`list-none w-max text-2xl rounded-2xl text-white shadow-bg-md bg-`}>

@@ -5,6 +5,9 @@ import InputGroup from "../../components/InputGroup/InputGroup";
 import Button from "../../components/Button/Button";
 import { api } from "../../axios/api";
 import ResponseModal from "../../components/ActionModal/ResponseModal";
+import catchErrorMessage from "../../utils/catchErrorMessage";
+import {ACTION_TYPES} from "../../types";
+import useStore from "../../context/useStore";
 
 const LoanRequest = () => {
     const [httpResponse, setHttpResponse] = useState({
@@ -12,6 +15,7 @@ const LoanRequest = () => {
         message: "",
         loading: false,
     });
+    const [_, dispatch] = useStore()
 
     const InterestRate = 12;
 
@@ -126,18 +130,31 @@ const LoanRequest = () => {
             return;
         }
         setHttpResponse((p) => ({ ...p, loading: true, message: "" }));
-        api.post("/api/v1/account/loan-money", {
+        api.post("/api/v1/loans/loan-money", {
             loanPurpose: userInput.loanPurpose,
             nid: userInput.nid,
             amount: userInput.amount,
             loanDuration: userInput.loanDuration
         })
             .then((r) => {
-                console.log(r);
-                // setHttpResponse((p) => ({...p, loading: false}));
+                setHttpResponse((p) => ({...p, loading: false}));
+                if(r.data.message) {
+                    setTimeout(() => {
+                        setHttpResponse({loading: false, message: r.data.message, isSuccess: false});
+
+                    }, 300)
+                }
+                dispatch({
+                    type: ACTION_TYPES.SET_NOTIFICATION,
+                    payload: r.data.notification,
+                });
             })
             .catch((msg) => {
-                // setHttpResponse({loading: false, isSuccess: false, message: msg});
+                setHttpResponse({loading: false, message: "", isSuccess: false});
+                setTimeout(()=>{
+                setHttpResponse({loading: false, message: catchErrorMessage(msg), isSuccess: false});
+
+                }, 300)
             })
 
     }

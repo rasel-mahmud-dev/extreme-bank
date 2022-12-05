@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { BsGoogle, GrAmazon } from "react-icons/all";
+import useStore from "../../../context/useStore";
 
 const RecentActivity = () => {
+
+    const [state] = useStore()
+
     const [data, setData] = useState([
         { className: "primary-400", label: "Google Ads", type: "Payment", amount: "200", icon: <BsGoogle /> },
         { className: "green-500", label: "Amazon", type: "Shopping", amount: "400", icon: <GrAmazon /> },
@@ -9,6 +13,8 @@ const RecentActivity = () => {
         { className: "pink-500", label: "Amazon", type: "Shopping", amount: "400", icon: <GrAmazon /> },
         { className: "blue-400", label: "Google Ads", type: "Payment", amount: "200", icon: <BsGoogle /> },
     ]);
+
+    console.log(state)
 
     return (
         <div className="">

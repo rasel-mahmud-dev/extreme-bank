@@ -27,6 +27,9 @@
   }
 }
 
+.active-nav{
+  @apply text-primary-400 font-semibold;
+}
 
 .notification{
  @apply bg-primary-100/10;

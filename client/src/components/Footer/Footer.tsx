@@ -48,8 +48,8 @@ const Footer = () => {
     return (
         <>
             <footer className="dark:bg-primary-9 pb-10 py-14">
-                <div className="container grid grid-cols-1 md:grid-cols-8  gap-0 md:gap-10">
-                    <div className="col-auto md:col-span-3 lg:col-span-2">
+                <div className="container grid grid-cols-1 md:grid-cols-8 gap-0 md:gap-10 justify-between">
+                    <div className="col-auto md:col-span-3 lg:col-span-4 max-w-max lg:max-w-lg">
                         <img className="w-44" src="/Group 3.png" />
                         <p className="text-dark-300 font-medium text-sm pt-4">
                             Extreme Bank is the trusted market leader in talent transformation. We change lives,
@@ -58,7 +58,7 @@ const Footer = () => {
                         </p>
                         <SocialLinks />
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-between col-span-5 lg:col-span-6 w-full mt-4 md:mt-0">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between col-span-5 lg:col-span-4 w-full mt-4 md:mt-0">
                         <div className="mt-10 lg:mt-0">
                             <h3 className="font-semibold heading-subtitle !text-start">Featured Programs</h3>
                             <ul className="mt-2">

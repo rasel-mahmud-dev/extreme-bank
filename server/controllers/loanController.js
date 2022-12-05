@@ -4,6 +4,7 @@ import Notification from "../models/Notification";
 import Account from "../models/Account";
 import {ObjectId} from "mongodb";
 import Emi from "../models/Emi";
+import calcEmi from "../utilities/calcEmi";
 
 
 export const getCurrentLoan = async (req, res, next) => {
@@ -16,7 +17,7 @@ export const getCurrentLoan = async (req, res, next) => {
 };
 export const getAllLoansInfo = async (req, res, next) => {
     try {
-        let loans = await Loan.find({user_id: new ObjectId(req.user.user_id)});
+        let loans =  await (await Loan.collection).find({user_id: new ObjectId(req.user.user_id)}).sort({created_at: -1}).toArray();
         return response(res, loans, 200);
     } catch (ex) {
         next(ex);
@@ -32,13 +33,18 @@ export const createLoan = async (req, res, next) => {
             return next(Error("Internal error. Please try again"));
         }
         if (!acc.is_loan_eligible) {
-            return next(Error("You are not Loan Eligible"));
+            return next(Error("You are not eligible for Loan, You need to paid all EMI to get new Loan"));
         }
+
+        let { totalPay, monthlyPay, totalEmiNumber } = calcEmi(Number(amount), Number(loanDuration), 10)
 
         let newLoan = new Loan({
             user_id: req.user.user_id,
             account_no: acc.account_no,
             loan_purpose: loanPurpose,
+            total_pay: totalPay,
+            monthly_emi: monthlyPay,
+            total_emi: totalEmiNumber,
             interest_rate: 10,
             nid: nid,
             amount: amount,
@@ -57,6 +63,7 @@ export const createLoan = async (req, res, next) => {
             { account_no: acc.account_no },
             {
                 $set: {
+                    current_loan_id: newLoan._id,
                     is_loan_eligible: false,
                 },
                 $inc: { balance: Number(amount) },
@@ -67,7 +74,13 @@ export const createLoan = async (req, res, next) => {
             return response(res, "Loan request fail, Please try again", 500);
         }
 
-        return response(res, "Loan request successfully", 201);
+        let notification = await Notification.createNotification({
+            user_id: req.user.user_id,
+            label: `Loan given Amount: ${amount}`,
+            message: ""
+        })
+
+        return response(res, {notification, message: "Your requested loan has been granted."}, 201);
     } catch (ex) {
         next(ex);
     }
@@ -75,7 +88,8 @@ export const createLoan = async (req, res, next) => {
 
 export const getAllEmi = async (req, res, next) => {
     try {
-        let emis = await Emi.find({ user_id: new ObjectId(req.user.user_id) });
+        let emis = await (await Emi.collection).find({ user_id: new ObjectId(req.user.user_id), loan_id: new ObjectId(req.query.loan_id) })
+            .sort({created_at: -1}).toArray()
         return response(res, emis, 200);
     } catch (ex) {
         next(ex);
@@ -110,6 +124,10 @@ export const payEmi = async (req, res, next) => {
 
         account = account[0];
 
+        if(!account.current_loan){
+            return response(res, "Currently you no purchases any loan", 404);
+        }
+
         let lastEMi = await (
             await Emi.collection
         )
@@ -129,9 +147,28 @@ export const payEmi = async (req, res, next) => {
             nextMonth = futureDate
         }
 
+
+        if(lastEMi.emi_no >= account.current_loan.total_emi){
+            await Account.updateOne(
+                {user_id: new ObjectId(req.user.user_id)},
+                { $set: {
+                        current_loan_id: new ObjectId("000000000000000000000000")
+                    } }
+            )
+            await Loan.updateOne(
+                {_id: new ObjectId(account.current_loan_id)},
+                { $set: {
+                        is_completed: true
+                    } }
+            )
+            return response(res, {
+                message: "Your Current Loan has paid"
+            }, 409);
+        }
+
         let newEMi = new Emi({
             user_id: req.user.user_id,
-            loan_id: account.current_loan_id,
+            loan_id: new ObjectId(account.current_loan_id),
             amount: account.current_loan.monthly_emi,
             emi_no: lastEMi.length === 0 ? 1 : lastEMi.emi_no + 1,
             description,
