@@ -12,6 +12,7 @@ import Loader from "../components/Loader/Loader";
 
 import DashboardHome from "../pages/MyAccount/DashboardHome";
 import GoogleCallback from "../pages/Auth/GoogleCallback";
+import Deposit from "../pages/MyAccount/Deposit/Deposit";
 
 
 const AccountDashboard = lazy(()=>import("../pages/MyAccount/AccountDashboard"));
@@ -34,6 +35,7 @@ const routes = createBrowserRouter([
 				{path: "send-money", element: <MoneyTransfer />},
 				{path: "load-request", element: <LoanRequest />},
 				{path: "transactions", element: <Transactions />},
+				{path: "deposit", element: <Deposit />},
 				{path: "loans", element: <Loans />},
 			]
 			}

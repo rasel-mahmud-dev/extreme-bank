@@ -1,12 +1,13 @@
 import { Dispatch, useReducer, useState } from "react";
-import { ACTION_TYPES } from "../types";
+import {Account, ACTION_TYPES} from "../types";
 import AppContext from "./AppContext";
 
 export let dispatch: Dispatch<any>;
 
+
 export interface AppContextInterface {
     auth: any;
-    account?: object;
+    account: Account;
     isAuthLoaded: boolean;
     notifications: any[];
     isSidebarExpand: boolean;
@@ -14,7 +15,7 @@ export interface AppContextInterface {
 
 const initialState: AppContextInterface = {
     auth: null,
-    account: undefined,
+    account: {} as Account,
     isAuthLoaded: false,
     isSidebarExpand: false,
     notifications: [],

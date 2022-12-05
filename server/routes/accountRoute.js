@@ -1,5 +1,6 @@
 import * as accountController from "../controllers/accountController";
 import {auth} from "../middlewares";
+import {getAllDeposit} from "../controllers/accountController";
 
 
 const router = require("express").Router();
@@ -19,6 +20,13 @@ router.get("/transactions", auth, accountController.getAllTransaction);
 
 // make new transactions
 router.post("/money-transfer", auth, accountController.moneyTransfer);
+
+// add new deposit
+router.post("/deposit-money", auth, accountController.addDeposit);
+
+
+// get all deposit
+router.get("/deposit-money", auth, accountController.getAllDeposit);
 
 
 

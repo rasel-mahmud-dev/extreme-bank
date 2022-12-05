@@ -1,6 +1,6 @@
 function getCookie(cookieName, req){
     let result = ""
-    let cookies = req.headers.cookie.split(";") || []
+    let cookies = req.headers.cookie && req.headers.cookie.split(";") || []
     for (const cookie of cookies) {
         let t = cookie.split("=")
         if(t[0]) {

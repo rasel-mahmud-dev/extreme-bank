@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect } from "react";
-import Navigation from "./components/Navigation/Navigation";
+import Navigation from "components/Navigation/Navigation";
 import "./App.scss";
 import { Outlet } from "react-router-dom";
 // import {authFetchingAction} from "./context/actions/authAction";

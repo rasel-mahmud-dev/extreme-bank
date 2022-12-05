@@ -6,6 +6,7 @@ import {ObjectId} from "mongodb";
 import User from "../models/User";
 import Transaction from "../models/Transaction";
 import Notification from "../models/Notification";
+import Deposit from "../models/Deposit";
 
 
 export const createBankAccount = async (req, res, next) => {
@@ -64,12 +65,6 @@ export const getAccountInfo = async (req, res, next) => {
 
 export const getAllTransaction = async (req, res, next) => {
     try {
-        // const {limit = 20} = req.query;
-        // let paginate = " ORDER BY created_at desc";
-        // if (limit) {
-        //     paginate = paginate + " LIMIT " + limit;
-        // }
-
         const transactions = await Transaction.aggregate([
             {
                 $match: {
@@ -92,7 +87,8 @@ export const getAllTransaction = async (req, res, next) => {
                     foreignField: "_id",
                     as: "receiver"
                 } },
-            { $unwind: { path: "$receiver" }  }
+            { $unwind: { path: "$receiver" }  },
+            { $sort: { created_at: -1} }
         ])
         response(res, transactions);
 
@@ -175,15 +171,6 @@ export const moneyTransfer = async (req, res, next) => {
             }
         })
 
-
-        // if (!result2.affectedRows) {
-        //     // please revert preview money sending or better use data transaction
-        //     // please revert preview money sending or better use data transaction
-        //     // please revert preview money sending or better use data transaction
-        //     // please revert preview money sending or better use data transaction
-        //     return response(res, "Money transaction fail", 500);
-        // }
-
         // create a transaction
         let newTransaction = new Transaction({
             sender_id: user._id,
@@ -196,7 +183,7 @@ export const moneyTransfer = async (req, res, next) => {
 
         let notificationReceiver = await Notification.createNotification({
             user_id: desAccount.user_id,
-            label: "You Received $" + amount + "from " + user.username
+            label: "You Received $" + amount + " from " + user.username
         });
 
         let notificationSender = await Notification.createNotification({
@@ -212,6 +199,65 @@ export const moneyTransfer = async (req, res, next) => {
         }, 201);
     } catch (ex) {
         console.log(ex)
+        next(ex);
+    }
+};
+
+
+export const getAllDeposit = async (req, res, next) => {
+    try {
+        const deposit = await Deposit.find({user_id: new ObjectId(req.user.user_id)})
+        return response(res, deposit, 200);
+
+    } catch (ex) {
+        next(ex);
+    }
+};
+
+export const addDeposit = async (req, res, next) => {
+    try {
+        const { amount } = req.body;
+
+        const account = await Account.findOne({user_id: new ObjectId(req.user.user_id)})
+        if(!account){
+            return response(res, "Account not found", 404);
+        }
+
+        // create a transaction
+        let newDeposit = new Deposit({
+            account_no: account.account_no,
+            user_id: req.user.user_id,
+            amount: amount,
+            interest_rate: 5
+
+        })
+        newDeposit = await newDeposit.save();
+
+        if(!newDeposit){
+            return response(res, "Money Deposit fail", 500)
+        }
+
+        let  doc = await Account.updateOne(
+            {_id: new ObjectId(account._id)},
+            {$inc: { deposit: Number(amount) }}
+        )
+
+        if(doc.modifiedCount === 0){
+            return response(res, "Money Deposit fail", 500)
+        }
+
+        let notification = await Notification.createNotification({
+            user_id: req.user.user_id,
+            label: "You Deposit $" + amount
+        });
+
+        return response(res, {
+            message: "Money Deposit successes",
+            notification: notification,
+            deposit: newDeposit,
+        }, 201);
+
+    } catch (ex) {
         next(ex);
     }
 };

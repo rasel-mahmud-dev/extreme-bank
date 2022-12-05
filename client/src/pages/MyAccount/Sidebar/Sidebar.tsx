@@ -11,10 +11,10 @@ const Sidebar = ({ hasAccount = true}: { hasAccount: boolean}) => {
     const data = [
         { icon: "/account.png", label: "My Account", to: "/my-account" },
         { icon: "/send.png", label: "Send Money", to: "/my-account/send-money", hasAccount: true },
-        { icon: "/loan.png", label: "Request Loan", to: "/my-account/load-request", hasAccount: true },
         { icon: "/exchange.png", label: "My Transactions", to: "/my-account/transactions", hasAccount: true },
         { icon: "/exchange.png", label: "My Loans", to: "/my-account/loans", hasAccount: true },
-        { icon: "/account.png", label: "My Account", to: "/my-account/load-request", hasAccount: true },
+        { icon: "/loan.png", label: "Request Loan", to: "/my-account/load-request", hasAccount: true },
+        { icon: "/deposit.svg", label: "Deposit", to: "/my-account/deposit", hasAccount: true },
     ];
 
     const [{ auth, isSidebarExpand }, dispatch] = useStore();

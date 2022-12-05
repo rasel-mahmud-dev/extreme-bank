@@ -18,7 +18,7 @@ const Navigation = () => {
         return acc;
     }, 0);
 
-    const [isDark, setDark] = useState(null);
+    const [isDark, setDark] = useState(-1);
 
     const items = [
         { name: "Home", to: "/" },
@@ -45,12 +45,14 @@ const Navigation = () => {
 
 
     useEffect(() => {
-        if (isDark) {
-            document.documentElement.classList.add("dark");
-            localStorage.isDark = "0";
-        } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.isDark = "1";
+        if (isDark !== -1) {
+            if (isDark === 1) {
+                document.documentElement.classList.add("dark");
+                localStorage.isDark = "1";
+            } else {
+                document.documentElement.classList.remove("dark");
+                localStorage.isDark = "0";
+            }
         }
     }, [isDark]);
 
@@ -59,8 +61,10 @@ const Navigation = () => {
         let theme = localStorage.getItem("isDark");
         if (theme === "1") {
             document.documentElement.classList.add("dark");
+            setDark(1)
         } else {
             document.documentElement.classList.remove("dark");
+            setDark(0)
         }
     }, []);
 
@@ -93,10 +97,10 @@ const Navigation = () => {
                     <div className="flex items-center gap-x-4">
                         <li className="list-none py-5">
                             <span className="">
-                                {isDark ? (
-                                    <BsSun onClick={() => setDark(false)} className="text-xl" />
+                                {isDark === 1 ? (
+                                    <BsSun onClick={() => setDark(0)} className="text-xl" />
                                 ) : (
-                                    <BsMoon onClick={() => setDark(true)} className="text-xl" />
+                                    <BsMoon onClick={() => setDark(1)} className="text-xl" />
                                 )}
                             </span>
                         </li>

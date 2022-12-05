@@ -21,9 +21,14 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
-      "components": ["./src/components/"],
-      "app": ["./src/"],
-      "context": ["./src/context"]
+      "components": ["./src/components/*"],
+      "src": ["./src/*"],
+      "app": ["./src/*"],
+      "pages": ["./src/pages/*"],
+      "context": ["./src/context/*"],
+      "types": ["./src/types/*"],
+//      "axios": ["./src/axios/*"],
+      "utils": ["./src/utils/*"]
     }
   },
   "include": [
