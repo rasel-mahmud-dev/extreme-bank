@@ -21,7 +21,7 @@ const Navigation = () => {
     const [isDark, setDark] = useState(-1);
 
     const items = [
-        { name: "Home", to: "/" },
+        { name: "Home", href: "/#hero" },
         { name: "Services", href: "/#services" },
         { name: "Features", href: "/#features" },
         { name: "Money Transfer", to: "/my-account/send-money" },

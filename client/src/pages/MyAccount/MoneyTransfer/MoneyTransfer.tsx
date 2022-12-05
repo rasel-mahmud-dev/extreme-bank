@@ -141,7 +141,7 @@ const MoneyTransfer = () => {
 
 
 
-                <div className="rounded card mt-4 rounded-xl">
+                <div className="card mt-4 rounded-xl">
                     <form onSubmit={handleLogin}>
                         <ResponseModal
                             loadingTitle="Money Transfer Processing"
@@ -165,16 +165,16 @@ const MoneyTransfer = () => {
                 </div>
 
                 <div>
-                    <div className="mt-10">
+                    <div className="mt-10 ">
                         <div className="flex justify-between items-center">
-                            <h3 className="text-lg font-semibold">Transfer with Other Peoples</h3>
+                            <h3 className="heading-subtitle !text-start">Transfer with Other Peoples</h3>
                         </div>
 
-                        <div className="bg-white rounded-2xl p-3 mt-3 flex gap-6">
+                        <div className="card p-3 mt-3 flex gap-6">
                             {otherPeoples.map(people=>(
                                 <div className="flex flex-col justify-center items-center cursor-pointer">
-                                    <Avatar imgClass="w-20 h-20" src={people.avatar} username={people.username} />
-                                    <h4>{people.username}</h4>
+                                    <Avatar imgClass="w-14 h-14" src={people.avatar} username={people.username} />
+                                    <h4 className="card-label mt-2">{people.username}</h4>
                                 </div>
                             ))}
                         </div>

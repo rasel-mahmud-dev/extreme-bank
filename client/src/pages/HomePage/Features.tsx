@@ -12,13 +12,13 @@ const Features = () => {
             rate: "5",
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullana integer sagittis, eleifend consectetur adipiscing",
         },
-        {
-            _id: 1,
-            label: "Interest Money",
-            image: "/tax.png",
-            rate: "5",
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullana integer sagittis, eleifend consectetur adipiscing",
-        },
+        // {
+        //     _id: 1,
+        //     label: "Interest Money",
+        //     image: "/tax.png",
+        //     rate: "5",
+        //     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullana integer sagittis, eleifend consectetur adipiscing",
+        // },
         {
             _id: 1,
             label: "Bank Transfer",

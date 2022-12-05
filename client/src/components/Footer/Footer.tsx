@@ -43,7 +43,7 @@ const Footer = () => {
             <footer className="dark:bg-primary-9 pb-10 py-14">
                 <div className="container grid grid-cols-1 md:grid-cols-8  gap-0 md:gap-10">
                     <div className="col-auto md:col-span-3 lg:col-span-2">
-                        <img className="w-24" src="/logo.png" />
+                        <img className="w-44" src="/Group 3.png" />
                         <p className="text-dark-300 font-medium text-sm pt-4">
                             Extreme Bank is the trusted market leader in talent transformation. We change lives,
                             businesses, and nations through digital money transferring, developing the edge you need to conquer

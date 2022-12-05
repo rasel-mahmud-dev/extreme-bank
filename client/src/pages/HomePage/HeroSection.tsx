@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
     return (
-        <div className="">
+        <div className="" id="hero">
             <div className="container grid grid-cols-1 md:grid-cols-2">
                 <div className="mt-20 md:mt-32 text-center md:text-start row-start-2 md:row-start-auto">
                     <h5 className="heading-subtitle md:!text-start mb-2">Instant Money Transfer</h5>

@@ -13,13 +13,6 @@ const CountryCover = () => {
         },
         {
             _id: 1,
-            label: "British Pound",
-            image: "https://templates.envytheme.com/bitr/default/assets/images/flag/flag-4.png",
-            rate: "5",
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullana integer sagittis, eleifend consectetur adipiscing",
-        },
-        {
-            _id: 1,
             label: "German Mark",
             image: "https://templates.envytheme.com/bitr/default/assets/images/flag/flag-6.png",
             rate: "5",
@@ -46,7 +39,7 @@ const CountryCover = () => {
             <h5 className="heading-subtitle">Countries We Cover</h5>
             <h1 className="heading-title">Send Money To Over 130 Countries Worldwide</h1>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-4 md:mt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 mt-4 md:mt-8">
                 {data.map((item) => (
                     <div className="card !shadow-light overflow-hidden pb-6 pt-4">
                         <div className=" flex items-center gap-x-4 justify-center">

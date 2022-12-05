@@ -101,17 +101,28 @@ export const getOtherPeoples = async (req, res, next) => {
     try {
         const {limit} = req.query;
 
-        let paginate = "";
-        if (limit) {
-            paginate = "LIMIT " + limit;
-        }
+        let users = await User.aggregate([
+            { $match: { _id : { $nin: [new ObjectId(req.user.user_id)] }} },
+            { $lookup: {
+                    from: "accounts",
+                    localField: "_id",
+                    foreignField: "user_id",
+                    as: "account"
+                }
+            },
+            {$unwind: { path: "$account" }},
+            {
+            $project: {
+                email: "$email",
+                username: "$username",
+                avatar: "$avatar",
+                account_no: "$account.account_no"
+            }
+            }
+        ])
 
-        let sql = `Select username, user_id, avatar from users ${paginate}`;
-        let Db = await Base.Db;
-        let [rows, _] = await Db.query(sql);
-        if (rows.length) {
-            response(res, rows);
-        }
+        response(res, users, 200)
+
     } catch (ex) {
         next(ex);
     }
