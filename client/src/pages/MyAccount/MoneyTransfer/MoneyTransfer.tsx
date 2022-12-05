@@ -1,4 +1,4 @@
-import React, {SyntheticEvent, useEffect, useState} from "react";
+import React, {FormEvent, SyntheticEvent, useEffect, useRef, useState} from "react";
 import HttpResponse from "../../../components/HttpResponse/HttpResponse";
 import InputGroup from "../../../components/InputGroup/InputGroup";
 import Button from "../../../components/Button/Button";
@@ -9,6 +9,14 @@ import catchErrorMessage from "../../../utils/catchErrorMessage";
 import { Link } from "react-router-dom";
 import Avatar from "../../../components/Avatar/Avatar";
 import ResponseModal from "../../../components/ActionModal/ResponseModal";
+import Modal from "../../../components/Modal/Modal";
+
+interface People {
+
+    username: string, avatar: string, account_no: string
+
+}
+
 
 const MoneyTransfer = () => {
     const [httpResponse, setHttpResponse] = useState({
@@ -17,7 +25,13 @@ const MoneyTransfer = () => {
         loading: false,
     });
 
-    const [otherPeoples, setOtherPeoples] = useState([])
+    const [otherPeoples, setOtherPeoples] = useState<People[]>([])
+
+
+
+    const [openTransferMoneyToPeopleForm, setOpenTransferMoneyToPeopleForm] = useState<People | null>(null)
+
+
 
     useEffect(()=>{
         api.get("/api/v1/account/peoples").then(({data, status})=>{
@@ -65,7 +79,6 @@ const MoneyTransfer = () => {
         },
         description: {
             name: "description",
-            type: "textarea",
             placeholder: "Description",
             onChange: handleChange,
             validate: {
@@ -87,7 +100,7 @@ const MoneyTransfer = () => {
         setUserInput((prev) => ({ ...prev, [name]: value }));
     }
 
-    function handleLogin(e: SyntheticEvent) {
+    function handleLogin(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setHttpResponse((p) => ({...p, loading: false, message: ""}));
 
@@ -134,13 +147,68 @@ const MoneyTransfer = () => {
             })
     }
 
+    function sendMoneyToPeople(evt: FormEvent<HTMLFormElement>){
+        evt.preventDefault();
+        if(!openTransferMoneyToPeopleForm) return;
+
+        setHttpResponse((p) => ({...p, loading: true}));
+        api.post("/api/v1/account/money-transfer", {
+            // ...userInput
+            account_no: Number(openTransferMoneyToPeopleForm?.account_no),
+            amount: Number(userInput.amount),
+            password: userInput.password,
+            description: userInput.description,
+            payment_type: "Bank"
+        })
+            .then(({status, data}) => {
+                if (status === 201) {
+                    setHttpResponse({isSuccess: true, loading: false, message: ""});
+                    setTimeout(() => {
+                        setHttpResponse((p) => ({...p, loading: false, message: data.message}));
+                        setOpenTransferMoneyToPeopleForm(null)
+                    }, 300);
+                }
+            })
+            .catch((msg) => {
+                setHttpResponse({isSuccess: true, loading: false, message: ""});
+                setTimeout(() => {
+                    setHttpResponse({loading: false, isSuccess: false, message: catchErrorMessage(msg)});
+                }, 300);
+            })
+    }
+
+
     return (
         <div>
             <div>
+
+                <Modal isOpen={!!openTransferMoneyToPeopleForm} onClose={()=> setOpenTransferMoneyToPeopleForm(null)} className="max-w-sm" >
+
+                    <form onSubmit={sendMoneyToPeople}>
+
+                        <Avatar imgClass="w-16" className="flex justify-center" src={openTransferMoneyToPeopleForm?.avatar} username={openTransferMoneyToPeopleForm?.username} />
+                        <h4 className="text-body text-center">{openTransferMoneyToPeopleForm?.username}</h4>
+
+
+                        {Object.keys(data).map((key, i) => key !== "account_no" && (
+                            <InputGroup error={errors[key]} {...data[key]} className="mt-4" />
+                        ))}
+
+                        <div className="flex items-center gap-x-2">
+                            <input type="checkbox" id="accept-terms" className="checkbox checkbox-sm" />
+                            <label htmlFor="accept-terms" className="text-sm my-4 font-medium text-dark-300">
+                                I accept the Transfer Terms of Service
+                            </label>
+                        </div>
+
+                        <Button className="btn-primary mt-4">Send Money</Button>
+                    </form>
+
+
+                </Modal>
+
+
                 <h1 className="heading-title !text-start mt-3 mb-4">Money Transfer</h1>
-
-
-
                 <div className="card mt-4 rounded-xl">
                     <form onSubmit={handleLogin}>
                         <ResponseModal
@@ -172,7 +240,7 @@ const MoneyTransfer = () => {
 
                         <div className="card p-3 mt-3 flex gap-6">
                             {otherPeoples.map(people=>(
-                                <div className="flex flex-col justify-center items-center cursor-pointer">
+                                <div className="flex flex-col justify-center items-center cursor-pointer" onClick={()=> setOpenTransferMoneyToPeopleForm(people) }>
                                     <Avatar imgClass="w-14 h-14" src={people.avatar} username={people.username} />
                                     <h4 className="card-label mt-2">{people.username}</h4>
                                 </div>
