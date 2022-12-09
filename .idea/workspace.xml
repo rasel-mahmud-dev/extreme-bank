@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/controllers/notificationController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/models/Notification.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/notificationRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/InputGroup/input-group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/InputGroup/input-group.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyAccount/LoanRequest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyAccount/LoanRequest.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.firebase/hosting.ZGlzdA.cache" beforeDir="false" afterPath="$PROJECT_DIR$/client/.firebase/hosting.ZGlzdA.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SocialLogin/SocialLogin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SocialLogin/SocialLogin.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/usersRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/usersRoute.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +91,7 @@
       <workItem from="1669741787800" duration="12970000" />
       <workItem from="1669791251422" duration="22594000" />
       <workItem from="1669877870544" duration="25776000" />
+      <workItem from="1670566954545" duration="1173000" />
     </task>
     <servers />
   </component>

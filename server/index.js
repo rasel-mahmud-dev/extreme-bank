@@ -45,6 +45,7 @@ app.use(morgan("dev"))
 app.use(passport.initialize({}))
 
 require("./oauth/google")
+require("./oauth/facebook")
 
 
 app.use(routes)
