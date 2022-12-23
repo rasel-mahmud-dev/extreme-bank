@@ -21,6 +21,11 @@
   @apply bg-secondary-400
 }
 
+.btn-disabled{
+  pointer-events: none;
+  opacity: .6;
+}
+
 .shadow-bg-md{
   background-size: cover;
   position: relative;

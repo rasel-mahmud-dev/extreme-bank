@@ -13,8 +13,6 @@ import {ACTION_TYPES, CurrentLoan, Deposit} from "../../../types";
 const MyDeposit = () => {
     const [deposit, setDeposit] = useState<Deposit[]>([]);
 
-    const [currentLoan, setCurrentLoan] = useState<CurrentLoan>(null as unknown as CurrentLoan);
-
     const [{ auth, account }, dispatch] = useStore();
 
     const [isOpenDepositForm, setOpenAddDepositForm] = useState(false);
@@ -25,15 +23,19 @@ const MyDeposit = () => {
         api.get("/api/v1/account/deposit-money").then(({ data, status }) => {
             if (status === 200) {
                 setDeposit(data);
-
-                let totalInterestAmount = data.reduce((acc: any, depositItem: any) => {
-                    let interestMoney = calcInterest(depositItem.amount, depositItem.created_at, depositItem.interest_rate);
-                    return acc + interestMoney
-                }, 0);
-                setTotalDepositInterest(totalInterestAmount)
             }
         });
     }, []);
+
+
+    // calculate deposit interest amount
+    useEffect(()=>{
+        let totalInterestAmount = deposit?.reduce((acc: any, depositItem: any) => {
+            let interestMoney = calcInterest(depositItem.amount, depositItem.created_at, depositItem.interest_rate);
+            return acc + interestMoney
+        }, 0);
+        setTotalDepositInterest(totalInterestAmount)
+    }, [deposit])
 
 
 
@@ -56,23 +58,12 @@ const MyDeposit = () => {
     }
 
 
-    function calc(amount: number = 0, loanDuration: number = 0, interestRate: number = 0) {
-        let month = Number(loanDuration) * 12;
-        let totalPay = amount * (1 + (interestRate / 100) * loanDuration);
-
-        return {
-            // totalPay: totalPay,
-            totalPay: totalPay.toFixed(2),
-            monthlyPay: (totalPay / month).toFixed(2),
-        };
-    }
-
+    // calculate deposit interest from submit date
     function calcInterest(amount: number = 0, oldDate: string, interestRate: number = 0) {
-
         let old = new Date(oldDate).getTime()
         let now = new Date().getTime()
-        let milisecond = (now - old)
-        let second = milisecond / 1000
+        let miliSecond = (now - old)
+        let second = miliSecond / 1000
         let hours = ((second / 60) / 60)
         let year = hours / 8760
 
@@ -86,7 +77,6 @@ const MyDeposit = () => {
         { dataIndex: "interest_rate", title: "Rate (Annual)", sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0), render: (v) => v + "%" },
         { dataIndex: "amount", title: "Amount", sorter: (a, b) => (a > b ? 1 : a < b ? -1 : 0), render: (v) => "$" + v }
     ];
-
 
     return (
         <div>

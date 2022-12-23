@@ -101,7 +101,7 @@ const Navigation = () => {
             <div className="container flex justify-between items-center">
                 <div className="py-5">
                     <Link to="/">
-                        <img src="/Group 3.png" className="w-52" alt="" />
+                        <img src="/Group 3.png" className="w-40 sm:w-48 md:w-52" alt="" />
                         {/*<img src="/logo.png" className="w-24" alt="" />*/}
                     </Link>
                 </div>
@@ -122,8 +122,8 @@ const Navigation = () => {
                         ))}
                     </div>
 
-                    <div className="flex items-center gap-x-4">
-                        <li className="list-none py-5">
+                    <div className="flex items-center gap-x-2 md:gap-x-4">
+                        <li className="list-none py-5 cursor-pointer">
                             <span className="">
                                 {isDark === 1 ? (
                                     <BsSun onClick={() => setDark(0)} className="text-xl" />
@@ -135,7 +135,7 @@ const Navigation = () => {
 
                         {auth && (
                             <li className="list-none py-5 relative ">
-                                <div className="relative" onClick={() => setDropdownMenu("notification")}>
+                                <div className="relative cursor-pointer" onClick={() => setDropdownMenu("notification")}>
                                     <BiBell className="text-2xl" />
                                     {countNewNotification ? <span className="badge">{countNewNotification}</span> : ""}
                                 </div>

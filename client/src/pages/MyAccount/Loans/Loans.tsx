@@ -10,6 +10,7 @@ import { ACTION_TYPES } from "../../../types";
 import WithSidebarButton from "../../../components/WithSidebarButton/WithSidebarButton";
 import ResponseModal from "../../../components/ActionModal/ResponseModal";
 import catchErrorMessage from "../../../utils/catchErrorMessage";
+import {Link} from "react-router-dom";
 
 type CurrentLoan = {
     amount: number;
@@ -144,6 +145,8 @@ const Loans = () => {
         }
     }
 
+
+
     return (
         <div>
             <div>
@@ -189,7 +192,16 @@ const Loans = () => {
                     </li>
                 </div>
 
-                <Button onClick={() => setOpenPayCurrentMonthEMIForm(true)} className="btn-primary mt-10">
+                {!currentLoan && <div className="mt-10">
+                    <p className="text-body !font-semibold">You haven't take a loan</p>
+                    <Link to="/my-account/load-request">
+                        <Button className="btn-primary ">
+                            Take a Loan
+                        </Button>
+                    </Link>
+                </div> }
+
+                <Button onClick={() => setOpenPayCurrentMonthEMIForm(true)} disabled={!currentLoan} className="btn-primary mt-10">
                     Pay Current Month EMI
                 </Button>
 

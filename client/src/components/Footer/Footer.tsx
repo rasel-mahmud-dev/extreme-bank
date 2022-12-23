@@ -9,32 +9,32 @@ function SocialLinks(){
     return (
         <ul className="flex gap-4 mt-4">
             <a
-                className="card-label hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
+                className="card-label transition transition-colors  hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
                 href="https://www.facebook.com/rasel-mahmud-dev"
             >
                 <FaFacebookF className="text-lg" />
             </a>
             <a
-                className="card-label hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
+                className="card-label transition transition-colors  hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
                 href="https://rasel-portfolio.vercel.app"
             >
                 <BiGlobe className="text-lg" />
             </a>
             <a
-                className="card-label hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
+                className="card-label transition transition-colors  hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
                 href="https://github.com/rasel-mahmud-dev"
                 target="_blank"
             >
                 <FaGithub className="text-lg" />
             </a>{" "}
             <a
-                className="card-label hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
+                className="card-label transition transition-colors  hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
                 href="/"
             >
                 <FaYoutube className="text-lg" />
             </a>
             <a
-                className="card-label hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
+                className="card-label transition transition-colors  hover:bg-primary-400 hover:text-white w-10 h-10 md:w-8 md:h-8 flex justify-center items-center border border-dark-100/20  rounded-lg"
                 href="https://www.instagram.com/raselmraju"
                 target="_blank"
             >

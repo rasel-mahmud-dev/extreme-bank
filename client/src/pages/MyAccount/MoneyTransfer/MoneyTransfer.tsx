@@ -69,11 +69,11 @@ const MoneyTransfer = () => {
         password: {
             name: "password",
             type: "password",
-            placeholder: "Enter Your Password",
+            placeholder: "Your Password (Optional for google Account)",
             onChange: handleChange,
             validate: {
-                required: "password required",
-                minLength: { value: 5, message: "Password must be 5 or greater" },
+                // required: "password required",
+                // minLength: { value: 5, message: "Password must be 5 or greater" },
             },
             labelIcon: <BiLock className="text-dark-400 text-lg" />,
         },

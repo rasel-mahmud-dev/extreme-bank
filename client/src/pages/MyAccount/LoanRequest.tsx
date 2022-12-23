@@ -8,6 +8,8 @@ import ResponseModal from "../../components/ActionModal/ResponseModal";
 import catchErrorMessage from "../../utils/catchErrorMessage";
 import {ACTION_TYPES} from "../../types";
 import useStore from "../../context/useStore";
+import WithSidebarButton from "../../components/WithSidebarButton/WithSidebarButton";
+import {useNavigate} from "react-router-dom";
 
 const LoanRequest = () => {
     const [httpResponse, setHttpResponse] = useState({
@@ -16,6 +18,7 @@ const LoanRequest = () => {
         loading: false,
     });
     const [_, dispatch] = useStore()
+    const navigate = useNavigate();
 
     const InterestRate = 12;
 
@@ -97,9 +100,9 @@ const LoanRequest = () => {
             let interest = (InterestRate / 100) * Number(userInput.amount);
 
             let month = Number(userInput.loanDuration) * 12;
-            let totalPay = (Number(userInput.amount) + interest).toFixed(2);
+            let totalPay = Number((Number(userInput.amount) + interest).toFixed(2) || 0)
 
-            setUserInput((prevState) => ({
+            setUserInput((prevState: any) => ({
                 ...prevState,
                 totalPay: totalPay,
                 monthlyPay: (totalPay / month).toFixed(2),
@@ -114,7 +117,8 @@ const LoanRequest = () => {
         let isCompleted = true;
         // check validation before submit form
         let tempErrors: any = { ...errors };
-        for (let key in data) {
+        let key: any
+        for (key in data) {
             if (data[key]?.validate) {
                 let validate = validator(data[key]?.validate, userInput[key]);
                 if (validate) {
@@ -141,7 +145,7 @@ const LoanRequest = () => {
                 if(r.data.message) {
                     setTimeout(() => {
                         setHttpResponse({loading: false, message: r.data.message, isSuccess: false});
-
+                        navigate("/my-account/loans")
                     }, 300)
                 }
                 dispatch({
@@ -162,12 +166,14 @@ const LoanRequest = () => {
     return (
         <div>
             <div className="">
-                <h1 className="heading-title !text-start mt-4 mb-8">Loan Request</h1>
+                <WithSidebarButton className="mt-4 mb-8">
+                    <h1 className="heading-title !text-start ">Loan Request</h1>
+                </WithSidebarButton>
                 <div className="card">
                     <form onSubmit={handleLogin}>
 
                         <ResponseModal
-                            loadingTitle="Prepare Your Loan" {...httpResponse}
+                            loadingTitle="Preparing Your Loan" {...httpResponse}
                             onClose={()=>setHttpResponse(p=>({...p, message: "", loading: false}))}
                         />
 

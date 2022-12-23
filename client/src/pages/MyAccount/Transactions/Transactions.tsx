@@ -3,8 +3,7 @@ import { api } from "../../../axios/api";
 import Avatar from "../../../components/Avatar/Avatar";
 import date from "../../../utils/date";
 import useStore from "../../../context/useStore";
-import {TransactionType} from "../../../types";
-
+import { TransactionType } from "../../../types";
 
 const Transactions = () => {
     const [transactions, setTransactions] = useState<TransactionType[]>([]);
@@ -23,9 +22,9 @@ const Transactions = () => {
         <div>
             <div>
                 <h1 className="heading-title !text-start mt-3 mb-4">Transactions</h1>
-                <div className="card mt-4 rounded-xl">
-                    {transactions &&
-                        transactions.map((transaction) => (
+                {transactions && transactions.length > 0 && (
+                    <div className="card mt-4 rounded-xl">
+                        {transactions.map((transaction) => (
                             <div className="border-b border-neutral-500/10 py-4 last:border-none">
                                 <div className="flex gap-x-2 items-center">
                                     <div className="rounded-4xl">
@@ -78,7 +77,9 @@ const Transactions = () => {
                                 </div>
                             </div>
                         ))}
-                </div>
+                    </div>
+                )}
+                <div>{(!transactions || transactions?.length === 0) && <h1 className="text-body !font-semibold">No Transaction Yet</h1>}</div>
             </div>
         </div>
     );

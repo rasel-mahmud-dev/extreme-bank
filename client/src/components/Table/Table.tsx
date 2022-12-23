@@ -85,24 +85,26 @@ const Table: FC<TableProps> = (props) => {
     }
 
     function handleSort(compareFn: (args1: any, args2: any) => void, column: any) {
-        let list: any = state.items;
-        if (state.order) {
-            list = list.sort((a: any, b: any) => compareFn(a[column.dataIndex], b[column.dataIndex]));
-        } else {
-            list = list.sort((a: any, b: any) => compareFn(b[column.dataIndex], a[column.dataIndex]));
-        }
+        if(compareFn) {
+            let list: any = state.items;
+            if (state.order) {
+                list = list.sort((a: any, b: any) => compareFn(a[column.dataIndex], b[column.dataIndex]));
+            } else {
+                list = list.sort((a: any, b: any) => compareFn(b[column.dataIndex], a[column.dataIndex]));
+            }
 
-        let paginatedItems: any = [];
-        if (pagination) {
-            paginatedItems = sliceForPaginate(state, state.items);
+            let paginatedItems: any = [];
+            if (pagination) {
+                paginatedItems = sliceForPaginate(state, state.items);
+            }
+            setState((prevState) => ({
+                ...prevState,
+                items: list,
+                paginatedItems,
+                sortedField: column.dataIndex,
+                order: prevState.order ? 0 : 1,
+            }));
         }
-        setState((prevState) => ({
-            ...prevState,
-            items: list,
-            paginatedItems,
-            sortedField: column.dataIndex,
-            order: prevState.order ? 0 : 1,
-        }));
     }
 
     function sliceForPaginate(state: any, list: any) {
