@@ -155,8 +155,10 @@ export const moneyTransfer = async (req, res, next) => {
         }
 
 
-        if (!compare(password, user.password)) {
-            return response(res, "Please provide valid password", 401);
+        if(!user.googleId) {
+            if (!compare(password, user.password)) {
+                return response(res, "Please provide valid password", 401);
+            }
         }
 
         if (user.account.balance < amount) {
@@ -203,13 +205,12 @@ export const moneyTransfer = async (req, res, next) => {
         });
 
         return response(res, {
-            message: "Money transaction successes",
+            message: "Money transfer successes",
             notification: notificationSender,
             // notification: notificationReceiver,
             transaction: newTransaction,
         }, 201);
     } catch (ex) {
-        console.log(ex)
         next(ex);
     }
 };

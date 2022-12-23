@@ -8,6 +8,7 @@ class Account extends Base {
     withdraw
     deposit
     current_loan_id
+    is_loan_eligible
 
     constructor(data) {
         super(Account.collectionName);
@@ -16,6 +17,7 @@ class Account extends Base {
         this.balance = data.balance;
         this.withdraw = data.withdraw;
         this.deposit = data.deposit
+        this.is_loan_eligible = true
     }
 }
 
