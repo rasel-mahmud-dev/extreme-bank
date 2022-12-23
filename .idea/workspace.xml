@@ -6,12 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2fbb11d5-7b71-49a3-9365-bae9367a1561" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.firebase/hosting.ZGlzdA.cache" beforeDir="false" afterPath="$PROJECT_DIR$/client/.firebase/hosting.ZGlzdA.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SocialLogin/SocialLogin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SocialLogin/SocialLogin.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/usersRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/usersRoute.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,21 +37,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;16.13.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;16.18.3&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/RaseL/Desktop/extreme-bank/server&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\RaseL\\AppData\\Roaming\\npm\\node_modules\\prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.spelling&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\RaseL\\Desktop\\extreme-bank\\client\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "16.13.0",
+    "javascript.nodejs.core.library.typings.version": "16.18.3",
+    "last_opened_file_path": "C:/Users/RaseL/Desktop/extreme-bank/server",
+    "nodejs_package_manager_path": "pnpm",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\RaseL\\AppData\\Roaming\\npm\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.spelling",
+    "ts.external.directory.path": "E:\\Other projects\\extreme-bank\\client\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\RaseL\Desktop\extreme-bank\server" />
@@ -91,7 +85,8 @@
       <workItem from="1669741787800" duration="12970000" />
       <workItem from="1669791251422" duration="22594000" />
       <workItem from="1669877870544" duration="25776000" />
-      <workItem from="1670566954545" duration="1173000" />
+      <workItem from="1670566954545" duration="1464000" />
+      <workItem from="1671776583713" duration="3624000" />
     </task>
     <servers />
   </component>
